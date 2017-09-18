@@ -47,6 +47,8 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
+"" Personal wiki
+Plug 'vimwiki/vimwiki'
 
 "" Color
 Plug 'morhetz/gruvbox'
@@ -153,17 +155,17 @@ noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
 "" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
-
-"" fzf.vim
-nnoremap <silent> <C-p> :Files <CR>
-nnoremap <silent> <Leader>f :Find <CR>
-nnoremap <silent> <Leader>b :Buffers <CR>
 
 "" Mapping <Esc> to exit terminal-mode
 "" https://neovim.io/doc/user/nvim_terminal_emulator.html
 tnoremap <Esc> <C-\><C-n>
+
+"" Switch windows in terminal-mode
+tnoremap <C-h> <c-\><c-n><c-w>h
+tnoremap <C-j> <C-\><C-n><C-w>j
+tnoremap <C-k> <C-\><C-n><C-w>k
+tnoremap <C-l> <C-\><C-n><C-w>l
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -180,6 +182,13 @@ vnoremap K :m '<-2<CR>gv=gv
 "" NERDTree configuration
 noremap <silent> <F3> : NERDTreeToggle<CR>
 
+"" Tagbar
+nmap <silent> <F4> :TagbarToggle<CR>
+
+"" fzf.vim
+nnoremap <silent> <C-p> :Files <CR>
+nnoremap <silent> <Leader>f :Find <CR>
+nnoremap <silent> <Leader>b :Buffers <CR>
 
 "*****************************************************************************
 "" Custom configs
@@ -224,3 +233,9 @@ if executable('rg')
   " --color: Search color options
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0) 
 endif
+
+"" vimwiki
+"" This allows the folding to work for markdown
+let g:vimwiki_folding='expr' 
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
