@@ -24,31 +24,24 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
-"" UI helpers
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-"" fuzzy find
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"" Focus mode
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-"" Git wrapper
 Plug 'tpope/vim-fugitive'
-"" Code helpers
 Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"" Python
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-"" Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'alx741/vim-hindent', { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
-"" Personal wiki
 Plug 'vimwiki/vimwiki'
+Plug 'airblade/vim-gitgutter'
 
 "" Color
 Plug 'morhetz/gruvbox'
@@ -137,6 +130,8 @@ let g:airline_powerline_fonts = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚠'
 
+"" Goyo line number display
+let g:goyo_linenr = 1
 
 "*****************************************************************************
 "" Mappings
@@ -171,7 +166,7 @@ tnoremap <C-l> <C-\><C-n><C-w>l
 vmap < <gv
 vmap > >gv
 
-"" Move visual block
+"" Move visual block up/down
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
@@ -238,4 +233,3 @@ endif
 "" This allows the folding to work for markdown
 let g:vimwiki_folding='expr' 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
