@@ -42,6 +42,8 @@ Plug 'alx741/vim-hindent', { 'for': 'haskell' }
 Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
+Plug 'blueyed/vim-diminactive'
+Plug 'sbdchd/neoformat'
 
 "" Color
 Plug 'morhetz/gruvbox'
