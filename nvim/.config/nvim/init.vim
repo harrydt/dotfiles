@@ -98,6 +98,8 @@ endif
 "" Live substitute (neovim)
 set inccommand=split
 
+"" Disable folding
+set nofoldenable 
 
 "*****************************************************************************
 "" Visual Settings
