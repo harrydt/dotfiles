@@ -45,7 +45,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'blueyed/vim-diminactive'
 Plug 'sbdchd/neoformat'
 
-"" Color
+"" Colorscheme
 Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
@@ -153,9 +153,6 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
-"" Tagbar
-let g:tagbar_autofocus = 1
-
 "" Mapping <Esc> to exit terminal-mode
 "" https://neovim.io/doc/user/nvim_terminal_emulator.html
 tnoremap <Esc> <C-\><C-n>
@@ -194,6 +191,9 @@ nnoremap <silent> <Leader>b :Buffers <CR>
 "*****************************************************************************
 "" Enable deoplete
 let g:deoplete#enable_at_startup = 1
+
+"" Tagbar
+let g:tagbar_autofocus = 1
 
 "" jedi-vim
 let g:jedi#popup_on_dot = 0
