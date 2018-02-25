@@ -44,6 +44,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'blueyed/vim-diminactive'
 Plug 'sbdchd/neoformat'
+Plug 'itchyny/calendar.vim'
 
 "" Colorscheme
 Plug 'morhetz/gruvbox'
@@ -186,6 +187,10 @@ nnoremap <silent> <C-p> :Files <CR>
 nnoremap <silent> <Leader>f :Find <CR>
 nnoremap <silent> <Leader>b :Buffers <CR>
 
+"" calendar.vim
+nmap <expr> <F9> &ft ==# 'calendar' ? "\<Plug>(calendar_exit)" : ":\<C-u>Calendar\<CR>"
+
+
 "*****************************************************************************
 "" Custom configs
 "*****************************************************************************
@@ -237,3 +242,6 @@ endif
 "" This allows the folding to work for markdown
 let g:vimwiki_folding='expr' 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
