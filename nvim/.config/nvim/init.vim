@@ -45,6 +45,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'blueyed/vim-diminactive'
 Plug 'sbdchd/neoformat'
 Plug 'itchyny/calendar.vim'
+Plug 'Yggdroot/indentLine'
 
 "" Colorscheme
 Plug 'morhetz/gruvbox'
