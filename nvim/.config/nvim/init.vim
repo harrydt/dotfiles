@@ -24,24 +24,29 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+"" Vim helpers/enhancement
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'blueyed/vim-diminactive'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'tpope/vim-fugitive'
+Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } " Focus mode
 Plug 'tpope/vim-surround'
+Plug 'Yggdroot/indentLine'
+Plug 'junegunn/vim-peekaboo' " helper for register peaking
+Plug 'vimwiki/vimwiki' " Personal Wiki
+"" Git
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+"" Programming
+"" To be replaced by LSP
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'vimwiki/vimwiki'
-Plug 'airblade/vim-gitgutter'
-Plug 'blueyed/vim-diminactive'
 Plug 'sbdchd/neoformat'
-Plug 'Yggdroot/indentLine'
 
 "" Colorscheme
 Plug 'morhetz/gruvbox'
