@@ -103,6 +103,9 @@ set inccommand=split
 "" Disable folding
 set nofoldenable 
 
+"" Wrap line for markdown files
+au BufRead,BufNewFile *.md setlocal textwidth=80
+
 "*****************************************************************************
 "" Visual Settings
 "*****************************************************************************
@@ -187,9 +190,6 @@ nmap <silent> <F4> :TagbarToggle<CR>
 nnoremap <silent> <C-p> :Files <CR>
 nnoremap <silent> <Leader>f :Find <CR>
 nnoremap <silent> <Leader>b :Buffers <CR>
-
-"" calendar.vim
-nmap <expr> <F9> &ft ==# 'calendar' ? "\<Plug>(calendar_exit)" : ":\<C-u>Calendar\<CR>"
 
 
 "*****************************************************************************
