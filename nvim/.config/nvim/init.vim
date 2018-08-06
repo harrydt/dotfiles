@@ -37,14 +37,10 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'alx741/vim-hindent', { 'for': 'haskell' }
-Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 Plug 'vimwiki/vimwiki'
 Plug 'airblade/vim-gitgutter'
 Plug 'blueyed/vim-diminactive'
 Plug 'sbdchd/neoformat'
-Plug 'itchyny/calendar.vim'
 Plug 'Yggdroot/indentLine'
 
 "" Colorscheme
@@ -243,6 +239,3 @@ endif
 "" This allows the folding to work for markdown
 let g:vimwiki_folding='expr' 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
