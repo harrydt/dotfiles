@@ -28,15 +28,19 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'blueyed/vim-diminactive'
+Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } " Focus mode
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-peekaboo' " helper for register peaking
 Plug 'vimwiki/vimwiki' " Personal Wiki
+Plug 'sheerun/vim-polyglot'
+Plug 'janko-m/vim-test'
+Plug 'jpalardy/vim-slime'
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -46,17 +50,20 @@ Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-jedi', { 'for': 'python' }
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+
 Plug 'sbdchd/neoformat'
 
+"" LSP
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+
 "" Colorscheme
-Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
 
 " Initialize plugin system
 call plug#end()
 
 " Required:
 filetype plugin indent on
-
 
 "*****************************************************************************
 "" Basic Setup
@@ -120,7 +127,7 @@ set showmatch " Show matching part of bracket pairs [] () {}
 "" gruvbox dark colorscheme
 set background=dark
 if !exists('g:not_finish_vimplug')
-  colorscheme gruvbox
+  colorscheme seoul256
 endif
 
 "" Disable the blinking cursor.
@@ -131,7 +138,7 @@ set scrolloff=3
 set laststatus=2
 
 "" vim-airline visual settings
-let g:airline_theme = 'gruvbox'
+let g:airline_theme = 'base16'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -159,15 +166,19 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
+"" Open things
+" Terminal in a horizontal split below current buffer
+nnoremap <Leader>ot ::below 10sp term://$SHELL<cr>i
+
 "" Mapping <Esc> to exit terminal-mode
 "" https://neovim.io/doc/user/nvim_terminal_emulator.html
 tnoremap <Esc> <C-\><C-n>
 
 "" Switch windows in terminal-mode
-tnoremap <C-h> <c-\><c-n><c-w>h
-tnoremap <C-j> <C-\><C-n><C-w>j
-tnoremap <C-k> <C-\><C-n><C-w>k
-tnoremap <C-l> <C-\><C-n><C-w>l
+"tnoremap <C-h> <c-\><c-n><c-w>h
+"tnoremap <C-j> <C-\><C-n><C-w>j
+"tnoremap <C-k> <C-\><C-n><C-w>k
+"tnoremap <C-l> <C-\><C-n><C-w>l
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -177,10 +188,10 @@ vmap > >gv
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
+"" Most used commands
+nnoremap <C-s> :w<CR>
+nnoremap <Leader>q :q<CR>
 
-"*****************************************************************************
-"" Abbreviations
-"*****************************************************************************
 "" NERDTree configuration
 noremap <silent> <F3> : NERDTreeToggle<CR>
 
@@ -192,6 +203,13 @@ nnoremap <silent> <C-p> :Files <CR>
 nnoremap <silent> <Leader>f :Find <CR>
 nnoremap <silent> <Leader>b :Buffers <CR>
 
+"" vim-test
+" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
+nmap <silent> t<C-n> :TestNearest<CR>
+nmap <silent> t<C-f> :TestFile<CR>
+nmap <silent> t<C-s> :TestSuite<CR>
+nmap <silent> t<C-l> :TestLast<CR>
+nmap <silent> t<C-g> :TestVisit<CR>
 
 "*****************************************************************************
 "" Custom configs
@@ -212,6 +230,11 @@ let g:jedi#rename_command = "<leader>r"
 let g:jedi#show_call_signatures = "0"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#smart_auto_mappings = 0
+
+
+"" vim-slime
+let g:slime_python_ipython = 1
+let g:slime_target = "neovim"
 
 "" ripgrep
 if executable('rg')
@@ -244,3 +267,6 @@ endif
 "" This allows the folding to work for markdown
 let g:vimwiki_folding='expr' 
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_autowriteall = 1
+"" Auto convert index.md to HTML for easier view on mobile
+autocmd BufWritePost /home/harrydt/vimwiki/index.md silent! !pandoc -o /home/harrydt/Dropbox/vimwiki/index.html /home/harrydt/vimwiki/index.md
