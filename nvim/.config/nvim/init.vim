@@ -17,17 +17,14 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-" Required:
+
+"*****************************************************************************
+"" Plugins
+"*****************************************************************************
 call plug#begin(expand('~/.config/nvim/plugged'))
 
-
-"*****************************************************************************
-"" Plug install packages
-"*****************************************************************************
 "" Vim helpers/enhancement
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -41,32 +38,36 @@ Plug 'vimwiki/vimwiki' " Personal Wiki
 Plug 'sheerun/vim-polyglot'
 Plug 'janko-m/vim-test'
 Plug 'jpalardy/vim-slime'
+Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected text
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+Plug '907th/vim-auto-save' "Autosave
+Plug 'rstacruz/vim-closer' " Autoclose brackets
+Plug 'tpope/vim-endwise' " similar to vim-closer
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 "" Programming
 "" To be replaced by LSP
-Plug 'w0rp/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-
-Plug 'sbdchd/neoformat'
-
+" Plug 'w0rp/ale'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'sbdchd/neoformat'
 "" LSP
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-" Initialize plugin system
 call plug#end()
 
 " Required:
 filetype plugin indent on
 
 "*****************************************************************************
-"" Basic Setup
+"" Vim Setup
 "*****************************************************************************
 "" Encoding
 set encoding=utf-8
@@ -74,6 +75,7 @@ set fileencoding=utf-8
 set fileencodings=utf-8
 set bomb
 set binary
+set hidden
 
 "" Enable mouse (for window resizing)
 set mouse=a
@@ -108,15 +110,20 @@ endif
 "" Live substitute (neovim)
 set inccommand=split
 
-"" Disable folding
-set nofoldenable 
+set foldlevelstart=20
 
 "" Wrap line for markdown files
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
-"*****************************************************************************
-"" Visual Settings
-"*****************************************************************************
+"" From vim-sensible
+set smarttab
+set nrformats-=octal
+set wildmenu
+set autoread
+if &history < 1000
+  set history=1000
+endif
+
 syntax enable
 set ruler
 set number " Show current line number
@@ -137,21 +144,9 @@ set scrolloff=3
 "" Status bar
 set laststatus=2
 
-"" vim-airline visual settings
-let g:airline_theme = 'base16'
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_powerline_fonts = 1
-
-"" ale signs for errors and warnings
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
-
-"" Goyo line number display
-let g:goyo_linenr = 1
 
 "*****************************************************************************
-"" Mappings
+"" Key Mappings
 "*****************************************************************************
 "" Clear search highlight
 nnoremap <silent> <Leader>/ :nohlsearch<CR>
@@ -185,10 +180,12 @@ vmap < <gv
 vmap > >gv
 
 "" Move visual block up/down
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+" TODO conflicting keymapping with coc.nvim
+" Need to figure out alternative
+" vnoremap J :m '>+1<CR>gv=gv
+" vnoremap K :m '<-2<CR>gv=gv
 
-"" Most used commands
+"" Commonly used commands
 nnoremap <C-s> :w<CR>
 nnoremap <Leader>q :q<CR>
 
@@ -198,50 +195,101 @@ noremap <silent> <F3> : NERDTreeToggle<CR>
 "" Tagbar
 nmap <silent> <F4> :TagbarToggle<CR>
 
-"" fzf.vim
+"" fzf.vim mappings
 nnoremap <silent> <C-p> :Files <CR>
-nnoremap <silent> <Leader>f :Find <CR>
-nnoremap <silent> <Leader>b :Buffers <CR>
+nnoremap <silent> <Leader>ff :Rg <CR>
+nnoremap <silent> <Leader>fb :Buffers <CR>
+nnoremap <silent> <Leader>fl :Lines <CR>
 
 "" vim-test
-" these "Ctrl mappings" work well when Caps Lock is mapped to Ctrl
 nmap <silent> t<C-n> :TestNearest<CR>
 nmap <silent> t<C-f> :TestFile<CR>
 nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
+
 "*****************************************************************************
-"" Custom configs
+"" coc.nvim
 "*****************************************************************************
-"" Enable deoplete
-let g:deoplete#enable_at_startup = 1
+" Better display for messages
+set cmdheight=2
 
-"" Tagbar
-let g:tagbar_autofocus = 1
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-"" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
+" Use <c-space> for trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+
+"*****************************************************************************
+"" Plugin Configurations
+"*****************************************************************************
+"" vim-airline
+let g:airline_theme = 'base16'
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline_powerline_fonts = 1
+
+"" ale signs for errors and warnings
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚠'
+
+"" Goyo line number display
+let g:goyo_linenr = 1
 
 "" vim-slime
 let g:slime_python_ipython = 1
 let g:slime_target = "neovim"
 
-"" ripgrep
+"" Tagbar
+let g:tagbar_autofocus = 1
+
+"" Fzf
 if executable('rg')
   "" Set default grep to ripgrep
   set grepprg=rg\ --vimgrep
-
-  "" Set default ripgrep configs for fzf
   "# --files: List files that would be searched but do not search
   "# --no-ignore: Do not respect .gitignore, etc...
   "# --hidden: Search hidden files and folders
@@ -264,8 +312,7 @@ if executable('rg')
 endif
 
 "" vimwiki
-"" This allows the folding to work for markdown
-let g:vimwiki_folding='expr' 
+let g:vimwiki_folding='expr'
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_autowriteall = 1
 "" Auto convert index.md to HTML for easier view on mobile
