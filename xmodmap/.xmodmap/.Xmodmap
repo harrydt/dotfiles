@@ -13,3 +13,8 @@ add Control = Control_L
 !
 keycode 51 = BackSpace
 keycode 22 = backslash bar
+
+!
+! Map Right Alt to Esc
+!
+keycode 108 = Escape
