@@ -41,6 +41,7 @@ Plug 'jpalardy/vim-slime'
 Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected text
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
+u 
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'tpope/vim-endwise' " similar to vim-closer
@@ -55,7 +56,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'sbdchd/neoformat'
 "" LSP
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install()}}
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
@@ -234,6 +235,11 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
