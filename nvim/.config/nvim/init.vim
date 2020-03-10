@@ -44,10 +44,9 @@ Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heu
 u 
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
-Plug 'tpope/vim-endwise' " similar to vim-closer
 "" Git
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'mhinz/vim-signify'
 "" Programming
 "" To be replaced by LSP
 " Plug 'w0rp/ale'
@@ -135,6 +134,7 @@ set showmatch " Show matching part of bracket pairs [] () {}
 "" gruvbox dark colorscheme
 set background=dark
 if !exists('g:not_finish_vimplug')
+  let g:seoul256_background = 236
   colorscheme seoul256
 endif
 
@@ -144,6 +144,15 @@ set scrolloff=3
 
 "" Status bar
 set laststatus=2
+
+"" Persistent undo
+set undodir=~/.vim/undodir
+set undofile
+
+"" Enable cursor mode shapes
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+		  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+		  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
 "*****************************************************************************
@@ -292,6 +301,9 @@ let g:slime_target = "neovim"
 "" Tagbar
 let g:tagbar_autofocus = 1
 
+"" vim-auto-save
+let g:auto_save = 1  " enable AutoSave on Vim startup
+
 "" Fzf
 if executable('rg')
   "" Set default grep to ripgrep
@@ -301,8 +313,8 @@ if executable('rg')
   "# --hidden: Search hidden files and folders
   "# --follow: Follow symlinks
   "# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
-  
+  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden'
+
   "" Define custom :Find command to leverage rg
   " --column: Show column number
   " --line-number: Show line number
@@ -322,4 +334,7 @@ let g:vimwiki_folding='expr'
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:vimwiki_autowriteall = 1
 "" Auto convert index.md to HTML for easier view on mobile
-autocmd BufWritePost /home/harrydt/vimwiki/index.md silent! !pandoc -o /home/harrydt/Dropbox/vimwiki/index.html /home/harrydt/vimwiki/index.md
+" autocmd BufWritePost /home/harrydt/vimwiki/index.md silent! !pandoc -o /home/harrydt/Dropbox/vimwiki/index.html /home/harrydt/vimwiki/index.md
+
+"" vim-polyglot
+let g:polyglot_disabled = ['markdown']
