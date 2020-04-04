@@ -47,6 +47,7 @@ Plug 'rstacruz/vim-closer' " Autoclose brackets
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
+Plug 'junegunn/vim-slash' " Enhance in-buffer search experience
 "" Programming
 "" To be replaced by LSP
 " Plug 'w0rp/ale'
@@ -55,7 +56,8 @@ Plug 'mhinz/vim-signify'
 " Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'sbdchd/neoformat'
 "" LSP
-Plug 'neoclide/coc.nvim', { 'do': { -> coc#util#install()}}
+" Use release branch (Recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
@@ -158,9 +160,6 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 "*****************************************************************************
 "" Key Mappings
 "*****************************************************************************
-"" Clear search highlight
-nnoremap <silent> <Leader>/ :nohlsearch<CR>
-
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
@@ -277,6 +276,10 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
+"" coc-python
+nmap <Leader>rp :Format<CR>
+nmap <F8> :CocCommand python.execInTerminal<CR>
+vmap <F8> :CocCommand python.execSelectionInTerminal<CR>
 
 "*****************************************************************************
 "" Plugin Configurations
@@ -327,6 +330,11 @@ if executable('rg')
   " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
   " --color: Search color options
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0) 
+endif
+if has("nvim")
+    " Escape inside a FZF terminal window should exit the terminal window
+    " rather than going into the terminal's normal mode.
+    autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 endif
 
 "" vimwiki
