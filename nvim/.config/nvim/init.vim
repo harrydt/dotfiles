@@ -28,6 +28,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-startify'
 Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } " Focus mode
 Plug 'tpope/vim-surround'
@@ -48,15 +49,7 @@ Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
 Plug 'junegunn/vim-slash' " Enhance in-buffer search experience
-"" Programming
-"" To be replaced by LSP
-" Plug 'w0rp/ale'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi', { 'for': 'python' }
-" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-" Plug 'sbdchd/neoformat'
 "" LSP
-" Use release branch (Recommend)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
@@ -270,6 +263,9 @@ function! s:show_documentation()
   endif
 endfunction
 
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -278,8 +274,8 @@ command! -nargs=0 Format :call CocAction('format')
 
 "" coc-python
 nmap <Leader>rp :Format<CR>
-nmap <F8> :CocCommand python.execInTerminal<CR>
-vmap <F8> :CocCommand python.execSelectionInTerminal<CR>
+nmap <F5> :CocCommand python.execInTerminal<CR>
+vmap <F5> :CocCommand python.execSelectionInTerminal<CR>
 
 "*****************************************************************************
 "" Plugin Configurations
@@ -289,10 +285,6 @@ let g:airline_theme = 'base16'
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_powerline_fonts = 1
-
-"" ale signs for errors and warnings
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '⚠'
 
 "" Goyo line number display
 let g:goyo_linenr = 1
@@ -316,7 +308,7 @@ if executable('rg')
   "# --hidden: Search hidden files and folders
   "# --follow: Follow symlinks
   "# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden'
+  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden -g "!{node_modules,.git,undodir}"'
 
   "" Define custom :Find command to leverage rg
   " --column: Show column number
@@ -329,7 +321,7 @@ if executable('rg')
   " --follow: Follow symlinks
   " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
   " --color: Search color options
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0) 
+  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!{node_modules,.git,undodir}" " --color "always" '.shellescape(<q-args>), 1, <bang>0) 
 endif
 if has("nvim")
     " Escape inside a FZF terminal window should exit the terminal window
