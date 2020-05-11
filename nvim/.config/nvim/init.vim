@@ -38,13 +38,13 @@ Plug 'junegunn/vim-peekaboo' " helper for register peaking
 Plug 'vimwiki/vimwiki' " Personal Wiki
 Plug 'sheerun/vim-polyglot'
 Plug 'janko-m/vim-test'
-Plug 'jpalardy/vim-slime'
 Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected text
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 u 
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
+Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify'
@@ -289,9 +289,6 @@ let g:airline_powerline_fonts = 1
 "" Goyo line number display
 let g:goyo_linenr = 1
 
-"" vim-slime
-let g:slime_python_ipython = 1
-let g:slime_target = "neovim"
 
 "" Tagbar
 let g:tagbar_autofocus = 1
@@ -308,7 +305,7 @@ if executable('rg')
   "# --hidden: Search hidden files and folders
   "# --follow: Follow symlinks
   "# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden -g "!{node_modules,.git,undodir}"'
+  let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden -g "!{node_modules,.git,undodir,swap}"'
 
   "" Define custom :Find command to leverage rg
   " --column: Show column number
@@ -338,3 +335,6 @@ let g:vimwiki_autowriteall = 1
 
 "" vim-polyglot
 let g:polyglot_disabled = ['markdown']
+
+"" vim-sneak
+let g:sneak#label = 1
