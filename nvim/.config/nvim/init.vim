@@ -47,8 +47,8 @@ Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 "" Git
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
-Plug 'junegunn/vim-slash' " Enhance in-buffer search experience
+Plug 'mhinz/vim-signify' " Show Git changes on left side
+Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
 "" LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Colorscheme
