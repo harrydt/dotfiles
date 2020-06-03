@@ -26,8 +26,8 @@ call plug#begin(expand('~/.config/nvim/plugged'))
 "" Vim helpers/enhancement
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-startify'
-Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'liuchengxu/vista.vim' " like tagbar, but with LSP support
+Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' } " Focus mode
@@ -41,10 +41,10 @@ Plug 'janko-m/vim-test'
 Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected text
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
-u 
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
+Plug 'alok/notational-fzf-vim'
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
@@ -126,16 +126,15 @@ set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set showmatch " Show matching part of bracket pairs [] () {}
 
-"" gruvbox dark colorscheme
-set background=dark
+" set background=dark
 if !exists('g:not_finish_vimplug')
   let g:seoul256_background = 236
   colorscheme seoul256
 endif
 
 "" Disable the blinking cursor.
-set gcr=a:blinkon0
-set scrolloff=3
+" set gcr=a:blinkon0
+" set scrolloff=3
 
 "" Status bar
 set laststatus=2
@@ -146,8 +145,8 @@ set undofile
 
 "" Enable cursor mode shapes
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-		  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-		  \,sm:block-blinkwait175-blinkoff150-blinkon175
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
 "*****************************************************************************
@@ -195,7 +194,7 @@ nnoremap <Leader>q :q<CR>
 noremap <silent> <F3> : NERDTreeToggle<CR>
 
 "" Tagbar
-nmap <silent> <F4> :TagbarToggle<CR>
+nmap <silent> <F4> :Vista!!<CR>
 
 "" fzf.vim mappings
 nnoremap <silent> <C-p> :Files <CR>
@@ -210,7 +209,8 @@ nmap <silent> t<C-s> :TestSuite<CR>
 nmap <silent> t<C-l> :TestLast<CR>
 nmap <silent> t<C-g> :TestVisit<CR>
 
-
+"" vimwiki
+nmap <Leader>wp :NV<CR>
 "*****************************************************************************
 "" coc.nvim
 "*****************************************************************************
@@ -283,7 +283,6 @@ vmap <F5> :CocCommand python.execSelectionInTerminal<CR>
 "" vim-airline
 let g:airline_theme = 'base16'
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
 let g:airline_powerline_fonts = 1
 
 "" Goyo line number display
@@ -303,22 +302,7 @@ if executable('rg')
   "# --files: List files that would be searched but do not search
   "# --no-ignore: Do not respect .gitignore, etc...
   "# --hidden: Search hidden files and folders
-  "# --follow: Follow symlinks
-  "# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
   let $FZF_DEFAULT_COMMAND ='rg --files --no-ignore-vcs --hidden -g "!{node_modules,.git,undodir,swap}"'
-
-  "" Define custom :Find command to leverage rg
-  " --column: Show column number
-  " --line-number: Show line number
-  " --no-heading: Do not show file headings in results
-  " --fixed-strings: Search term as a literal string
-  " --ignore-case: Case insensitive search
-  " --no-ignore: Do not respect .gitignore, etc...
-  " --hidden: Search hidden files and folders
-  " --follow: Follow symlinks
-  " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-  " --color: Search color options
-  command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow -g "!{node_modules,.git,undodir}" " --color "always" '.shellescape(<q-args>), 1, <bang>0) 
 endif
 if has("nvim")
     " Escape inside a FZF terminal window should exit the terminal window
@@ -338,3 +322,6 @@ let g:polyglot_disabled = ['markdown']
 
 "" vim-sneak
 let g:sneak#label = 1
+
+" example
+let g:nv_search_paths = ['~/vimwiki']
