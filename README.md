@@ -1,7 +1,6 @@
 Personal dotfiles managed by GNU Stow
 
 # Using GNU stow to manage dotfiles
-:dotfiles:gnu:stow:
 
 - Install GNU stow
   `sudo pacman -S stow`
