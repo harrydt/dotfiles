@@ -5,10 +5,9 @@ Personal dotfiles managed by GNU Stow
 - Install GNU stow
   `sudo pacman -S stow`
 - Create `~/dotfiles`
-- Move config files to `~/dotfiles,` keeping the same dir structure
-  For example:
+- Move config files to `~/dotfiles,` keeping the same dir structure\
   `~/.config/nvim/init.vim` ==> `~/dotfiles/nvim/.config/nvim/init.vim`
-- `cd` to `~/dotfiles`
-- Run GNU stow on each config 
-  For example:
+- Change directory to `dotfiles`\
+  `cd ~/dotfiles`
+- Run GNU stow on each config\
   `stow nvim`
