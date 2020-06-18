@@ -274,8 +274,6 @@ command! -nargs=0 Format :call CocAction('format')
 
 "" coc-python
 nmap <Leader>rp :Format<CR>
-nmap <F5> :CocCommand python.execInTerminal<CR>
-vmap <F5> :CocCommand python.execSelectionInTerminal<CR>
 
 "*****************************************************************************
 "" Plugin Configurations
