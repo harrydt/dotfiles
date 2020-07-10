@@ -45,17 +45,21 @@ Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 Plug 'alok/notational-fzf-vim'
-"" Git
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify' " Show Git changes on left side
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
+Plug 'psliwka/vim-smoothie' " smooth scrolling
+"" Git
+" Plug 'tpope/vim-fugitive'
+Plug 'lambdalisue/gina.vim' " Replace vim-fugitive
+Plug 'mhinz/vim-signify' " Show Git changes on left side
 "" LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
+"" Misc
+Plug 'ianding1/leetcode.vim'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 call plug#end()
 
 " Required:
@@ -321,5 +325,12 @@ let g:polyglot_disabled = ['markdown']
 "" vim-sneak
 let g:sneak#label = 1
 
-" example
+" Default path for NV to search
 let g:nv_search_paths = ['~/vimwiki']
+
+" Settings for leetcode.vim
+let g:leetcode_browser = 'firefox'
+let g:leetcode_solution_filetype = 'python3'
+
+" vim-startfiy
+let g:startify_change_to_dir = 0
