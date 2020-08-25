@@ -44,12 +44,12 @@ Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heu
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
-Plug 'alok/notational-fzf-vim'
+" Plug 'alok/notational-fzf-vim'
+Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
 Plug 'psliwka/vim-smoothie' " smooth scrolling
 "" Git
-" Plug 'tpope/vim-fugitive'
-Plug 'lambdalisue/gina.vim' " Replace vim-fugitive
+Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
 "" LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -165,6 +165,14 @@ noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
+
+"" Buffers
+nnoremap ]b :bnext<cr>
+nnoremap [b :bprev<cr>
+
+"" Tabs
+nnoremap ]t :tabn<cr>
+nnoremap [t :tabp<cr>
 
 "" Open things
 " Terminal in a horizontal split below current buffer
@@ -286,6 +294,7 @@ nmap <Leader>rp :Format<CR>
 let g:airline_theme = 'base16'
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 "" Goyo line number display
 let g:goyo_linenr = 1
