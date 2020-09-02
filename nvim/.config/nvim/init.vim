@@ -55,6 +55,7 @@ Plug 'mhinz/vim-signify' " Show Git changes on left side
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "" Colorscheme
 Plug 'junegunn/seoul256.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "" Misc
@@ -132,8 +133,9 @@ set showmatch " Show matching part of bracket pairs [] () {}
 
 " set background=dark
 if !exists('g:not_finish_vimplug')
-  let g:seoul256_background = 236
-  colorscheme seoul256
+  " let g:seoul256_background = 236
+  " colorscheme seoul256
+  colorscheme onedark
 endif
 
 "" Disable the blinking cursor.
@@ -199,7 +201,9 @@ vmap > >gv
 " vnoremap K :m '<-2<CR>gv=gv
 
 "" Commonly used commands
-nnoremap <C-s> :w<CR>
+nnoremap <C-s> :update<CR>
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <Leader>Q :bd<CR>
 nnoremap <Leader>q :q<CR>
 
 "" NERDTree configuration
@@ -229,6 +233,13 @@ nmap <Leader>wp :NV<CR>
 " Better display for messages
 set cmdheight=2
 
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 inoremap <silent><expr> <TAB>
@@ -245,14 +256,19 @@ endfunction
 " Use <c-space> for trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -291,7 +307,7 @@ nmap <Leader>rp :Format<CR>
 "" Plugin Configurations
 "*****************************************************************************
 "" vim-airline
-let g:airline_theme = 'base16'
+let g:airline_theme = 'bubblegum'
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
