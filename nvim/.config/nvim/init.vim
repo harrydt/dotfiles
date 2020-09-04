@@ -138,10 +138,6 @@ if !exists('g:not_finish_vimplug')
   colorscheme onedark
 endif
 
-"" Disable the blinking cursor.
-" set gcr=a:blinkon0
-" set scrolloff=3
-
 "" Status bar
 set laststatus=2
 
@@ -154,7 +150,11 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
 
+"" Enables 24-bit RGB color in the TUI. Seems to change the background color
+set termguicolors
 
+"" Disable displaying --INSERT--
+set noshowmode
 "*****************************************************************************
 "" Key Mappings
 "*****************************************************************************
@@ -307,8 +307,7 @@ nmap <Leader>rp :Format<CR>
 "" Plugin Configurations
 "*****************************************************************************
 "" vim-airline
-let g:airline_theme = 'bubblegum'
-let g:airline#extensions#ale#enabled = 1
+let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
