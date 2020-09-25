@@ -17,6 +17,8 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
+"" vim-polyglot
+let g:polyglot_disabled = ['markdown']
 
 "*****************************************************************************
 "" Plugins
@@ -111,9 +113,6 @@ endif
 set inccommand=split
 
 set foldlevelstart=20
-
-"" Wrap line for markdown files
-au BufRead,BufNewFile *.md setlocal textwidth=80
 
 "" From vim-sensible
 set smarttab
@@ -342,9 +341,6 @@ let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 let g:vimwiki_autowriteall = 1
 "" Auto convert index.md to HTML for easier view on mobile
 " autocmd BufWritePost /home/harrydt/vimwiki/index.md silent! !pandoc -o /home/harrydt/Dropbox/vimwiki/index.html /home/harrydt/vimwiki/index.md
-
-"" vim-polyglot
-let g:polyglot_disabled = ['markdown']
 
 "" vim-sneak
 let g:sneak#label = 1
