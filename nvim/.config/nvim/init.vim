@@ -17,8 +17,6 @@ if !filereadable(vimplug_exists)
   autocmd VimEnter * PlugInstall
 endif
 
-"" vim-polyglot
-let g:polyglot_disabled = ['markdown']
 
 "*****************************************************************************
 "" Plugins
@@ -38,7 +36,6 @@ Plug 'tpope/vim-repeat'
 Plug 'Yggdroot/indentLine'
 Plug 'junegunn/vim-peekaboo' " helper for register peaking
 Plug 'vimwiki/vimwiki' " Personal Wiki
-Plug 'sheerun/vim-polyglot'
 Plug 'janko-m/vim-test'
 Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected text
 Plug 'tpope/vim-commentary'
@@ -53,11 +50,14 @@ Plug 'psliwka/vim-smoothie' " smooth scrolling
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
-"" LSP
+"" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mfussenegger/nvim-dap'
+Plug 'theHamsta/nvim-dap-virtual-text'
 "" Colorscheme
-Plug 'junegunn/seoul256.vim'
-Plug 'joshdick/onedark.vim'
+Plug 'nvim-treesitter/nvim-treesitter'
+" Plug 'joshdick/onedark.vim'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "" Misc
@@ -130,12 +130,13 @@ set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set showmatch " Show matching part of bracket pairs [] () {}
 
-" set background=dark
+let g:nvcode_termcolors=256
 if !exists('g:not_finish_vimplug')
-  " let g:seoul256_background = 236
-  " colorscheme seoul256
   colorscheme onedark
 endif
+
+set termguicolors  " Enables 24-bit RGB color in the TUI. Seems to change the background color
+hi LineNr ctermbg=NONE guibg=NONE
 
 "" Status bar
 set laststatus=2
@@ -149,11 +150,10 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
 
-"" Enables 24-bit RGB color in the TUI. Seems to change the background color
-set termguicolors
-
 "" Disable displaying --INSERT--
 set noshowmode
+
+
 "*****************************************************************************
 "" Key Mappings
 "*****************************************************************************
@@ -252,17 +252,22 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-space> for trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
+" Use <c-space> to trigger completion.
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
 " <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
-if exists('*complete_info')
-  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+" TODO BUG
+" if exists('*complete_info')
+"   inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" else
+"   inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" endif
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -283,10 +288,12 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-  if &filetype == 'vim'
+  if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
@@ -299,8 +306,25 @@ nmap <leader>rn <Plug>(coc-rename)
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-"" coc-python
-nmap <Leader>rp :Format<CR>
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+"" Run formatter
+nmap <Leader>rf :Format<CR>
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 
 "*****************************************************************************
 "" Plugin Configurations
@@ -354,3 +378,14 @@ let g:leetcode_solution_filetype = 'python3'
 
 " vim-startfiy
 let g:startify_change_to_dir = 0
+
+" nvim-treesitter
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
