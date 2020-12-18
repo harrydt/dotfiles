@@ -86,7 +86,9 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH=”$HOME/.emacs.d/bin:$PATH”~
 
 # Use nvim as manpager `:h Man`
 export MANPAGER='nvim +Man!'
 export MANWIDTH=999
+source /usr/share/nvm/init-nvm.sh
