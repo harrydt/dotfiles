@@ -24,7 +24,6 @@ endif
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 "" Vim helpers/enhancement
-" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mhinz/vim-startify'
@@ -209,7 +208,7 @@ nnoremap <Leader>Q :bd<CR>
 nnoremap <Leader>q :q<CR>
 
 "" NERDTree configuration
-noremap <silent> <F3> : NvimTreeToggle<CR>
+noremap <silent> <F3> :NvimTreeToggle<CR>
 
 "" Tagbar
 nmap <silent> <F4> :Vista!!<CR>
@@ -229,6 +228,11 @@ nmap <silent> t<C-g> :TestVisit<CR>
 
 "" vimwiki
 nmap <Leader>wp :NV<CR>
+
+"" vim-fugitive
+nmap <Leader>ga :Git add .<CR>
+nmap <Leader>gc :Git commit<CR>
+nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
 "*****************************************************************************
 "" coc.nvim
 "*****************************************************************************
