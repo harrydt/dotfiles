@@ -128,7 +128,6 @@ endif
 syntax enable
 set ruler
 set number " Show current line number
-set relativenumber " Show relative line numbers
 set cursorline " Highlight current line
 set showmatch " Show matching part of bracket pairs [] () {}
 
