@@ -47,7 +47,6 @@ Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
 Plug 'psliwka/vim-smoothie' " smooth scrolling
-Plug 'Xuyuanp/scrollbar.nvim'
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
@@ -412,11 +411,3 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 EOF
-
-" scrollbar.nvim
-augroup ScrollbarInit
-  autocmd!
-  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-  autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-augroup end
