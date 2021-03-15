@@ -24,7 +24,9 @@ endif
 call plug#begin(expand('~/.config/nvim/plugged'))
 
 "" Vim helpers/enhancement
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+" Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
 Plug 'mhinz/vim-startify'
 Plug 'liuchengxu/vista.vim' " like tagbar, but with LSP support
 Plug 'ryanoasis/vim-devicons'
@@ -52,6 +54,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
 "" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
 Plug 'mfussenegger/nvim-dap'
 Plug 'theHamsta/nvim-dap-virtual-text'
 "" Colorscheme
@@ -206,7 +209,7 @@ nnoremap <Leader>Q :bd<CR>
 nnoremap <Leader>q :q<CR>
 
 "" NERDTree configuration
-noremap <silent> <F3> : NERDTreeToggle<CR>
+noremap <silent> <F3> : NvimTreeToggle<CR>
 
 "" Tagbar
 nmap <silent> <F4> :Vista!!<CR>
@@ -274,10 +277,6 @@ endif
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-" Use `[c` and `]c` for navigate diagnostics
-nmap <silent> [c <Plug>(coc-diagnostic-prev)
-nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -302,9 +301,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
@@ -337,9 +333,11 @@ omap ac <Plug>(coc-classobj-a)
 
 "" END NEED TO TEST
 
-
 "" Run formatter
 nmap <Leader>rf :Format<CR>
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
