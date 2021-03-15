@@ -232,6 +232,7 @@ nmap <Leader>wp :NV<CR>
 "" vim-fugitive
 nmap <Leader>ga :Git add .<CR>
 nmap <Leader>gc :Git commit<CR>
+nmap <Leader>gp :Git push<CR>
 nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
 "*****************************************************************************
 "" coc.nvim
