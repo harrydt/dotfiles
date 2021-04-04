@@ -42,7 +42,7 @@ Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug '907th/vim-auto-save' "Autosave
-Plug 'rstacruz/vim-closer' " Autoclose brackets
+Plug 'rstacruz/vim-closer' " Autoclose brackets TODO not working?
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 " Plug 'alok/notational-fzf-vim'
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
@@ -51,6 +51,7 @@ Plug 'psliwka/vim-smoothie' " smooth scrolling
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
+Plug 'junegunn/gv.vim' " Git commit browser
 "" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
@@ -133,7 +134,7 @@ set showmatch " Show matching part of bracket pairs [] () {}
 
 let g:nvcode_termcolors=256
 if !exists('g:not_finish_vimplug')
-  colorscheme onedark
+  colorscheme nvcode
 endif
 
 set termguicolors  " Enables 24-bit RGB color in the TUI. Seems to change the background color
@@ -233,6 +234,7 @@ nmap <Leader>ga :Git add .<CR>
 nmap <Leader>gc :Git commit<CR>
 nmap <Leader>gp :Git push<CR>
 nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
+nmap <Leader>gv :GV<CR> " Open git commit browser
 "*****************************************************************************
 "" coc.nvim
 "*****************************************************************************
@@ -361,7 +363,6 @@ let g:airline#extensions#tabline#enabled = 1
 "" Goyo line number display
 let g:goyo_linenr = 1
 
-
 "" Tagbar
 let g:tagbar_autofocus = 1
 
@@ -409,7 +410,6 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
   },
 }
 EOF
