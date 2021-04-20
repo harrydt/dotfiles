@@ -205,7 +205,7 @@ vmap > >gv
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-O>:update<cr>
 nnoremap <Leader>Q :bd<CR>
-nnoremap <Leader>q :q<CR>
+nnoremap <Leader>qq :q<CR>
 
 "" NERDTree configuration
 noremap <silent> <F3> :NvimTreeToggle<CR>
