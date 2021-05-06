@@ -44,6 +44,7 @@ Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heu
 Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets TODO not working?
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
+Plug 'folke/which-key.nvim'
 " Plug 'alok/notational-fzf-vim'
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
@@ -52,6 +53,7 @@ Plug 'psliwka/vim-smoothie' " smooth scrolling
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
 Plug 'junegunn/gv.vim' " Git commit browser
+Plug 'sindrets/diffview.nvim'
 "" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
@@ -154,6 +156,13 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 
 "" Disable displaying --INSERT--
 set noshowmode
+
+"" Only show cursorline on current window
+augroup cursorline
+  autocmd!
+  autocmd WinEnter,BufEnter * setlocal cursorline
+  autocmd WinLeave,BufLeave * setlocal nocursorline
+augroup END
 
 
 "*****************************************************************************
@@ -411,5 +420,42 @@ require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true,              -- false will disable the whole extension
   },
+}
+require("which-key").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+}
+local cb = require'diffview.config'.diffview_callback
+
+require'diffview'.setup {
+  diff_binaries = false,    -- Show diffs for binaries
+  file_panel = {
+    width = 35,
+    use_icons = true        -- Requires nvim-web-devicons
+  },
+  key_bindings = {
+    -- The `view` bindings are active in the diff buffers, only when the current
+    -- tabpage is a Diffview.
+    view = {
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+      ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
+      ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
+      ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
+    },
+    file_panel = {
+      ["j"]         = cb("next_entry"),         -- Bring the cursor to the next file entry
+      ["<down>"]    = cb("next_entry"),
+      ["k"]         = cb("prev_entry"),         -- Bring the cursor to the previous file entry.
+      ["<up>"]      = cb("prev_entry"),
+      ["<cr>"]      = cb("select_entry"),       -- Open the diff for the selected entry.
+      ["o"]         = cb("select_entry"),
+      ["R"]         = cb("refresh_files"),      -- Update stats and entries in the file list.
+      ["<tab>"]     = cb("select_next_entry"),
+      ["<s-tab>"]   = cb("select_prev_entry"),
+      ["<leader>e"] = cb("focus_files"),
+      ["<leader>b"] = cb("toggle_files"),
+    }
+  }
 }
 EOF
