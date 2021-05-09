@@ -45,6 +45,7 @@ Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets TODO not working?
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 Plug 'folke/which-key.nvim'
+Plug 'nvim-lua/plenary.nvim'
 " Plug 'alok/notational-fzf-vim'
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
@@ -54,6 +55,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
 Plug 'junegunn/gv.vim' " Git commit browser
 Plug 'sindrets/diffview.nvim'
+Plug 'TimUntersberger/neogit'
 "" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
