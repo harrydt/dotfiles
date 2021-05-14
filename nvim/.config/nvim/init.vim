@@ -45,6 +45,7 @@ Plug '907th/vim-auto-save' "Autosave
 Plug 'rstacruz/vim-closer' " Autoclose brackets TODO not working?
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 Plug 'folke/which-key.nvim'
+Plug 'nvim-lua/plenary.nvim' " neovim Lua function library
 " Plug 'alok/notational-fzf-vim'
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
@@ -54,6 +55,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
 Plug 'junegunn/gv.vim' " Git commit browser
 Plug 'sindrets/diffview.nvim'
+Plug 'TimUntersberger/neogit'
 "" IDE plugins
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
@@ -65,6 +67,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'romgrk/barbar.nvim'
 "" Misc
 Plug 'ianding1/leetcode.vim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -213,8 +216,9 @@ vmap > >gv
 "" Commonly used commands
 nnoremap <C-s> :update<CR>
 inoremap <C-s> <C-O>:update<cr>
-nnoremap <Leader>Q :bd<CR>
+" nnoremap <Leader>Q :bd<CR>
 nnoremap <Leader>qq :q<CR>
+nnoremap <Leader>qa :qa<CR>
 
 "" NERDTree configuration
 noremap <silent> <F3> :NvimTreeToggle<CR>
@@ -223,10 +227,10 @@ noremap <silent> <F3> :NvimTreeToggle<CR>
 nmap <silent> <F4> :Vista!!<CR>
 
 "" fzf.vim mappings
-nnoremap <silent> <C-p> :Files <CR>
-nnoremap <silent> <Leader>ff :Rg <CR>
-nnoremap <silent> <Leader>fb :Buffers <CR>
-nnoremap <silent> <Leader>fl :Lines <CR>
+nnoremap <silent> <Leader>ff :Files<CR>
+nnoremap <silent> <Leader>fw :Rg<CR>
+nnoremap <silent> <Leader>fb :Buffers<CR>
+nnoremap <silent> <Leader>fl :Lines<CR>
 
 "" vim-test
 nmap <silent> t<C-n> :TestNearest<CR>
@@ -244,6 +248,12 @@ nmap <Leader>gc :Git commit<CR>
 nmap <Leader>gp :Git push<CR>
 nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
 nmap <Leader>gv :GV<CR> " Open git commit browser
+nmap <Leader>gn :Neogit<CR> " TODO reconsider keymapping once Neogit is more fully fleshed?
+nmap <Leader>gdo :DiffviewOpen<CR>
+nmap <Leader>gdc :DiffviewClose<CR>
+
+"" Barbar
+nnoremap <silent><Leader>Q :BufferClose<CR>
 "*****************************************************************************
 "" coc.nvim
 "*****************************************************************************
@@ -367,7 +377,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 "" vim-airline
 let g:airline_theme = 'onedark'
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 
 "" Goyo line number display
 let g:goyo_linenr = 1
