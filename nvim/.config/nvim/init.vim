@@ -70,7 +70,7 @@ Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'romgrk/barbar.nvim'
-Plug 'yamatsum/nvim-cursorline'
+Plug 'itchyny/vim-cursorword'
 "" Misc
 Plug 'ianding1/leetcode.vim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
