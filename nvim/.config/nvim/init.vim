@@ -50,6 +50,7 @@ Plug 'nvim-lua/plenary.nvim' " neovim Lua function library
 Plug 'harrydt/notational-fzf-vim', {'branch': 'enhancement/Only_show_results_for_files_of_default_or_specified_type'}
 Plug 'haya14busa/is.vim' " clear search highlight after cursor moved
 Plug 'psliwka/vim-smoothie' " smooth scrolling
+Plug 'kdav5758/HighStr.nvim'
 "" Git
 Plug 'tpope/vim-fugitive'
 Plug 'mhinz/vim-signify' " Show Git changes on left side
@@ -61,6 +62,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'antoinemadec/coc-fzf' " Use FZF instead of coc.nvim built-in fuzzy finder
 Plug 'mfussenegger/nvim-dap'
 Plug 'theHamsta/nvim-dap-virtual-text'
+Plug 'rcarriga/nvim-dap-ui'
 "" Colorscheme
 Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'joshdick/onedark.vim'
@@ -220,7 +222,7 @@ inoremap <C-s> <C-O>:update<cr>
 nnoremap <Leader>qq :q<CR>
 nnoremap <Leader>qa :qa<CR>
 
-"" NERDTree configuration
+"" NvimTree configuration
 noremap <silent> <F3> :NvimTreeToggle<CR>
 
 "" Tagbar
@@ -243,10 +245,10 @@ nmap <silent> t<C-g> :TestVisit<CR>
 nmap <Leader>wp :NV<CR>
 
 "" vim-fugitive
-nmap <Leader>ga :Git add .<CR>
-nmap <Leader>gc :Git commit<CR>
-nmap <Leader>gp :Git push<CR>
-nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
+" nmap <Leader>ga :Git add .<CR>
+" nmap <Leader>gc :Git commit<CR>
+" nmap <Leader>gp :Git push<CR>
+" nmap <Leader>gs :Git<CR> " This is the successor to the old :Gstatus
 nmap <Leader>gv :GV<CR> " Open git commit browser
 nmap <Leader>gn :Neogit<CR> " TODO reconsider keymapping once Neogit is more fully fleshed?
 nmap <Leader>gdo :DiffviewOpen<CR>
@@ -254,6 +256,10 @@ nmap <Leader>gdc :DiffviewClose<CR>
 
 "" Barbar
 nnoremap <silent><Leader>Q :BufferClose<CR>
+
+"" HighStr
+vnoremap <silent> <F5> :<c-u>HSHighlight 1<CR>
+vnoremap <silent> <F6> :<c-u>HSRmHighlight<CR>
 "*****************************************************************************
 "" coc.nvim
 "*****************************************************************************
@@ -468,4 +474,21 @@ require'diffview'.setup {
     }
   }
 }
+require("dapui").setup()
+local neogit = require("neogit")
+neogit.setup {
+  integrations = {
+    diffview = true
+  },
+}
 EOF
+let g:dap_virtual_text = v:true
+nnoremap <silent> <F5> :lua require'dap'.continue()<CR>
+nnoremap <silent> <F10> :lua require'dap'.step_over()<CR>
+nnoremap <silent> <F11> :lua require'dap'.step_into()<CR>
+nnoremap <silent> <F12> :lua require'dap'.step_out()<CR>
+nnoremap <silent> <leader>b :lua require'dap'.toggle_breakpoint()<CR>
+nnoremap <silent> <leader>B :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+nnoremap <silent> <leader>lp :lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>
+nnoremap <silent> <leader>dr :lua require'dap'.repl.open()<CR>
+nnoremap <silent> <leader>dl :lua require'dap'.run_last()<CR>
