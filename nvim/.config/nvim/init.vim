@@ -67,8 +67,7 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'joshdick/onedark.vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'beauwilliams/statusline.lua'
 Plug 'romgrk/barbar.nvim'
 Plug 'itchyny/vim-cursorword'
 "" Misc
@@ -382,8 +381,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 "" Plugin Configurations
 "*****************************************************************************
 "" vim-airline
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
+" let g:airline_theme = 'onedark'
+" let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#enabled = 1
 
 "" Goyo line number display
