@@ -42,7 +42,6 @@ Plug 'nelstrom/vim-visual-star-search' " Allow * or # search for visual selected
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sleuth' " automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file
 Plug '907th/vim-auto-save' "Autosave
-Plug 'rstacruz/vim-closer' " Autoclose brackets TODO not working?
 Plug 'justinmk/vim-sneak' " similar to EasyMotion, but more minimal
 Plug 'folke/which-key.nvim'
 Plug 'nvim-lua/plenary.nvim' " neovim Lua function library
@@ -67,9 +66,10 @@ Plug 'rcarriga/nvim-dap-ui'
 Plug 'nvim-treesitter/nvim-treesitter'
 " Plug 'joshdick/onedark.vim'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
-Plug 'beauwilliams/statusline.lua'
+" Plug 'beauwilliams/statusline.lua'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'romgrk/barbar.nvim'
-Plug 'itchyny/vim-cursorword'
 "" Misc
 Plug 'ianding1/leetcode.vim'
 Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
@@ -381,9 +381,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 "" Plugin Configurations
 "*****************************************************************************
 "" vim-airline
-" let g:airline_theme = 'onedark'
-" let g:airline_powerline_fonts = 1
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme = 'onedark'
+let g:airline_powerline_fonts = 1
 
 "" Goyo line number display
 let g:goyo_linenr = 1
@@ -454,7 +453,7 @@ require'diffview'.setup {
     -- The `view` bindings are active in the diff buffers, only when the current
     -- tabpage is a Diffview.
     view = {
-      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file 
+      ["<tab>"]     = cb("select_next_entry"),  -- Open the diff for the next file
       ["<s-tab>"]   = cb("select_prev_entry"),  -- Open the diff for the previous file
       ["<leader>e"] = cb("focus_files"),        -- Bring focus to the files panel
       ["<leader>b"] = cb("toggle_files"),       -- Toggle the files panel.
