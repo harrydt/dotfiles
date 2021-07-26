@@ -50,6 +50,11 @@ return packer.startup(function(use)
         event = 'ColorSchemePre',
     })
 
+    use({
+        'NTBBloodbath/doom-one.nvim',
+        event = 'ColorSchemePre',
+    })
+
     -- Vimwiki/Org
     use({
         'vimwiki/vimwiki',
@@ -70,7 +75,6 @@ return packer.startup(function(use)
     -- Treesitter
 	use({
 		'nvim-treesitter/nvim-treesitter',
-		opt = true,
 		run = ':TSUpdate',
 		config = require('modules.config.treesitter'),
 	})
@@ -95,6 +99,7 @@ return packer.startup(function(use)
 		requires = 'nvim-web-devicons',
 		config = require('modules.config.tree'),
 		cmd = {
+		    'NvimTreeOpen',
 			'NvimTreeClipboard',
 			'NvimTreeClose',
 			'NvimTreeFindFile',

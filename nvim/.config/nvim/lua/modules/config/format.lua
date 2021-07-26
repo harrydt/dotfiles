@@ -47,7 +47,7 @@ return function()
 			{
 				cmd = {
 					function(file)
-						return fmt('yapf -i %s', file)
+						return fmt('black -i %s', file)
 					end,
 				},
 			},
