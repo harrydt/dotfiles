@@ -45,11 +45,6 @@ return packer.startup(function(use)
     })
 
     -- Colorscheme
-    use ({
-        'yong1le/darkplus.nvim',
-        event = 'ColorSchemePre',
-    })
-
     use({
         'NTBBloodbath/doom-one.nvim',
         event = 'ColorSchemePre',
@@ -187,7 +182,6 @@ return packer.startup(function(use)
 		config = require('modules.config.telescope'),
 	})
 
-
     -----[[-------------]]-----
 	---     GIT RELATED     ---
 	-----]]-------------[[-----
@@ -239,20 +233,34 @@ return packer.startup(function(use)
 		event = 'BufWinEnter',
 	})
 
-	-- install lsp saga
+	-- Nice UI for LSP
 	use({
 		'glepnir/lspsaga.nvim',
 		opt = true,
+		module = 'lspsaga',
 		after = 'nvim-lspconfig',
+		config = require('modules.config.lspsaga'),
 	})
 
 	-- provides the missing `:LspInstall` for `nvim-lspconfig`.
 	use({
 		'kabouzeid/nvim-lspinstall',
+		opt = true,
 		config = require('modules.config.lspinstall'),
 		after = 'nvim-lspconfig',
 	})
 
+	-- show diagnostic in list not inline
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        opt = true,
+        after = 'nvim-lspconfig',
+        config = function()
+            require("trouble").setup {
+            }
+        end
+    }
     -----[[--------------]]-----
 	---     File Related     ---
 	-----]]--------------[[-----
@@ -296,7 +304,7 @@ return packer.startup(function(use)
 	use({
 		'winston0410/range-highlight.nvim',
 		requires = {
-			{ 'winston0410/cmd-parser.nvim', opt = true, module = 'cmd-parser' },
+			{ 'winston0410/cmd-parser.nvim', module = 'cmd-parser' },
 		},
 		config = function()
 			require('range-highlight').setup()
@@ -308,18 +316,26 @@ return packer.startup(function(use)
     use({
         'karb94/neoscroll.nvim',
         config = function()
-            require('neoscroll').setup()
+            require('neoscroll').setup({
+                hide_cursor = false,
+            })
         end,
         event = 'BufWinEnter',
     })
 
     -- lua alternative for vim-surround
     use {
-      "blackCauldron7/surround.nvim",
-      config = function()
-        require "surround".setup {}
-      end
+        "blackCauldron7/surround.nvim",
+        config = function()
+            require "surround".setup {}
+        end,
+        event = 'BufRead',
     }
+
+    -- Auto save
+    use "Pocco81/AutoSave.nvim"
+
+
     -- packer
     packer.install()
     packer.compile()

@@ -2,6 +2,15 @@ local utils = require('core.utils')
 -- Additional options for mappings
 local opts = { silent = true }
 
+-- Make Y behave
+utils.map('n', 'Y', 'y$', opts)
+
+-- Undo break points
+utils.map('i', ',', ',<C-G>u', opts)
+utils.map('i', '.', '.<C-G>u', opts)
+utils.map('i', '!', '!<C-G>u', opts)
+utils.map('i', '?', '?<C-G>u', opts)
+
 -- Map WhichKey popup menu
 utils.map('n', '<Space>', ':WhichKey <leader><CR>', opts)
 
@@ -11,6 +20,9 @@ utils.map('n', '<S-Tab>', ':bprevious<CR>', opts)
 
 -- ESC to turn off search highlighting
 utils.map('n', '<esc>', ':noh<CR>', opts)
+
+-- ESC in INSERT mode to save current buffer
+utils.map('i', '<esc>', '<esc>:update<CR>')
 
 --- F<n> keybindings
 utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
@@ -200,6 +212,7 @@ utils.map(
 utils.map('n', '<leader>ss', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 utils.map('n', '<leader>sh', '<cmd>Telescope command_history<CR>', opts)
 utils.map('n', '<leader>sm', '<cmd>Telescope marks<CR>', opts)
+utils.map('n', '<leader>sr', '<cmd>Rg<CR>', opts)
 
 -- windows
 utils.map('n', '<leader>ww', '<C-W>p', opts)
@@ -228,8 +241,8 @@ utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
 utils.map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts)
 
 -- code
-utils.map('n', '<leader>ch', '<Plug>RestNvim<CR>', opts)
-utils.map(
+-- utils.map('n', '<leader>ch', '<Plug>RestNvim<CR>', opts)
+--[[ utils.map(
 	'n',
 	'<leader>ci',
 	'<cmd>lua require("doom.modules.built-in.runner").start_repl()<CR>',
@@ -252,11 +265,31 @@ utils.map(
 	'<leader>cc',
 	'<cmd>lua require("doom.modules.built-in.compiler").compile_and_run()<cr>',
 	opts
+) ]]
+utils.map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+-- code/diagnostic
+utils.map(
+	'n',
+	'<leader>cdl',
+	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cdd',
+	'<cmd>TroubleToggle lsp_document_diagnostics<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cdw',
+	'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>',
+	opts
 )
 
--- lsp
+-- code/lsp
 utils.map('n', '<leader>cli', '<cmd>LspInfo<CR>', opts)
-utils.map('n', '<leader>cla', '<cmd>Lspsaga code_action<CR>', opts)
+-- utils.map('n', '<leader>cla', '<cmd>Lspsaga code_action<CR>', opts)
 utils.map(
 	'n',
 	'<leader>cld',
@@ -266,12 +299,12 @@ utils.map(
 utils.map(
 	'n',
 	'<leader>cll',
-	'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
 	opts
 )
-utils.map(
+--[[ utils.map(
 	'n',
 	'<leader>clL',
 	'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
 	opts
-)
+) ]]

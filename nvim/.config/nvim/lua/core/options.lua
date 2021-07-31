@@ -18,8 +18,8 @@ o.signcolumn = 'yes'
 
 -- Buffer options
 o.smartindent = true
-o.copyindent = true
-o.preserveindent = true
+-- o.copyindent = true
+-- o.preserveindent = true
 
 -- Clipboard
 o.clipboard = 'unnamedplus'
@@ -37,8 +37,8 @@ o.showmode = false
 -- Enable mouse
 o.mouse = 'a'
 
--- no wrapping TODO test
-o.wrap = false
+-- Enable wrapping
+o.wrap = true
 
 -- no swap file
 o.swapfile = false

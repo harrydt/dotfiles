@@ -13,6 +13,9 @@ return function()
 				'--line-number',
 				'--column',
 				'--smart-case',
+				'--hidden', -- search hidden files too
+				-- '--files', -- from old init.vim
+				-- '--no-ignore-vcs', -- from old init.vim
 			},
 			initial_mode = 'insert',
 			selection_strategy = 'reset',

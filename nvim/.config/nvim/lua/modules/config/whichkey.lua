@@ -86,22 +86,30 @@ return function()
 		},
 		['c'] = {
 			name = '+code',
-			i = { 'Start a REPL' },
+			a = { 'Actions' },
+			d = {
+			    name = '+diagnostic',
+			    ['l'] = { 'Show line diagnostics' },
+			    ['d'] = { 'Show document diagnostics' },
+			    ['w'] = { 'Show workspace diagnostics' },
+			},
+			--[[ i = { 'Start a REPL' },
 			r = { 'Run current file' },
 			b = { 'Compile project' },
-			c = { 'Compile and run project' },
-			['h'] = {
+			c = { 'Compile and run project' }, ]]
+			--[[ ['h'] = {
 				'Run restclient on the line that the cursor is currently on',
-			},
+			}, ]]
+
 			['l'] = {
 				name = '+lsp',
-				['a'] = { 'Code actions' },
 				['i'] = { 'Lsp info' },
 				['d'] = { 'Show type definition' },
-				['l'] = { 'Show line diagnostics' },
-				['L'] = { 'Diagnostics into location list' },
+				-- ['l'] = { 'Show line diagnostics' },
+				-- ['L'] = { 'Diagnostics into location list' },
 			},
 		},
+		-- change this to debug later maybe?
 		--[[ ['d'] = {
 			name = '+doom',
 			['c'] = { 'Edit your Doom Nvim configuration' },
