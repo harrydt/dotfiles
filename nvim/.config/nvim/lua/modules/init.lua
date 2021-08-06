@@ -182,6 +182,14 @@ return packer.startup(function(use)
 		config = require('modules.config.telescope'),
 	})
 
+    use ({
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make',
+    })
+
+    -- I still need fzf
+    use 'junegunn/fzf'
+    use 'junegunn/fzf.vim'
     -----[[-------------]]-----
 	---     GIT RELATED     ---
 	-----]]-------------[[-----
