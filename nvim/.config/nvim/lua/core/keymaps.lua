@@ -74,6 +74,7 @@ utils.map('i', '<CR>', 'compe#confirm("<CR>")', lsp_opts)
 utils.map('i', '<C-e>', 'compe#close("<C-e>")', lsp_opts)
 utils.map('i', '<C-f>', 'compe#scroll({ "delta": +4 })', lsp_opts)
 utils.map('i', '<C-d>', 'compe#scroll({ "delta": -4 })', lsp_opts)
+utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
 utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
 utils.map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts) -- gr: go to reference
 utils.map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
@@ -120,6 +121,71 @@ utils.map(
 	'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
 	lsp_opts
 )
+
+-- code
+-- utils.map('n', '<leader>ch', '<Plug>RestNvim<CR>', opts)
+--[[ utils.map(
+	'n',
+	'<leader>ci',
+	'<cmd>lua require("doom.modules.built-in.runner").start_repl()<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cr',
+	'<cmd>lua require("doom.modules.built-in.runner").run_code()<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cb',
+	'<cmd>lua require("doom.modules.built-in.compiler").compile()<cr>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cc',
+	'<cmd>lua require("doom.modules.built-in.compiler").compile_and_run()<cr>',
+	opts
+) ]]
+utils.map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
+-- code/diagnostic
+utils.map(
+	'n',
+	'<leader>cdl',
+	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cdd',
+	'<cmd>TroubleToggle lsp_document_diagnostics<CR>',
+	opts
+)
+utils.map(
+	'n',
+	'<leader>cdw',
+	'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>',
+	opts
+)
+utils.map('n', '<leader>cr', ':Lspsaga rename<CR>', opts)
+-- code/lsp
+utils.map('n', '<leader>cli', '<cmd>LspInfo<CR>', opts)
+-- utils.map('n', '<leader>cla', '<cmd>Lspsaga code_action<CR>', opts)
+utils.map(
+	'n',
+	'<leader>cld',
+	'<cmd>lua vim.lsp.buf.type_definition()<CR>',
+	opts
+)
+utils.map('n', '<leader>cp', '<cmd>Lspsaga preview_definition<CR>', opts)
+--[[ utils.map(
+	'n',
+	'<leader>clL',
+	'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
+	opts
+) ]]
+
 
 ---[[-----------------]]---
 --    WhichKey binds     --
@@ -237,74 +303,7 @@ utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
 utils.map('n', '<leader>gl', '<cmd>TermExec cmd="git pull"<CR>', opts)
 utils.map('n', '<leader>gp', '<cmd>TermExec cmd="git push"<CR>', opts)
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
+utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
 utils.map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts)
 
--- code
--- utils.map('n', '<leader>ch', '<Plug>RestNvim<CR>', opts)
---[[ utils.map(
-	'n',
-	'<leader>ci',
-	'<cmd>lua require("doom.modules.built-in.runner").start_repl()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cr',
-	'<cmd>lua require("doom.modules.built-in.runner").run_code()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cb',
-	'<cmd>lua require("doom.modules.built-in.compiler").compile()<cr>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cc',
-	'<cmd>lua require("doom.modules.built-in.compiler").compile_and_run()<cr>',
-	opts
-) ]]
-utils.map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
--- code/diagnostic
-utils.map(
-	'n',
-	'<leader>cdl',
-	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cdd',
-	'<cmd>TroubleToggle lsp_document_diagnostics<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cdw',
-	'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>',
-	opts
-)
-
--- code/lsp
-utils.map('n', '<leader>cli', '<cmd>LspInfo<CR>', opts)
--- utils.map('n', '<leader>cla', '<cmd>Lspsaga code_action<CR>', opts)
-utils.map(
-	'n',
-	'<leader>cld',
-	'<cmd>lua vim.lsp.buf.type_definition()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cll',
-	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
-	opts
-)
---[[ utils.map(
-	'n',
-	'<leader>clL',
-	'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
-	opts
-) ]]

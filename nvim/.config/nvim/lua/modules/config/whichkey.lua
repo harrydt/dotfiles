@@ -93,8 +93,9 @@ return function()
 			    ['d'] = { 'Show document diagnostics' },
 			    ['w'] = { 'Show workspace diagnostics' },
 			},
+			r = { 'Rename' },
+			p = { 'Preview definition' },
 			--[[ i = { 'Start a REPL' },
-			r = { 'Run current file' },
 			b = { 'Compile project' },
 			c = { 'Compile and run project' }, ]]
 			--[[ ['h'] = {

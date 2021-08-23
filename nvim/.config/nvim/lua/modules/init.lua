@@ -39,7 +39,7 @@ return packer.startup(function(use)
 	})
 
     -- Common dependencies
-    use ({
+    use({
         'nvim-lua/plenary.nvim',
         module = 'plenary',
     })
@@ -73,7 +73,11 @@ return packer.startup(function(use)
 		run = ':TSUpdate',
 		config = require('modules.config.treesitter'),
 	})
-
+    
+    use({
+        'nvim-treesitter/nvim-treesitter-textobjects',
+		requires = "nvim-treesitter/nvim-treesitter",
+    })
     -----[[------------]]-----
     ---     UI Related     ---
     -----]]------------[[-----
@@ -187,9 +191,7 @@ return packer.startup(function(use)
         run = 'make',
     })
 
-    -- I still need fzf
-    use 'junegunn/fzf'
-    use 'junegunn/fzf.vim'
+
     -----[[-------------]]-----
 	---     GIT RELATED     ---
 	-----]]-------------[[-----
@@ -198,14 +200,40 @@ return packer.startup(function(use)
 		'lewis6991/gitsigns.nvim',
 		config = require('modules.config.gitsigns'),
 		requires = 'plenary.nvim',
-		event = 'BufRead',
+		-- event = 'BufRead',
+		event = { "CursorMoved", "CursorMovedI" },
 	})
 
-	-- LazyGit integration
+	-- Magit clone
 	use({
         'TimUntersberger/neogit',
-		requires = 'plenary.nvim',
+		requires = {
+            {'plenary.nvim'},
+            {
+	            "sindrets/diffview.nvim",
+		        config = function()
+		        	require("diffview").setup()
+		        end
+	        },
+        },
+        config = function()
+	        require('neogit').setup({
+                integrations = {
+                    diffview = true,
+                }
+            })
+	    end,
+        cmd = 'Neogit',
 	})
+
+    -- Still neeed fugitive
+    use({
+      "tpope/vim-fugitive",
+      cmd = {
+         "Git",
+      },
+    })
+
 
 	-----[[------------]]-----
 	---     Completion     ---
@@ -222,15 +250,16 @@ return packer.startup(function(use)
 	-- can be disabled to use your own completion plugin
 	use({
 		'hrsh7th/nvim-compe',
-		requires = {
+		--[[ requires = {
 			{
 				'ray-x/lsp_signature.nvim',
 				config = require('modules.config.lsp-signature'),
 			},
-		},
+		}, ]]
 		config = require('modules.config.compe'),
 		opt = true,
 		after = 'nvim-lspconfig',
+        event = "InsertEnter",
 	})
 
     -- Snippets
@@ -259,16 +288,15 @@ return packer.startup(function(use)
 	})
 
 	-- show diagnostic in list not inline
-    use {
+    use ({
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
         opt = true,
         after = 'nvim-lspconfig',
         config = function()
             require("trouble").setup {
             }
         end
-    }
+    })
     -----[[--------------]]-----
 	---     File Related     ---
 	-----]]--------------[[-----
@@ -328,7 +356,7 @@ return packer.startup(function(use)
                 hide_cursor = false,
             })
         end,
-        event = 'BufWinEnter',
+        event = "WinScrolled",
     })
 
     -- lua alternative for vim-surround
