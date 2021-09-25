@@ -59,11 +59,16 @@ return function()
 			['o ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
 			['x ih'] = ':<C-U>lua require"gitsigns".select_hunk()<CR>',
 		},
-		watch_index = { interval = 1000 },
+		watch_index = { interval = 1000, follow_files = true },
+        current_line_blame_opts = {
+            delay = 1000,
+            position = "eol",
+        },
 		sign_priority = 6,
 		update_debounce = 100,
 		status_formatter = nil, -- Use default
-		use_decoration_api = true,
-		use_internal_diff = true, -- If luajit is present
+        diff_opts = {
+            internal = true, -- If luajit is present
+        },
 	})
 end

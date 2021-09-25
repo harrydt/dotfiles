@@ -78,22 +78,14 @@ utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
 utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
 utils.map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts) -- gr: go to reference
 utils.map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
-utils.map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
-utils.map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
-utils.map('n', '[g', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Jump to previous diagnostic
-utils.map('n', ']g', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Jump to next diagnostic
-utils.map(
-	'n',
-	'<C-f>',
-	':lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>',
-	opts
-) -- Control+f: Scroll down documents
-utils.map(
-	'n',
-	'<C-b>',
-	":lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>",
-	opts
-) -- Control+b: Scroll up documents
+-- utils.map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
+utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- ca: code actions
+-- utils.map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
+utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
+-- utils.map('n', '[g', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Jump to previous diagnostic
+utils.map('n', '[g', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
+-- utils.map('n', ']g', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Jump to next diagnostic
+utils.map('n', ']g', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
 vim.cmd(
 	'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 )
@@ -122,38 +114,10 @@ utils.map(
 	lsp_opts
 )
 
--- code
--- utils.map('n', '<leader>ch', '<Plug>RestNvim<CR>', opts)
---[[ utils.map(
-	'n',
-	'<leader>ci',
-	'<cmd>lua require("doom.modules.built-in.runner").start_repl()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cr',
-	'<cmd>lua require("doom.modules.built-in.runner").run_code()<CR>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cb',
-	'<cmd>lua require("doom.modules.built-in.compiler").compile()<cr>',
-	opts
-)
-utils.map(
-	'n',
-	'<leader>cc',
-	'<cmd>lua require("doom.modules.built-in.compiler").compile_and_run()<cr>',
-	opts
-) ]]
-utils.map('n', '<leader>ca', '<cmd>Lspsaga code_action<CR>', opts)
--- code/diagnostic
 utils.map(
 	'n',
 	'<leader>cdl',
-	'<cmd>lua require"lspsaga.diagnostic".show_line_diagnostics()<CR>',
+	'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
 	opts
 )
 utils.map(
@@ -168,10 +132,8 @@ utils.map(
 	'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>',
 	opts
 )
-utils.map('n', '<leader>cr', ':Lspsaga rename<CR>', opts)
--- code/lsp
-utils.map('n', '<leader>cli', '<cmd>LspInfo<CR>', opts)
--- utils.map('n', '<leader>cla', '<cmd>Lspsaga code_action<CR>', opts)
+utils.map('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+utils.map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 utils.map(
 	'n',
 	'<leader>cld',
@@ -251,6 +213,7 @@ utils.map('n', '<leader>pc', '<cmd>PackerClean<CR>', opts)
 utils.map('n', '<leader>pC', '<cmd>PackerCompile<CR>', opts)
 utils.map('n', '<leader>pS', '<cmd>PackerStatus<CR>', opts)
 utils.map('n', '<leader>pp', '<cmd>PackerProfile<CR>', opts)
+utils.map('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
 
 -- Org
 utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)

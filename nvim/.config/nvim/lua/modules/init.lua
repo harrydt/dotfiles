@@ -64,6 +64,7 @@ return packer.startup(function(use)
         end
     })
 
+
     -----[[------------]]-----
     ---     Essentials     ---
     -----]]------------[[-----
@@ -84,6 +85,13 @@ return packer.startup(function(use)
     -- TODO
     -- use 'mhinz/vim-startify'
     -- Find a dashboard
+    --[[ use ({
+        'goolord/alpha-nvim',
+        requires = { 'kyazdani42/nvim-web-devicons' },
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.startify'.opts)
+        end
+    }) ]]
 
     -- Icons
     -- Development icons
@@ -111,7 +119,7 @@ return packer.startup(function(use)
 	-- Statusline
 	-- can be disabled to use your own statusline
 	use({
-		'glepnir/galaxyline.nvim',
+		'NTBBloodbath/galaxyline.nvim',
 		config = require('modules.config.eviline'),
 		event = 'ColorScheme',
 	})
@@ -208,7 +216,6 @@ return packer.startup(function(use)
 	use({
         'TimUntersberger/neogit',
 		requires = {
-            {'plenary.nvim'},
             {
 	            "sindrets/diffview.nvim",
 		        config = function()
@@ -228,10 +235,15 @@ return packer.startup(function(use)
 
     -- Still neeed fugitive
     use({
-      "tpope/vim-fugitive",
-      cmd = {
-         "Git",
-      },
+        'tpope/vim-fugitive',
+        cmd = {
+            "Git",
+        },
+    })
+
+    -- Github
+    use({
+        'tpope/vim-rhubarb'
     })
 
 
@@ -271,13 +283,21 @@ return packer.startup(function(use)
 	})
 
 	-- Nice UI for LSP
-	use({
+	--[[ use({
 		'glepnir/lspsaga.nvim',
 		opt = true,
 		module = 'lspsaga',
 		after = 'nvim-lspconfig',
 		config = require('modules.config.lspsaga'),
-	})
+	}) ]]
+
+    -- Show function signature when you type
+    use({
+        "ray-x/lsp_signature.nvim",
+        config = require("modules.config.lsp-signature"),
+        after = "nvim-lspconfig",
+        event = "InsertEnter",
+    })
 
 	-- provides the missing `:LspInstall` for `nvim-lspconfig`.
 	use({

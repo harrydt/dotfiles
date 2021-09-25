@@ -153,6 +153,7 @@ return function()
 			['p'] = { 'Profile the time taken loading your plugins' },
 			['s'] = { 'Sync your plugins' },
 			['S'] = { 'Plugins status' },
+			['u'] = { 'Update plugins' },
 		},
 		['q'] = {
 			name = '+quit/sessions',
