@@ -380,16 +380,19 @@ return packer.startup(function(use)
     })
 
     -- lua alternative for vim-surround
-    use {
+    use({
         "blackCauldron7/surround.nvim",
         config = function()
             require "surround".setup {}
         end,
         event = 'BufRead',
-    }
+    })
 
     -- Auto save
-    use "Pocco81/AutoSave.nvim"
+    use({"Pocco81/AutoSave.nvim"})
+
+    -- better quickfix
+    use({"kevinhwang91/nvim-bqf"})
 
 
     -- packer
