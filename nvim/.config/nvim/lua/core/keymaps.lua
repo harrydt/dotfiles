@@ -215,8 +215,9 @@ utils.map('n', '<leader>pS', '<cmd>PackerStatus<CR>', opts)
 utils.map('n', '<leader>pp', '<cmd>PackerProfile<CR>', opts)
 utils.map('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
 
--- Org
+-- Org/Vimwiki
 utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
+utils.map('n', '<leader>os', '<cmd>Telescope vw live_grep<CR>', opts)
 utils.map('n', '<leader>odn', '<cmd>VimwikiMakeDiaryNote<CR>', opts)
 utils.map('n', '<leader>odi', '<cmd>VimwikiDiaryIndex<CR>', opts)
 utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts)

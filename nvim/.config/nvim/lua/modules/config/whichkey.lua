@@ -203,6 +203,7 @@ return function()
 		['o'] = {
 			name = '+org',
 			['i'] = { 'Index' },
+			['s'] = { 'Search' },
 			['d'] = {
 			    name = '+diary',
 			    ['n'] = { 'New' },

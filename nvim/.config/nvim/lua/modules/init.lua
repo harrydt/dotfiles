@@ -124,6 +124,13 @@ return packer.startup(function(use)
 		event = 'ColorScheme',
 	})
 
+    -- TODO kinda cool. Revisit later
+	--[[ use({
+		'windwp/windline.nvim',
+		config = require('modules.config.windline'),
+		event = 'ColorScheme',
+	}) ]]
+
     -- Tabline
     -- TODO make pretty?
 	use({
@@ -194,11 +201,14 @@ return packer.startup(function(use)
 		config = require('modules.config.telescope'),
 	})
 
-    use ({
+    use({
         'nvim-telescope/telescope-fzf-native.nvim',
         run = 'make',
     })
 
+    use({
+        'ElPiloto/telescope-vimwiki.nvim'
+    })
 
     -----[[-------------]]-----
 	---     GIT RELATED     ---
