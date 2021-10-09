@@ -47,7 +47,8 @@ return packer.startup(function(use)
     -- Colorscheme
     use({
         'NTBBloodbath/doom-one.nvim',
-        event = 'ColorSchemePre',
+        module = 'doom-one',
+        setup = require('modules.config.color'),
     })
 
     -- Vimwiki/Org
@@ -121,14 +122,14 @@ return packer.startup(function(use)
 	use({
 		'NTBBloodbath/galaxyline.nvim',
 		config = require('modules.config.eviline'),
-		event = 'ColorScheme',
+		event = 'BufWinEnter',
 	})
 
     -- TODO kinda cool. Revisit later
 	--[[ use({
 		'windwp/windline.nvim',
 		config = require('modules.config.windline'),
-		event = 'ColorScheme',
+		event = 'BufWinEnter',
 	}) ]]
 
     -- Tabline
@@ -136,7 +137,7 @@ return packer.startup(function(use)
 	use({
 		'akinsho/nvim-bufferline.lua',
 		config = require('modules.config.bufferline'),
-		event = 'ColorScheme',
+		event = 'BufWinEnter',
 	})
 
     -- Better terminal
@@ -265,7 +266,7 @@ return packer.startup(function(use)
 		'neovim/nvim-lspconfig',
 		opt = true,
 		config = require('modules.config.lspconfig'),
-		event = 'ColorScheme',
+		event = 'BufWinEnter',
 	})
 
    -- Completion plugin
@@ -341,7 +342,7 @@ return packer.startup(function(use)
 	use({
 		'lukas-reineke/indent-blankline.nvim',
 		config = require('modules.config.blankline'),
-		event = 'ColorScheme',
+		event = 'BufWinEnter',
 	})
     -- Autopairs
 	-- can be disabled to use your own autopairs
