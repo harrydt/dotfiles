@@ -269,21 +269,47 @@ return packer.startup(function(use)
 		event = 'BufWinEnter',
 	})
 
-   -- Completion plugin
-	-- can be disabled to use your own completion plugin
-	use({
-		'hrsh7th/nvim-compe',
-		--[[ requires = {
-			{
-				'ray-x/lsp_signature.nvim',
-				config = require('modules.config.lsp-signature'),
-			},
-		}, ]]
-		config = require('modules.config.compe'),
-		opt = true,
-		after = 'nvim-lspconfig',
+    -- Completion plugin
+    use({
+        "hrsh7th/nvim-cmp",
+        wants = { "LuaSnip" },
+        requires = {
+            {
+                "L3MON4D3/LuaSnip",
+                event = "BufReadPre",
+                wants = "friendly-snippets",
+                config = require("modules.config.luasnip"),
+                requires = { "rafamadriz/friendly-snippets" },
+            },
+            {
+                "windwp/nvim-autopairs",
+                config = require("modules.config.autopairs"),
+                event = "BufReadPre",
+            },
+        },
+        config = require("modules.config.cmp"),
         event = "InsertEnter",
-	})
+    })
+    use({
+        "hrsh7th/cmp-nvim-lua",
+        after = "nvim-cmp",
+    })
+    use({
+        "hrsh7th/cmp-nvim-lsp",
+        after = "nvim-cmp",
+    })
+    use({
+        "hrsh7th/cmp-path",
+        after = "nvim-cmp",
+    })
+    use({
+        "hrsh7th/cmp-buffer",
+        after = "nvim-cmp",
+    })
+    use({
+        "saadparwaiz1/cmp_luasnip",
+        after = "nvim-cmp",
+    })
 
     -- Snippets
 	use({
