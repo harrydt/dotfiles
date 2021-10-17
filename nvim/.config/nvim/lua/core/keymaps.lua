@@ -69,11 +69,11 @@ utils.map('n', 'Q', '<Nop>', opts)
 ---]]-----------------[[---
 local lsp_opts = vim.tbl_extend('force', opts, { expr = true })
 -- https://github.com/hrsh7th/nvim-compe#mappings
-utils.map('i', '<C-Space>', 'compe#complete()', lsp_opts)
+--[[ utils.map('i', '<C-Space>', 'compe#complete()', lsp_opts)
 utils.map('i', '<CR>', 'compe#confirm("<CR>")', lsp_opts)
 utils.map('i', '<C-e>', 'compe#close("<C-e>")', lsp_opts)
 utils.map('i', '<C-f>', 'compe#scroll({ "delta": +4 })', lsp_opts)
-utils.map('i', '<C-d>', 'compe#scroll({ "delta": -4 })', lsp_opts)
+utils.map('i', '<C-d>', 'compe#scroll({ "delta": -4 })', lsp_opts) ]]
 utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
 utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
 utils.map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts) -- gr: go to reference
