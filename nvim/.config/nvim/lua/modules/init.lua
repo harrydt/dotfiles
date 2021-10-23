@@ -233,6 +233,7 @@ return packer.startup(function(use)
 		        	require("diffview").setup()
 		        end
 	        },
+		    requires = 'plenary.nvim',
         },
         config = function()
 	        require('neogit').setup({

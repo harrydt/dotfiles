@@ -16,10 +16,11 @@ o.inccommand = 'split'
 o.path = '**'
 o.signcolumn = 'yes'
 
+-- case insensitive search
+o.ignorecase = true
+
 -- Buffer options
 o.smartindent = true
--- o.copyindent = true
--- o.preserveindent = true
 
 -- Clipboard
 o.clipboard = 'unnamedplus'

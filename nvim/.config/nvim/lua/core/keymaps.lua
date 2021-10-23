@@ -28,8 +28,11 @@ utils.map('i', '<esc>', '<esc>:update<CR>')
 utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
 utils.map('n', '<F3>', ':NvimTreeToggle<CR>', opts)
 utils.map('n', '<F5>', ':MinimapToggle<CR>', opts)
--- utils.map('n', '<F6>', ':TZAtaraxis<CR>', opts)
--- utils.map('n', '<F7>', ':<Plug>RestNvim<CR>', opts)
+
+-- quickfix movements
+utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
+utils.map('n', ']q', ':cnext<CR>', opts) -- Go to the next item on the quickfix list
+
 
 ---[[------------------------------]]---
 --     Window Movements keys          --
@@ -75,16 +78,20 @@ utils.map('i', '<C-e>', 'compe#close("<C-e>")', lsp_opts)
 utils.map('i', '<C-f>', 'compe#scroll({ "delta": +4 })', lsp_opts)
 utils.map('i', '<C-d>', 'compe#scroll({ "delta": -4 })', lsp_opts) ]]
 utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
-utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
+
+--[[ utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
 utils.map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts) -- gr: go to reference
 utils.map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
--- utils.map('n', 'ca', ':Lspsaga code_action<CR>', opts) -- ca: code actions
-utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- ca: code actions
--- utils.map('n', 'K', ':Lspsaga hover_doc<CR>', opts) -- K: hover doc
+utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- ca: code actions ]]
+
+-- Try to use Telescope LSP pickers
+utils.map('n', 'gd', ':Telescope lsp_definitions<CR>', opts) -- Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope
+utils.map('n', 'gr', ':Telescope lsp_references<CR>', opts) -- Lists LSP references for word under the cursor
+utils.map('n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- Goto the implementation of the word under the cursor if there's only one, otherwise show all options in Telescope
+utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- Lists any LSP actions for the word under the cursor, that can be triggered with <cr>
+
 utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
--- utils.map('n', '[g', ':Lspsaga diagnostic_jump_prev<CR>', opts) -- Jump to previous diagnostic
 utils.map('n', '[g', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
--- utils.map('n', ']g', ':Lspsaga diagnostic_jump_next<CR>', opts) -- Jump to next diagnostic
 utils.map('n', ']g', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
 vim.cmd(
 	'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
@@ -232,17 +239,16 @@ utils.map('n', '<leader>fR', '<cmd>SudaRead<CR>', opts)
 utils.map('n', '<leader>fw', '<cmd>SudaWrite<CR>', opts)
 
 -- search
-utils.map('n', '<leader>sg', '<cmd>Telescope live_grep<CR>', opts)
 utils.map(
 	'n',
 	'<leader>sb',
 	'<cmd>Telescope current_buffer_fuzzy_find<CR>',
 	opts
 )
-utils.map('n', '<leader>ss', '<cmd>Telescope lsp_document_symbols<CR>', opts)
+utils.map('n', '<leader>sg', '<cmd>Telescope grep_string<CR>', opts) -- Searches for the string under your cursor in your current working directory
 utils.map('n', '<leader>sh', '<cmd>Telescope command_history<CR>', opts)
+utils.map('n', '<leader>ss', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 utils.map('n', '<leader>sm', '<cmd>Telescope marks<CR>', opts)
-utils.map('n', '<leader>sr', '<cmd>Rg<CR>', opts)
 
 -- windows
 utils.map('n', '<leader>ww', '<C-W>p', opts)
@@ -269,5 +275,6 @@ utils.map('n', '<leader>gp', '<cmd>TermExec cmd="git push"<CR>', opts)
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
 utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
-utils.map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts)
+utils.map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts) -- list git commits
+utils.map('n', '<leader>gC', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
 
