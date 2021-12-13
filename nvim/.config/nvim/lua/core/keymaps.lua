@@ -42,6 +42,7 @@ utils.map('n', '<C-j>', '<C-w>j', opts)
 utils.map('n', '<C-k>', '<C-w>k', opts)
 utils.map('n', '<C-l>', '<C-w>l', opts)
 
+
 ---[[-----------------]]---
 --    Select Movement    --
 ---]]-----------------[[---
@@ -58,6 +59,11 @@ vim.cmd([[
   nnoremap <silent> <C-Left>  :vertical resize +2<CR>
 ]])
 
+-- Replicate vim-sneak in hop.nvim
+utils.map('n', 's', ":HopChar2AC<CR>", opts)
+utils.map('n', 'S', ":HopChar2BC<CR>", opts)
+
+
 ---[[-----------------]]---
 --     Disable keys      --
 ---]]-----------------[[---
@@ -71,20 +77,7 @@ utils.map('n', 'Q', '<Nop>', opts)
 --    LSP Keybindings    --
 ---]]-----------------[[---
 local lsp_opts = vim.tbl_extend('force', opts, { expr = true })
--- https://github.com/hrsh7th/nvim-compe#mappings
---[[ utils.map('i', '<C-Space>', 'compe#complete()', lsp_opts)
-utils.map('i', '<CR>', 'compe#confirm("<CR>")', lsp_opts)
-utils.map('i', '<C-e>', 'compe#close("<C-e>")', lsp_opts)
-utils.map('i', '<C-f>', 'compe#scroll({ "delta": +4 })', lsp_opts)
-utils.map('i', '<C-d>', 'compe#scroll({ "delta": -4 })', lsp_opts) ]]
 utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
-
---[[ utils.map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', opts) -- gd: jump to definition
-utils.map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', opts) -- gr: go to reference
-utils.map('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', opts) -- gi: buf implementation
-utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- ca: code actions ]]
-
--- Try to use Telescope LSP pickers
 utils.map('n', 'gd', ':Telescope lsp_definitions<CR>', opts) -- Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope
 utils.map('n', 'gr', ':Telescope lsp_references<CR>', opts) -- Lists LSP references for word under the cursor
 utils.map('n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- Goto the implementation of the word under the cursor if there's only one, otherwise show all options in Telescope
@@ -147,7 +140,6 @@ utils.map(
 	'<cmd>lua vim.lsp.buf.type_definition()<CR>',
 	opts
 )
-utils.map('n', '<leader>cp', '<cmd>Lspsaga preview_definition<CR>', opts)
 --[[ utils.map(
 	'n',
 	'<leader>clL',
@@ -270,11 +262,11 @@ utils.map('n', '<leader>wv', '<C-W>v', opts)
 
 -- git
 utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
-utils.map('n', '<leader>gl', '<cmd>TermExec cmd="git pull"<CR>', opts)
-utils.map('n', '<leader>gp', '<cmd>TermExec cmd="git push"<CR>', opts)
+utils.map('n', '<leader>gp', '<cmd>TermExec cmd="git pull"<CR>', opts)
+utils.map('n', '<leader>gP', '<cmd>TermExec cmd="git push"<CR>', opts)
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
 utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
-utils.map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>', opts) -- list git commits
-utils.map('n', '<leader>gC', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
+utils.map('n', '<leader>gl', '<cmd>Telescope git_commits<CR>', opts) -- list git commits/git log
+utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
 

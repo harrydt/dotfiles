@@ -17,11 +17,10 @@ vim.cmd([[
     augroup END
 
     augroup fugitve_gitblame_q
-        autocmd FileType fugitiveblame nmap <buffer> <ESC> gq
+        autocmd FileType fugitiveblame nmap <buffer> q gq
     augroup END
 
-    augroup BQF
-      autocmd!
-      au FileType qf nnoremap <ESC> :cclose<CR>
+    augroup bqf_q
+        autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     augroup END
 ]])

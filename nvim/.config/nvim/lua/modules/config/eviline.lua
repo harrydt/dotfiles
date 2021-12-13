@@ -253,11 +253,22 @@ return function()
       highlight = { colors("blue"), colors("bg") },
     },
   }
-  gls.short_line_left[2] = {
+  --[[ gls.short_line_left[2] = {
     BufferType = {
       provider = "FileTypeName",
       condition = is_not_dashboard,
       highlight = { colors("fg"), colors("bg") },
+      separator = " ",
+      separator_highlight = { colors("bg"), colors("bg") },
+    },
+  } ]]
+  gls.short_line_left[2] = {
+    FileName = {
+      provider = "FileName",
+      condition = condition.buffer_not_empty and is_not_dashboard,
+      highlight = { colors("fg"), colors("bg"), "bold" },
+      separator = " ",
+      separator_highlight = { colors("bg"), colors("bg") },
     },
   }
 

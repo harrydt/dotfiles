@@ -15,6 +15,7 @@ o.shortmess:append('atsc')
 o.inccommand = 'split'
 o.path = '**'
 o.signcolumn = 'yes'
+o.foldenable = true
 
 -- case insensitive search
 o.ignorecase = true

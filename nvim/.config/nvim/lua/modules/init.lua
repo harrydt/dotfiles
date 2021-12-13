@@ -193,8 +193,8 @@ return packer.startup(function(use)
     -- Telescope
     use({
 		'nvim-telescope/telescope.nvim',
-		cmd = 'Telescope',
-		module = 'telescope',
+		-- cmd = 'Telescope',
+		-- module = 'telescope',
 		requires = {
 			'popup.nvim',
 			'plenary.nvim',
@@ -247,10 +247,7 @@ return packer.startup(function(use)
 
     -- Still neeed fugitive
     use({
-        'tpope/vim-fugitive',
-        cmd = {
-            "Git",
-        },
+        'tpope/vim-fugitive'
     })
 
     -- Github
@@ -338,12 +335,16 @@ return packer.startup(function(use)
     })
 
 	-- provides the missing `:LspInstall` for `nvim-lspconfig`.
-	use({
+	--[[ use({
 		'kabouzeid/nvim-lspinstall',
 		opt = true,
 		config = require('modules.config.lspinstall'),
 		after = 'nvim-lspconfig',
-	})
+	}) ]]
+    use({
+        "williamboman/nvim-lsp-installer",
+        config = require('modules.config.lsp-installer')
+    })
 
 	-- show diagnostic in list not inline
     use ({
@@ -421,7 +422,7 @@ return packer.startup(function(use)
     use({
         "blackCauldron7/surround.nvim",
         config = function()
-            require "surround".setup {}
+            require"surround".setup {mappings_style = "surround"}
         end,
         event = 'BufRead',
     })
@@ -432,8 +433,19 @@ return packer.startup(function(use)
     -- better quickfix
     use({"kevinhwang91/nvim-bqf"})
 
-
+    use({
+        'phaazon/hop.nvim',
+        branch = 'v1', -- optional but strongly recommended
+        config = function()
+            -- you can configure Hop the way you like here; see :h hop-config
+            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+        end
+    })
+    use({
+        "folke/lua-dev.nvim",
+        module = "lua-dev",
+	}) 
     -- packer
-    packer.install()
-    packer.compile()
+    -- packer.install()
+    -- packer.compile()
 end)

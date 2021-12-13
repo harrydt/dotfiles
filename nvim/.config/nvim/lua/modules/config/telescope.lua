@@ -22,7 +22,7 @@ return function()
 				'--line-number',
 				'--column',
 				'--smart-case',
-				'--hidden', -- search hidden files too
+				-- '--hidden', -- search hidden files too
 				-- '--files', -- from old init.vim
 				-- '--no-ignore-vcs', -- from old init.vim
 			},
@@ -39,7 +39,7 @@ return function()
 				},
 			},
 			file_sorter = require('telescope.sorters').get_fuzzy_file,
-			file_ignore_patterns = {},
+            file_ignore_patterns = { "^.git/", "^node_modules/", "^__pycache__/" },
 			generic_sorter = require('telescope.sorters').get_generic_fuzzy_sorter,
 			winblend = 0,
 			scroll_strategy = 'cycle',
