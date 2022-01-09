@@ -1,32 +1,46 @@
 ---- Packer Bootstrap ---------------------------
 -------------------------------------------------
-local packer_path = vim.fn.stdpath('data')
-	.. '/site/pack/packer/opt/packer.nvim'
+local fn = vim.fn
 
-if vim.fn.empty(vim.fn.glob(packer_path)) > 0 then
-	vim.fn.system({
-		'git',
-		'clone',
-		'https://github.com/wbthomason/packer.nvim',
-		packer_path,
-	})
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
 
--- Load packer
-vim.cmd([[ packadd packer.nvim ]])
-local packer = require('packer')
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
--- Change some defaults
-packer.init({
-	git = {
-		clone_timeout = 300, -- 5 mins
-	},
-	profile = {
-		enable = true,
-	},
-})
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
 
+-- Have packer use a popup window
+--[[ packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+} ]]
 
+-- Install plugins
 return packer.startup(function(use)
 
     -----[[------------]]-----
@@ -35,7 +49,6 @@ return packer.startup(function(use)
 	-- Plugins manager
 	use({
 		'wbthomason/packer.nvim',
-		opt = true,
 	})
 
     -- Common dependencies
@@ -317,15 +330,6 @@ return packer.startup(function(use)
 		event = 'BufWinEnter',
 	})
 
-	-- Nice UI for LSP
-	--[[ use({
-		'glepnir/lspsaga.nvim',
-		opt = true,
-		module = 'lspsaga',
-		after = 'nvim-lspconfig',
-		config = require('modules.config.lspsaga'),
-	}) ]]
-
     -- Show function signature when you type
     use({
         "ray-x/lsp_signature.nvim",
@@ -441,11 +445,21 @@ return packer.startup(function(use)
             require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
         end
     })
+
+    -- Dev setup for init.lua and plugin development
     use({
         "folke/lua-dev.nvim",
         module = "lua-dev",
 	}) 
-    -- packer
-    -- packer.install()
-    -- packer.compile()
+
+    -- Automatically clears search highlight when cursor is moved
+    -- Improved star-search (visual-mode, highlighting without moving)
+    --[[ use({
+        "junegunn/vim-slash"
+    }) ]]
+
+    -- Automatically set up configuration after cloning packer.nvim
+    if PACKER_BOOTSTRAP then
+        require("packer").sync()
+    end
 end)

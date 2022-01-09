@@ -57,6 +57,31 @@ return function()
     yaml = { "yamlls" },
     config = { "jsonls", "yamlls" },
   }
+  local langs = {
+    -- To enable the language server for a language just add the +lsp flag
+    -- at the end, e.g. 'rust +lsp'. This will install the rust TreeSitter
+    -- parser and rust-analyzer
+    --
+    -- "css",             -- CSS support
+    -- "html",            -- HTML support
+    -- "javascript",      -- JavaScript support
+    -- "typescript",      -- TypeScript support
+
+    "bash +lsp",            -- The terminal gods language
+    -- "elixir",          -- Build scalable and maintainable software
+    "lua +lsp", -- Support for our gods language
+    "python +lsp",     -- Python support + lsp
+    -- "ruby",            -- Look ma, I love the gems!
+
+    -- "cpp",             -- C++ support
+    "go +lsp",              -- Hello, gopher
+    -- "haskell",         -- Because Functional programming is fun, isn't it?
+    -- "java",            -- Java support
+    -- "rust +lsp",       -- Let's get rusty!
+
+    "config +lsp",          -- Configuration files (JSON, YAML, TOML)
+    "dockerfile +lsp",      -- Do you like containers, right?
+  }
   -- Add out-of-the-box support for Scala metals LSP
   local should_setup_scala_lsp = false
 
@@ -91,15 +116,13 @@ return function()
   }
 
   --- Intelligent highlighting of word under cursor
-  --[[ local on_attach
-  if not is_plugin_disabled("illuminated") and packer_plugins["vim-illuminate"] then
-    on_attach = function(client)
-      require("illuminate").on_attach(client)
-      -- Set underline highlighting for Lsp references
-      vim.cmd("hi! LspReferenceText cterm=underline gui=underline")
-      vim.cmd("hi! LspReferenceWrite cterm=underline gui=underline")
-      vim.cmd("hi! LspReferenceRead cterm=underline gui=underline")
-    end
+  local on_attach
+  --[[ on_attach = function(client)
+    require("illuminate").on_attach(client)
+    -- Set underline highlighting for Lsp references
+    vim.cmd("hi! LspReferenceText cterm=underline gui=underline")
+    vim.cmd("hi! LspReferenceWrite cterm=underline gui=underline")
+    vim.cmd("hi! LspReferenceRead cterm=underline gui=underline")
   end ]]
 
   local lua_lsp = require("lua-dev").setup({
@@ -123,31 +146,9 @@ return function()
   local function setup_servers()
     local lsp_installer = require("nvim-lsp-installer")
 
-    local langs = {
-        -- To enable the language server for a language just add the +lsp flag
-        -- at the end, e.g. 'rust +lsp'. This will install the rust TreeSitter
-        -- parser and rust-analyzer
-        --
-        -- "css",             -- CSS support
-        -- "html",            -- HTML support
-        -- "javascript",      -- JavaScript support
-        -- "typescript",      -- TypeScript support
+    -- local modules = require("core.config.modules").modules
+    -- local langs = modules.langs
 
-        "bash",            -- The terminal gods language
-        -- "elixir",          -- Build scalable and maintainable software
-        "lua", -- Support for our gods language
-        "python +lsp",     -- Python support + lsp
-        -- "ruby",            -- Look ma, I love the gems!
-
-        -- "cpp",             -- C++ support
-        "go",              -- Hello, gopher
-        -- "haskell",         -- Because Functional programming is fun, isn't it?
-        -- "java",            -- Java support
-        -- "rust +lsp",       -- Let's get rusty!
-
-        "config",          -- Configuration files (JSON, YAML, TOML)
-        "dockerfile",      -- Do you like containers, right?
-  }
     -- Find all LSPs that need to be installed
     local ensure_installed = {}
     for _, lang in ipairs(langs) do
@@ -179,9 +180,9 @@ return function()
             -- Enable setup for Scala Metals LSP
             should_setup_scala_lsp = true
           else
-            --[[ log.error(
+            log.error(
               'The language "' .. lang .. '" does not have an LSP, please remove the "+lsp" flag.'
-            ) ]]
+            )
           end
         end
       end
@@ -257,7 +258,7 @@ return function()
 
     -- Print intalling/uninstalling information to user on startup
     if next(installing_servers) ~= nil or next(uninstalling_servers) ~= nil then
-      local msg = "Harry"
+      local msg = "LSP-Installer: "
       local installing_count = #installing_servers
       if installing_count > 0 then
         msg = msg .. "Installing " .. installing_count .. " LSPs.  "

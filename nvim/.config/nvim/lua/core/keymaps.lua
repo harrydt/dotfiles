@@ -19,7 +19,7 @@ utils.map('n', '<Tab>', ':bnext<CR>', opts)
 utils.map('n', '<S-Tab>', ':bprevious<CR>', opts)
 
 -- ESC to turn off search highlighting
-utils.map('n', '<esc>', ':noh<CR>', opts)
+utils.map('n', '<C-_>', ':noh<CR>', opts)
 
 -- ESC in INSERT mode to save current buffer
 utils.map('i', '<esc>', '<esc>:update<CR>')
@@ -117,7 +117,8 @@ utils.map(
 utils.map(
 	'n',
 	'<leader>cdl',
-	'<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+	-- '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+	'<cmd>lua vim.diagnostic.open_float()<CR>',
 	opts
 )
 utils.map(

@@ -76,6 +76,12 @@ return function()
       symlink = "",
       symlink_open = "",
     },
+    lsp = {
+      hint =  "",
+      info = "",
+      warning = "",
+      error = "",
+    },
   }
 
   ----- SETUP CONFIGURATION ---------------------
@@ -102,10 +108,10 @@ return function()
       enable = true,
       icons = {
         hint = "",
-        info = "",
+        info = "",
         warning = "",
         error = "",
-      }
+      },
     },
     -- update the focused file on `BufEnter`, un-collapses the folders recursively until it finds the file
     update_focused_file = {
