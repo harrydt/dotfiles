@@ -79,7 +79,7 @@ return packer.startup(function(use)
 		run = ':TSUpdate',
 		config = require('modules.config.treesitter'),
 	})
-    
+
     use({
         'nvim-treesitter/nvim-treesitter-textobjects',
 		requires = "nvim-treesitter/nvim-treesitter",
@@ -87,17 +87,6 @@ return packer.startup(function(use)
     -----[[------------]]-----
     ---     UI Related     ---
     -----]]------------[[-----
-    -- TODO
-    -- use 'mhinz/vim-startify'
-    -- Find a dashboard
-    --[[ use ({
-        'goolord/alpha-nvim',
-        requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function ()
-            require'alpha'.setup(require'alpha.themes.startify'.opts)
-        end
-    }) ]]
-
     -- Icons
     -- Development icons
 	use({
@@ -129,15 +118,7 @@ return packer.startup(function(use)
 		event = 'BufWinEnter',
 	})
 
-    -- TODO kinda cool. Revisit later
-	--[[ use({
-		'windwp/windline.nvim',
-		config = require('modules.config.windline'),
-		event = 'BufWinEnter',
-	}) ]]
-
     -- Tabline
-    -- TODO make pretty?
 	use({
 		'akinsho/nvim-bufferline.lua',
 		config = require('modules.config.bufferline'),
@@ -154,7 +135,6 @@ return packer.startup(function(use)
 	})
 
     -- Viewer & finder for LSP symbols and tags
-    -- TODO
 	use({
 		'simrat39/symbols-outline.nvim',
 		config = require('modules.config.symbols'),
@@ -359,6 +339,14 @@ return packer.startup(function(use)
             }
         end
     })
+
+    -- LSP feature hook
+    use ({
+        "jose-elias-alvarez/null-ls.nvim",
+        after = 'nvim-lspconfig',
+        config = require('modules.config.null-ls')
+    })
+
     -----[[--------------]]-----
 	---     File Related     ---
 	-----]]--------------[[-----
@@ -370,11 +358,6 @@ return packer.startup(function(use)
 	})
 
     -- Indent Lines
-	use({
-		'lukas-reineke/indent-blankline.nvim',
-		config = require('modules.config.blankline'),
-		event = 'BufWinEnter',
-	})
     -- Autopairs
 	-- can be disabled to use your own autopairs
 	use({

@@ -23,9 +23,4 @@ vim.cmd([[
     augroup bqf_q
         autocmd FileType qf nnoremap <buffer> q :cclose<CR>
     augroup END
-
-    augroup format_on_save
-        autocmd BufWritePre *.go lua vim.lsp.buf.formatting_sync(nil, 1000)
-        autocmd BufWritePre *.go.in lua vim.lsp.buf.formatting_sync(nil, 1000)
-    augroup
 ]])

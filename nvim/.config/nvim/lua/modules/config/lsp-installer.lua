@@ -77,7 +77,7 @@ return function()
     "go +lsp",              -- Hello, gopher
     -- "haskell",         -- Because Functional programming is fun, isn't it?
     -- "java",            -- Java support
-    -- "rust +lsp",       -- Let's get rusty!
+    "rust +lsp",       -- Let's get rusty!
 
     "config +lsp",          -- Configuration files (JSON, YAML, TOML)
     "dockerfile +lsp",      -- Do you like containers, right?
