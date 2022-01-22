@@ -31,15 +31,6 @@ if not status_ok then
   return
 end
 
--- Have packer use a popup window
---[[ packer.init {
-  display = {
-    open_fn = function()
-      return require("packer.util").float { border = "rounded" }
-    end,
-  },
-} ]]
-
 -- Install plugins
 return packer.startup(function(use)
 
@@ -250,6 +241,14 @@ return packer.startup(function(use)
         },
         config = function()
 	        require('neogit').setup({
+                disable_hint = true,
+                disable_insert_on_commit = false,
+                signs = {
+                    -- { CLOSED, OPENED }
+                    section = { "", "" },
+                    item = { "", "" },
+                    hunk = { "", "" },
+                },
                 integrations = {
                     diffview = true,
                 }
@@ -447,16 +446,10 @@ return packer.startup(function(use)
     })
 
     -- Dev setup for init.lua and plugin development
-    use({
+    --[[ use({
         "folke/lua-dev.nvim",
         module = "lua-dev",
-	}) 
-
-    -- Automatically clears search highlight when cursor is moved
-    -- Improved star-search (visual-mode, highlighting without moving)
-    --[[ use({
-        "junegunn/vim-slash"
-    }) ]]
+	})  ]]
 
     -- Automatically set up configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

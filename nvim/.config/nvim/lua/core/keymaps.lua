@@ -124,13 +124,13 @@ utils.map(
 utils.map(
 	'n',
 	'<leader>cdd',
-	'<cmd>TroubleToggle lsp_document_diagnostics<CR>',
+	'<cmd>TroubleToggle document_diagnostics<CR>',
 	opts
 )
 utils.map(
 	'n',
 	'<leader>cdw',
-	'<cmd>TroubleToggle lsp_workspace_diagnostics<CR>',
+	'<cmd>TroubleToggle workspace_diagnostics<CR>',
 	opts
 )
 utils.map('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -246,8 +246,8 @@ utils.map('n', '<leader>sm', '<cmd>Telescope marks<CR>', opts)
 -- windows
 utils.map('n', '<leader>ww', '<C-W>p', opts)
 utils.map('n', '<leader>wd', '<C-W>c', opts)
-utils.map('n', '<leader>w-', '<C-W>s', opts)
-utils.map('n', '<leader>w|', '<C-W>v', opts)
+utils.map('n', '<leader>ws', '<C-W>s', opts)
+utils.map('n', '<leader>wv', '<C-W>v', opts)
 utils.map('n', '<leader>w2', '<C-W>v', opts)
 utils.map('n', '<leader>wh', '<C-W>h', opts)
 utils.map('n', '<leader>wj', '<C-W>j', opts)
@@ -258,8 +258,6 @@ utils.map('n', '<leader>wJ', '<cmd>resize +5<CR>', opts)
 utils.map('n', '<leader>wL', '<C-W>5>', opts)
 utils.map('n', '<leader>wK', '<cmd>resize -5<CR>', opts)
 utils.map('n', '<leader>w=', '<C-W>=', opts)
-utils.map('n', '<leader>ws', '<C-W>s', opts)
-utils.map('n', '<leader>wv', '<C-W>v', opts)
 
 -- git
 utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
@@ -271,3 +269,6 @@ utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
 utils.map('n', '<leader>gl', '<cmd>Telescope git_commits<CR>', opts) -- list git commits/git log
 utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
 
+-- Quit
+utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
+utils.map('n', '<leader>qa', '<cmd>qa<CR>', opts)

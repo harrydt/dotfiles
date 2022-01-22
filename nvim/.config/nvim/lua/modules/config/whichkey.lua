@@ -152,11 +152,8 @@ return function()
 		},
 		['q'] = {
 			name = '+quit/sessions',
-			['q'] = { 'Quit' },
-			['w'] = { 'Save and quit' },
-			['s'] = { 'Save current session' },
-			['r'] = { 'Restore previously saved session' },
-			['l'] = { 'Session switcher' },
+			['q'] = { 'Quit window' },
+			['a'] = { 'Quit all' },
 		},
 		['s'] = {
 			name = '+search',
@@ -170,8 +167,8 @@ return function()
 			name = '+windows',
 			['w'] = { 'Other window' },
 			['d'] = { 'Delete window' },
-			['-'] = { 'Split window below' },
-			['|'] = { 'Split window right' },
+			['s'] = { 'Split window below' },
+			['v'] = { 'Split window right' },
 			['2'] = { 'Layout double columns' },
 			['h'] = { 'Window left' },
 			['j'] = { 'Window below' },
@@ -182,8 +179,6 @@ return function()
 			['L'] = { 'Expand window right' },
 			['K'] = { 'Expand window up' },
 			['='] = { 'Balance window' },
-			['s'] = { 'Split window below' },
-			['v'] = { 'Split window right' },
 		},
 		--[[ ['o'] = {
 			name = '+open',

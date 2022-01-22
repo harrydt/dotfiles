@@ -125,7 +125,7 @@ return function()
     vim.cmd("hi! LspReferenceRead cterm=underline gui=underline")
   end ]]
 
-  local lua_lsp = require("lua-dev").setup({
+  --[[ local lua_lsp = require("lua-dev").setup({
     lspconfig = {
       settings = {
         Lua = {
@@ -140,7 +140,7 @@ return function()
       capabilities = capabilities,
       on_attach = on_attach,
     },
-  })
+  }) ]]
 
   -- Load langs from doom_modules, install servers with +lsp flag and sets up their config
   local function setup_servers()
