@@ -2,7 +2,7 @@ return function()
     require('doom-one').setup({
             cursor_coloring = true,
             terminal_colors = false,
-            italic_comments = false,
+            italic_comments = true,
             enable_treesitter = true,
             transparent_background = false,
             pumblend = {

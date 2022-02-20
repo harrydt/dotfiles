@@ -135,15 +135,20 @@ return packer.startup(function(use)
 	})
 
     -- Viewer & finder for LSP symbols and tags
-	use({
-		'simrat39/symbols-outline.nvim',
-		config = require('modules.config.symbols'),
-		cmd = {
+    -- TODO it sucks that I cannot lazyload this
+	--[[ use({
+		'zeertzjq/symbols-outline.nvim',
+        branch = 'patch-1',
+		-- config = require('modules.config.symbols'),
+		config = function()
+            require"symbols-outline".setup {auto_preview = false}
+		end,
+		--[[ cmd = {
 			'SymbolsOutline',
 			'SymbolsOutlineOpen',
 			'SymbolsOutlineClose',
-		},
-	})
+		}, ]]
+	-- }) ]]
 
 	-- Minimap
 	-- Depends on wfxr/code-minimap to work!
@@ -318,12 +323,6 @@ return packer.startup(function(use)
     })
 
 	-- provides the missing `:LspInstall` for `nvim-lspconfig`.
-	--[[ use({
-		'kabouzeid/nvim-lspinstall',
-		opt = true,
-		config = require('modules.config.lspinstall'),
-		after = 'nvim-lspconfig',
-	}) ]]
     use({
         "williamboman/nvim-lsp-installer",
         config = require('modules.config.lsp-installer')
@@ -358,6 +357,12 @@ return packer.startup(function(use)
 	})
 
     -- Indent Lines
+	use({
+		'lukas-reineke/indent-blankline.nvim',
+		config = require('modules.config.blankline'),
+		event = 'BufWinEnter',
+	})
+
     -- Autopairs
 	-- can be disabled to use your own autopairs
 	use({
@@ -421,7 +426,7 @@ return packer.startup(function(use)
 
     use({
         'phaazon/hop.nvim',
-        branch = 'v1', -- optional but strongly recommended
+        -- branch = 'v1', -- optional but strongly recommended
         config = function()
             -- you can configure Hop the way you like here; see :h hop-config
             require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }

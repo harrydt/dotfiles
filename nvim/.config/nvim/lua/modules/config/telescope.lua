@@ -79,6 +79,7 @@ return function()
 						+ actions.open_qflist,
 				},
 			},
+            -- path_display={"smart"},
 		},
         telescope.load_extension('fzf'),
         telescope.load_extension('vimwiki')
