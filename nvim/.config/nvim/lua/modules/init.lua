@@ -135,7 +135,7 @@ return packer.startup(function(use)
 	})
 
     -- Viewer & finder for LSP symbols and tags
-    -- TODO it sucks that I cannot lazyload this
+    -- TODO This is so buggy. Need to find alternative
 	--[[ use({
 		'zeertzjq/symbols-outline.nvim',
         branch = 'patch-1',
@@ -410,6 +410,7 @@ return packer.startup(function(use)
     })
 
     -- lua alternative for vim-surround
+    -- TODO this repo is inactive. Find alternative
     use({
         "blackCauldron7/surround.nvim",
         config = function()
@@ -434,10 +435,10 @@ return packer.startup(function(use)
     })
 
     -- Dev setup for init.lua and plugin development
-    --[[ use({
+    use({
         "folke/lua-dev.nvim",
         module = "lua-dev",
-	})  ]]
+	})
 
     -- Automatically set up configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

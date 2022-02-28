@@ -35,7 +35,7 @@ return function()
     javascript = { "tsserver" },
     kotlin = { "kotlin_language_server" },
     latex = { "texlab" },
-    ocaml = { "ocamells" },
+    ocaml = { "ocamllsp" },
     php = { "phpactor" },
     powershell = { "powershell_es" },
     -- prisma = { 'prismals' },
@@ -81,6 +81,7 @@ return function()
 
     "config +lsp",          -- Configuration files (JSON, YAML, TOML)
     "dockerfile +lsp",      -- Do you like containers, right?
+    "ocaml +lsp",
   }
   -- Add out-of-the-box support for Scala metals LSP
   local should_setup_scala_lsp = false
@@ -261,11 +262,11 @@ return function()
       local msg = "LSP-Installer: "
       local installing_count = #installing_servers
       if installing_count > 0 then
-        msg = msg .. "Installing " .. installing_count .. " LSPs.  "
+        msg = msg .. " Installing " .. installing_count .. " LSPs.  "
       end
       local uninstalling_count = #uninstalling_servers
       if uninstalling_count > 0 then
-        msg = msg .. "Uninstalling " .. installing_count .. " LSPs.  "
+        msg = msg .. " Uninstalling " .. installing_count .. " LSPs.  "
       end
       msg = msg .. "Use :LspInstallInfo to check status.  "
       vim.notify(msg)
