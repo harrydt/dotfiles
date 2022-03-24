@@ -69,10 +69,6 @@ return packer.startup(function(use)
         end
     })
 
-
-    -----[[------------]]-----
-    ---     Essentials     ---
-    -----]]------------[[-----
     -- Treesitter
 	use({
 		'nvim-treesitter/nvim-treesitter',
@@ -84,6 +80,7 @@ return packer.startup(function(use)
         'nvim-treesitter/nvim-treesitter-textobjects',
 		requires = "nvim-treesitter/nvim-treesitter",
     })
+
     -----[[------------]]-----
     ---     UI Related     ---
     -----]]------------[[-----
@@ -150,19 +147,6 @@ return packer.startup(function(use)
 		}, ]]
 	-- }) ]]
 
-	-- Minimap
-	-- Depends on wfxr/code-minimap to work!
-	use({
-		'wfxr/minimap.vim',
-		cmd = {
-			'Minimap',
-			'MinimapClose',
-			'MinimapToggle',
-			'MinimapRefresh',
-			'MinimapUpdateHighlight',
-		},
-	})
-
 	-- which-key
 	-- Keybindings menu like Emacs's guide-key
 	use({
@@ -170,6 +154,17 @@ return packer.startup(function(use)
 		config = require('modules.config.whichkey'),
 		event = 'BufWinEnter',
 	})
+
+    -- Smooth scrolling
+    use({
+        'karb94/neoscroll.nvim',
+        config = function()
+            require('neoscroll').setup({
+                hide_cursor = false,
+            })
+        end,
+        event = "WinScrolled",
+    })
 
     -----[[--------------]]-----
 	---     Fuzzy Search     ---
@@ -246,12 +241,6 @@ return packer.startup(function(use)
     use({
         'tpope/vim-fugitive'
     })
-
-    -- Github
-    use({
-        'tpope/vim-rhubarb'
-    })
-
 
 	-----[[------------]]-----
 	---     Completion     ---
@@ -378,14 +367,6 @@ return packer.startup(function(use)
 		cmd = { 'SudaRead', 'SudaWrite' },
 	})
 
-	-- File formatting
-	-- can be disabled to use your own file formatter
-	use({
-		'lukas-reineke/format.nvim',
-		config = require('modules.config.format'),
-		event = 'BufWinEnter',
-	})
-
     -- hightlights ranges you have entered in commandline.
 	use({
 		'winston0410/range-highlight.nvim',
@@ -398,16 +379,6 @@ return packer.startup(function(use)
 		event = 'BufRead',
 	})
 
-    -- Smooth scrolling
-    use({
-        'karb94/neoscroll.nvim',
-        config = function()
-            require('neoscroll').setup({
-                hide_cursor = false,
-            })
-        end,
-        event = "WinScrolled",
-    })
 
     -- lua alternative for vim-surround
     -- TODO this repo is inactive. Find alternative

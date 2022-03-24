@@ -15,8 +15,11 @@ utils.map('i', '?', '?<C-G>u', opts)
 utils.map('n', '<Space>', ':WhichKey <leader><CR>', opts)
 
 -- TAB to cycle buffers too, why not?
-utils.map('n', '<Tab>', ':bnext<CR>', opts)
-utils.map('n', '<S-Tab>', ':bprevious<CR>', opts)
+-- <Tab> not working in kitty?
+--[[ utils.map('n', '<Tab>', ':bnext<CR>', opts)
+utils.map('n', '<S-Tab>', ':bprevious<CR>', opts) ]]
+utils.map('n', ']b', ':bnext<CR>', opts)
+utils.map('n', '[b', ':bprevious<CR>', opts)
 
 -- ESC to turn off search highlighting
 utils.map('n', '<C-_>', ':noh<CR>', opts)
