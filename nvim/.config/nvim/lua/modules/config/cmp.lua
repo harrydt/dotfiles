@@ -45,9 +45,12 @@ return function()
     completion = {
       completeopt = "menu,menuone,preview,noinsert",
     },
-    documentation = {
+    --[[ documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
-    },
+    }, ]]
+    --[[ window = {
+        documentation = true,
+    }, ]]
     formatting = {
       format = function(entry, item)
         item.kind = string.format("%s %s", get_kind(item.kind), item.kind)

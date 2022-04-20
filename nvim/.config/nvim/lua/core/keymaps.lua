@@ -90,14 +90,14 @@ utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 utils.map('n', '[g', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
 utils.map('n', ']g', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
 vim.cmd(
-	'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
+    'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 )
 -- LuaSnip mappings
 utils.map(
-	'n',
-	'<Tab>',
-	'luasnip#expand_or_jumpable() ? "<Plug>luasnip-expand-or-jump" : "<Tab>"',
-	lsp_opts
+    'n',
+    '<Tab>',
+    'luasnip#expand_or_jumpable() ? "<Plug>luasnip-expand-or-jump" : "<Tab>"',
+    lsp_opts
 )
 utils.map('i', '<S-Tab>', '<cmd>lua require("luasnip").jump(-1)<CR>', opts)
 
@@ -105,44 +105,44 @@ utils.map('s', '<Tab>', '<cmd>lua require("luasnip").jump(1)<CR>', opts)
 utils.map('s', '<S-Tab>', '<cmd>lua require("luasnip").jump(-1)<CR>', opts)
 
 utils.map(
-	'i',
-	'<C-E>',
-	'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
-	lsp_opts
+    'i',
+    '<C-E>',
+    'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
+    lsp_opts
 )
 utils.map(
-	's',
-	'<C-E>',
-	'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
-	lsp_opts
+    's',
+    '<C-E>',
+    'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
+    lsp_opts
 )
 
 utils.map(
-	'n',
-	'<leader>cdl',
-	-- '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-	'<cmd>lua vim.diagnostic.open_float()<CR>',
-	opts
+    'n',
+    '<leader>cdl',
+    -- '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
+    '<cmd>lua vim.diagnostic.open_float()<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>cdd',
-	'<cmd>TroubleToggle document_diagnostics<CR>',
-	opts
+    'n',
+    '<leader>cdd',
+    '<cmd>TroubleToggle document_diagnostics<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>cdw',
-	'<cmd>TroubleToggle workspace_diagnostics<CR>',
-	opts
+    'n',
+    '<leader>cdw',
+    '<cmd>TroubleToggle workspace_diagnostics<CR>',
+    opts
 )
 utils.map('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 utils.map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 utils.map(
-	'n',
-	'<leader>cld',
-	'<cmd>lua vim.lsp.buf.type_definition()<CR>',
-	opts
+    'n',
+    '<leader>cld',
+    '<cmd>lua vim.lsp.buf.type_definition()<CR>',
+    opts
 )
 --[[ utils.map(
 	'n',
@@ -161,51 +161,52 @@ utils.map('n', '<leader>`', '<cmd>e #<CR>', opts)
 utils.map('n', '<leader><space>', '<cmd>Telescope find_files<CR>', opts)
 utils.map('n', '<leader>.', '<cmd>Telescope file_browser<CR>', opts)
 utils.map(
-	'n',
-	'<leader>,',
-	'<cmd>Telescope buffers show_all_buffers=true<CR>',
-	opts
+    'n',
+    '<leader>,',
+    '<cmd>Telescope buffers show_all_buffers=true<CR>',
+    opts
 )
 utils.map('n', '<leader>/', '<cmd>Telescope live_grep<CR>', opts)
 utils.map('n', '<leader>:', '<cmd>Telescope command_history<CR>', opts)
 
 -- Buffers
 utils.map(
-	'n',
-	'<leader>bc',
-	'<cmd>lua require("bufferline").handle_close_buffer(vim.fn.bufnr("%"))<CR>',
-	opts
+    'n',
+    '<leader>bc',
+    '<cmd>lua require("bufferline").handle_close_buffer(vim.fn.bufnr("%"))<CR>',
+    opts
 )
 utils.map('n', '<leader>bb', '<cmd>e #<CR>', opts)
+utils.map('n', '<leader>bd', ':lua MiniBufremove.delete()<CR>', opts)
 utils.map(
-	'n',
-	'<leader>b]',
-	'<cmd>lua require("bufferline").cycle(1)<CR>',
-	opts
+    'n',
+    '<leader>b]',
+    '<cmd>lua require("bufferline").cycle(1)<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>bn',
-	'<cmd>lua require("bufferline").cycle(1)<CR>',
-	opts
+    'n',
+    '<leader>bn',
+    '<cmd>lua require("bufferline").cycle(1)<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>bg',
-	'<cmd>lua require("bufferline").pick_buffer()<CR>',
-	opts
+    'n',
+    '<leader>bg',
+    '<cmd>lua require("bufferline").pick_buffer()<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>b[',
-	'<cmd>lua require("bufferline").cycle(-1)<CR>',
-	opts
+    'n',
+    '<leader>b[',
+    '<cmd>lua require("bufferline").cycle(-1)<CR>',
+    opts
 )
 utils.map(
-	'n',
-	'<leader>bp',
-	'<cmd>lua require("bufferline").cycle(-1)<CR>',
-	opts
+    'n',
+    '<leader>bp',
+    '<cmd>lua require("bufferline").cycle(-1)<CR>',
+    opts
 )
 utils.map('n', '<leader>bf', '<cmd>FormatWrite<CR>', opts)
 
@@ -236,10 +237,10 @@ utils.map('n', '<leader>fw', '<cmd>SudaWrite<CR>', opts)
 
 -- search
 utils.map(
-	'n',
-	'<leader>sb',
-	'<cmd>Telescope current_buffer_fuzzy_find<CR>',
-	opts
+    'n',
+    '<leader>sb',
+    '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+    opts
 )
 utils.map('n', '<leader>sg', '<cmd>Telescope grep_string<CR>', opts) -- Searches for the string under your cursor in your current working directory
 utils.map('n', '<leader>sh', '<cmd>Telescope command_history<CR>', opts)

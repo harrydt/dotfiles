@@ -41,7 +41,7 @@ return function()
     -- prisma = { 'prismals' },
     -- puppet = { 'puppet' },
     -- purescript = { 'purescriptls' },
-    python = { "pyright" },
+    python = { "pylsp" },
     -- rescript = { 'rescriptls' },
     -- rome = { 'rome' },
     ruby = { "solargraph" },

@@ -5,16 +5,16 @@ local fn = vim.fn
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
-  print "Installing packer close and reopen Neovim..."
-  vim.cmd [[packadd packer.nvim]]
+    PACKER_BOOTSTRAP = fn.system {
+        "git",
+        "clone",
+        "--depth",
+        "1",
+        "https://github.com/wbthomason/packer.nvim",
+        install_path,
+    }
+    print "Installing packer close and reopen Neovim..."
+    vim.cmd [[packadd packer.nvim]]
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -28,19 +28,19 @@ vim.cmd [[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-  return
+    return
 end
 
 -- Install plugins
 return packer.startup(function(use)
 
     -----[[------------]]-----
-	---     Essentials     ---
-	-----]]------------[[-----
-	-- Plugins manager
-	use({
-		'wbthomason/packer.nvim',
-	})
+    ---     Essentials     ---
+    -----]]------------[[-----
+    -- Plugins manager
+    use({
+        'wbthomason/packer.nvim',
+    })
 
     -- Common dependencies
     use({
@@ -61,24 +61,24 @@ return packer.startup(function(use)
         config = function()
             vim.g.vimwiki_list = {
                 {
-                   path = '~/vimwiki',
-                   syntax = 'markdown',
-                   ext = '.md',
+                    path = '~/vimwiki',
+                    syntax = 'markdown',
+                    ext = '.md',
                 }
             }
         end
     })
 
     -- Treesitter
-	use({
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		config = require('modules.config.treesitter'),
-	})
+    use({
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = require('modules.config.treesitter'),
+    })
 
     use({
         'nvim-treesitter/nvim-treesitter-textobjects',
-		requires = "nvim-treesitter/nvim-treesitter",
+        requires = "nvim-treesitter/nvim-treesitter",
     })
 
     -----[[------------]]-----
@@ -86,74 +86,72 @@ return packer.startup(function(use)
     -----]]------------[[-----
     -- Icons
     -- Development icons
-	use({
-		'kyazdani42/nvim-web-devicons',
-		module = 'nvim-web-devicons',
-	})
+    use({
+        'kyazdani42/nvim-web-devicons',
+        module = 'nvim-web-devicons',
+    })
 
     -- File tree
-	use({
-		'kyazdani42/nvim-tree.lua',
-		requires = 'nvim-web-devicons',
-		config = require('modules.config.tree'),
-		cmd = {
-		    'NvimTreeOpen',
-			'NvimTreeClipboard',
-			'NvimTreeClose',
-			'NvimTreeFindFile',
-			'NvimTreeOpen',
-			'NvimTreeRefresh',
-			'NvimTreeToggle',
-		},
-	})
+    use({
+        'kyazdani42/nvim-tree.lua',
+        requires = 'nvim-web-devicons',
+        config = require('modules.config.tree'),
+        cmd = {
+            'NvimTreeOpen',
+            'NvimTreeClipboard',
+            'NvimTreeClose',
+            'NvimTreeFindFile',
+            'NvimTreeOpen',
+            'NvimTreeRefresh',
+            'NvimTreeToggle',
+        },
+    })
 
-	-- Statusline
-	-- can be disabled to use your own statusline
-	use({
-		'NTBBloodbath/galaxyline.nvim',
-		config = require('modules.config.eviline'),
-		event = 'BufWinEnter',
-	})
+    -- Statusline
+    -- can be disabled to use your own statusline
+    use({
+        'NTBBloodbath/galaxyline.nvim',
+        config = require('modules.config.eviline'),
+        event = 'BufWinEnter',
+    })
 
     -- Tabline
-	use({
-		'akinsho/nvim-bufferline.lua',
-		config = require('modules.config.bufferline'),
-		event = 'BufWinEnter',
-	})
+    use({
+        'akinsho/nvim-bufferline.lua',
+        config = require('modules.config.bufferline'),
+        event = 'BufWinEnter',
+    })
 
     -- Better terminal
-	use({
-		'akinsho/nvim-toggleterm.lua',
-		config = require('modules.config.toggleterm'),
-		module = { 'toggleterm', 'toggleterm.terminal' },
-		cmd = { 'ToggleTerm', 'TermExec' },
-		keys = { 'n', '<F4>' },
-	})
+    use({
+        'akinsho/nvim-toggleterm.lua',
+        config = require('modules.config.toggleterm'),
+        module = { 'toggleterm', 'toggleterm.terminal' },
+        cmd = { 'ToggleTerm', 'TermExec' },
+        keys = { 'n', '<F4>' },
+    })
 
     -- Viewer & finder for LSP symbols and tags
     -- TODO This is so buggy. Need to find alternative
-	--[[ use({
-		'zeertzjq/symbols-outline.nvim',
-        branch = 'patch-1',
-		-- config = require('modules.config.symbols'),
-		config = function()
-            require"symbols-outline".setup {auto_preview = false}
-		end,
-		--[[ cmd = {
+    use({
+        -- 'zeertzjq/symbols-outline.nvim',
+        'simrat39/symbols-outline.nvim',
+        -- branch = 'patch-1',
+        config = require('modules.config.symbols'),
+        --[[ cmd = {
 			'SymbolsOutline',
 			'SymbolsOutlineOpen',
 			'SymbolsOutlineClose',
 		}, ]]
-	-- }) ]]
+    })
 
-	-- which-key
-	-- Keybindings menu like Emacs's guide-key
-	use({
-		'folke/which-key.nvim',
-		config = require('modules.config.whichkey'),
-		event = 'BufWinEnter',
-	})
+    -- which-key
+    -- Keybindings menu like Emacs's guide-key
+    use({
+        'folke/which-key.nvim',
+        config = require('modules.config.whichkey'),
+        event = 'BufWinEnter',
+    })
 
     -- Smooth scrolling
     use({
@@ -167,24 +165,24 @@ return packer.startup(function(use)
     })
 
     -----[[--------------]]-----
-	---     Fuzzy Search     ---
-	-----]]--------------[[-----
-	use({
-		'nvim-lua/popup.nvim',
-		module = 'popup',
-	})
+    ---     Fuzzy Search     ---
+    -----]]--------------[[-----
+    use({
+        'nvim-lua/popup.nvim',
+        module = 'popup',
+    })
 
     -- Telescope
     use({
-		'nvim-telescope/telescope.nvim',
-		-- cmd = 'Telescope',
-		-- module = 'telescope',
-		requires = {
-			'popup.nvim',
-			'plenary.nvim',
-		},
-		config = require('modules.config.telescope'),
-	})
+        'nvim-telescope/telescope.nvim',
+        -- cmd = 'Telescope',
+        -- module = 'telescope',
+        requires = {
+            'popup.nvim',
+            'plenary.nvim',
+        },
+        config = require('modules.config.telescope'),
+    })
 
     use({
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -196,31 +194,31 @@ return packer.startup(function(use)
     })
 
     -----[[-------------]]-----
-	---     GIT RELATED     ---
-	-----]]-------------[[-----
-	-- Git gutter better alternative, written in Lua
-	use({
-		'lewis6991/gitsigns.nvim',
-		config = require('modules.config.gitsigns'),
-		requires = 'plenary.nvim',
-		-- event = 'BufRead',
-		event = { "CursorMoved", "CursorMovedI" },
-	})
+    ---     GIT RELATED     ---
+    -----]]-------------[[-----
+    -- Git gutter better alternative, written in Lua
+    use({
+        'lewis6991/gitsigns.nvim',
+        config = require('modules.config.gitsigns'),
+        requires = 'plenary.nvim',
+        -- event = 'BufRead',
+        event = { "CursorMoved", "CursorMovedI" },
+    })
 
-	-- Magit clone
-	use({
+    -- Magit clone
+    use({
         'TimUntersberger/neogit',
-		requires = {
+        requires = {
             {
-	            "sindrets/diffview.nvim",
-		        config = function()
-		        	require("diffview").setup()
-		        end
-	        },
-		    requires = 'plenary.nvim',
+                "sindrets/diffview.nvim",
+                config = function()
+                    require("diffview").setup()
+                end
+            },
+            requires = 'plenary.nvim',
         },
         config = function()
-	        require('neogit').setup({
+            require('neogit').setup({
                 disable_hint = true,
                 disable_insert_on_commit = false,
                 signs = {
@@ -233,25 +231,25 @@ return packer.startup(function(use)
                     diffview = true,
                 }
             })
-	    end,
+        end,
         cmd = 'Neogit',
-	})
+    })
 
     -- Still neeed fugitive
     use({
         'tpope/vim-fugitive'
     })
 
-	-----[[------------]]-----
-	---     Completion     ---
-	-----]]------------[[-----
+    -----[[------------]]-----
+    ---     Completion     ---
+    -----]]------------[[-----
     -- Built-in LSP Config
-	use({
-		'neovim/nvim-lspconfig',
-		opt = true,
-		config = require('modules.config.lspconfig'),
-		event = 'BufWinEnter',
-	})
+    use({
+        'neovim/nvim-lspconfig',
+        opt = true,
+        config = require('modules.config.lspconfig'),
+        event = 'BufWinEnter',
+    })
 
     -- Completion plugin
     use({
@@ -296,12 +294,12 @@ return packer.startup(function(use)
     })
 
     -- Snippets
-	use({
-		'L3MON4D3/LuaSnip',
-		config = require('modules.config.luasnip'),
-		requires = { 'rafamadriz/friendly-snippets' },
-		event = 'BufWinEnter',
-	})
+    use({
+        'L3MON4D3/LuaSnip',
+        config = require('modules.config.luasnip'),
+        requires = { 'rafamadriz/friendly-snippets' },
+        event = 'BufWinEnter',
+    })
 
     -- Show function signature when you type
     use({
@@ -311,14 +309,14 @@ return packer.startup(function(use)
         event = "InsertEnter",
     })
 
-	-- provides the missing `:LspInstall` for `nvim-lspconfig`.
+    -- provides the missing `:LspInstall` for `nvim-lspconfig`.
     use({
         "williamboman/nvim-lsp-installer",
         config = require('modules.config.lsp-installer')
     })
 
-	-- show diagnostic in list not inline
-    use ({
+    -- show diagnostic in list not inline
+    use({
         "folke/trouble.nvim",
         opt = true,
         after = 'nvim-lspconfig',
@@ -329,55 +327,55 @@ return packer.startup(function(use)
     })
 
     -- LSP feature hook
-    use ({
+    use({
         "jose-elias-alvarez/null-ls.nvim",
         after = 'nvim-lspconfig',
         config = require('modules.config.null-ls')
     })
 
     -----[[--------------]]-----
-	---     File Related     ---
-	-----]]--------------[[-----
+    ---     Misc     ---
+    -----]]--------------[[-----
 
     -- Comments
-	use({
-		'b3nj5m1n/kommentary',
-		event = 'BufEnter',
-	})
+    use({
+        'b3nj5m1n/kommentary',
+        event = 'BufEnter',
+    })
 
     -- Indent Lines
-	use({
-		'lukas-reineke/indent-blankline.nvim',
-		config = require('modules.config.blankline'),
-		event = 'BufWinEnter',
-	})
+    use({
+        'lukas-reineke/indent-blankline.nvim',
+        config = require('modules.config.blankline'),
+        event = 'BufWinEnter',
+    })
 
     -- Autopairs
-	-- can be disabled to use your own autopairs
-	use({
-		'windwp/nvim-autopairs',
-		config = require('modules.config.autopairs'),
-		event = 'InsertEnter',
-	})
+    -- can be disabled to use your own autopairs
+    use({
+        'windwp/nvim-autopairs',
+        config = require('modules.config.autopairs'),
+        event = 'InsertEnter',
+    })
 
-	-- Write / Read files without permissions (e.vim.g. /etc files) without having
-	-- to use `sudo nvim /path/to/file`
-	use({
-		'lambdalisue/suda.vim',
-		cmd = { 'SudaRead', 'SudaWrite' },
-	})
+    -- Write / Read files without permissions (e.vim.g. /etc files) without having
+    -- to use `sudo nvim /path/to/file`
+    use({
+        'lambdalisue/suda.vim',
+        cmd = { 'SudaRead', 'SudaWrite' },
+    })
 
     -- hightlights ranges you have entered in commandline.
-	use({
-		'winston0410/range-highlight.nvim',
-		requires = {
-			{ 'winston0410/cmd-parser.nvim', module = 'cmd-parser' },
-		},
-		config = function()
-			require('range-highlight').setup()
-		end,
-		event = 'BufRead',
-	})
+    use({
+        'winston0410/range-highlight.nvim',
+        requires = {
+            { 'winston0410/cmd-parser.nvim', module = 'cmd-parser' },
+        },
+        config = function()
+            require('range-highlight').setup()
+        end,
+        event = 'BufRead',
+    })
 
 
     -- lua alternative for vim-surround
@@ -385,23 +383,23 @@ return packer.startup(function(use)
     use({
         "blackCauldron7/surround.nvim",
         config = function()
-            require"surround".setup {mappings_style = "surround"}
+            require "surround".setup { mappings_style = "surround" }
         end,
         event = 'BufRead',
     })
 
     -- Auto save
-    use({"Pocco81/AutoSave.nvim"})
+    use({ "Pocco81/AutoSave.nvim" })
 
     -- better quickfix
-    use({"kevinhwang91/nvim-bqf"})
+    use({ "kevinhwang91/nvim-bqf" })
 
     use({
         'phaazon/hop.nvim',
         -- branch = 'v1', -- optional but strongly recommended
         config = function()
             -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+            require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
         end
     })
 
@@ -409,8 +407,13 @@ return packer.startup(function(use)
     use({
         "folke/lua-dev.nvim",
         module = "lua-dev",
-	})
+    })
 
+    use({
+        'echasnovski/mini.nvim',
+        branch = 'stable',
+        config = require('modules.config.mini'),
+    })
     -- Automatically set up configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
         require("packer").sync()

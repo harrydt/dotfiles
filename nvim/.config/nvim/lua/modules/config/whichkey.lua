@@ -78,6 +78,7 @@ return function()
 			['c'] = { 'Close current buffer' },
 			['f'] = { 'Format buffer' },
 			['b'] = { 'Switch to other buffer' },
+			['d'] = { 'Delete buffer' },
 			[']'] = { 'Next buffer' },
 			['n'] = { 'Next buffer' },
 			['g'] = { 'Goto buffer' },

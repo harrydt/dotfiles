@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="nvim"
+alist lzd="lazydocker"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
