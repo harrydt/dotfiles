@@ -22,7 +22,8 @@ utils.map('n', ']b', ':bnext<CR>', opts)
 utils.map('n', '[b', ':bprevious<CR>', opts)
 
 -- ESC to turn off search highlighting
-utils.map('n', '<C-_>', ':noh<CR>', opts)
+-- utils.map('n', '<C-_>', ':noh<CR>', opts) -- TODO this is not working in kitty
+utils.map('n', '<C-s>', ':noh<CR>', opts) -- TODO this is not working in kitty
 
 -- ESC in INSERT mode to save current buffer
 utils.map('i', '<esc>', '<esc>:update<CR>')
@@ -87,10 +88,10 @@ utils.map('n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- Goto the imp
 utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- Lists any LSP actions for the word under the cursor, that can be triggered with <cr>
 
 utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-utils.map('n', '[g', ':lua vim.lsp.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
-utils.map('n', ']g', ':lua vim.lsp.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
+utils.map('n', '[g', ':lua vim.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
+utils.map('n', ']g', ':lua vim.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
 vim.cmd(
-    'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
+'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 )
 -- LuaSnip mappings
 utils.map(
