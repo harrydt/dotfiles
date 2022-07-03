@@ -14,6 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
         install_path,
     }
     print "Installing packer close and reopen Neovim..."
+
     vim.cmd [[packadd packer.nvim]]
 end
 
@@ -116,11 +117,12 @@ return packer.startup(function(use)
     })
 
     -- Tabline
-    use({
+    -- TODO with winbar and global statusline, maybe I don't' need this
+    --[[ use({
         'akinsho/nvim-bufferline.lua',
         config = require('modules.config.bufferline'),
         event = 'BufWinEnter',
-    })
+    }) ]]
 
     -- Better terminal
     use({
@@ -138,11 +140,6 @@ return packer.startup(function(use)
         'simrat39/symbols-outline.nvim',
         -- branch = 'patch-1',
         config = require('modules.config.symbols'),
-        --[[ cmd = {
-			'SymbolsOutline',
-			'SymbolsOutlineOpen',
-			'SymbolsOutlineClose',
-		}, ]]
     })
 
     -- which-key

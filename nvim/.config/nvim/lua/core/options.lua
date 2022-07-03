@@ -5,11 +5,11 @@ o.hidden = true
 o.updatetime = 200
 o.timeoutlen = 500
 o.completeopt = {
-	'menu',
-	'menuone',
-	'preview',
-	'noinsert',
-	'noselect',
+    'menu',
+    'menuone',
+    'preview',
+    'noinsert',
+    'noselect',
 }
 o.shortmess:append('atsc')
 o.inccommand = 'split'
@@ -64,3 +64,6 @@ o.softtabstop = 4
 -- UI
 o.cursorline = true
 o.termguicolors = true
+
+-- global statusline
+o.laststatus = 3
