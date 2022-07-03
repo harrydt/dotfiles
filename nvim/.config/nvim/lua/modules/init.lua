@@ -202,6 +202,10 @@ return packer.startup(function(use)
         event = { "CursorMoved", "CursorMovedI" },
     })
 
+    use({
+        'sindrets/diffview.nvim',
+        requires = 'nvim-lua/plenary.nvim',
+    })
     -- Magit clone
     use({
         'TimUntersberger/neogit',

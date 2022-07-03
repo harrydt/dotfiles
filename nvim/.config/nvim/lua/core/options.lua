@@ -67,3 +67,5 @@ o.termguicolors = true
 
 -- global statusline
 o.laststatus = 3
+
+o.winbar = "%=%m %f"
