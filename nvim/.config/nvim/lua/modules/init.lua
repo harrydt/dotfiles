@@ -94,19 +94,23 @@ return packer.startup(function(use)
 
     -- File tree
     use({
-        'kyazdani42/nvim-tree.lua',
-        requires = 'nvim-web-devicons',
-        config = require('modules.config.tree'),
-        cmd = {
-            'NvimTreeOpen',
-            'NvimTreeClipboard',
-            'NvimTreeClose',
-            'NvimTreeFindFile',
-            'NvimTreeOpen',
-            'NvimTreeRefresh',
-            'NvimTreeToggle',
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+            "MunifTanjim/nui.nvim",
         },
+        config = require('modules.config.tree'),
     })
+    -- dependency for neo-tree open_with_window_picker
+    use {
+        's1n7ax/nvim-window-picker',
+        tag = 'v1.*',
+        config = function()
+            require 'window-picker'.setup()
+        end,
+    }
 
     -- Statusline
     -- can be disabled to use your own statusline
@@ -126,7 +130,7 @@ return packer.startup(function(use)
 
     -- Better terminal
     use({
-        'akinsho/nvim-toggleterm.lua',
+        'akinsho/toggleterm.nvim',
         config = require('modules.config.toggleterm'),
         module = { 'toggleterm', 'toggleterm.terminal' },
         cmd = { 'ToggleTerm', 'TermExec' },
@@ -172,8 +176,6 @@ return packer.startup(function(use)
     -- Telescope
     use({
         'nvim-telescope/telescope.nvim',
-        -- cmd = 'Telescope',
-        -- module = 'telescope',
         requires = {
             'popup.nvim',
             'plenary.nvim',
@@ -187,7 +189,11 @@ return packer.startup(function(use)
     })
 
     use({
-        'ElPiloto/telescope-vimwiki.nvim'
+        'ElPiloto/telescope-vimwiki.nvim',
+    })
+
+    use({
+        "nvim-telescope/telescope-file-browser.nvim",
     })
 
     -----[[-------------]]-----
@@ -380,11 +386,10 @@ return packer.startup(function(use)
 
 
     -- lua alternative for vim-surround
-    -- TODO this repo is inactive. Find alternative
     use({
-        "blackCauldron7/surround.nvim",
+        "kylechui/nvim-surround",
         config = function()
-            require "surround".setup { mappings_style = "surround" }
+            require("nvim-surround").setup({})
         end,
         event = 'BufRead',
     })

@@ -30,8 +30,8 @@ utils.map('i', '<esc>', '<esc>:update<CR>')
 
 --- F<n> keybindings
 utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
-utils.map('n', '<F3>', ':NvimTreeToggle<CR>', opts)
-utils.map('n', '<F5>', ':MinimapToggle<CR>', opts)
+utils.map('n', '<F3>', ':NeoTreeRevealToggle<CR>', opts)
+utils.map('n', '<F5>', ':Telescope file_browser<CR>', opts)
 
 -- quickfix movements
 utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
@@ -91,7 +91,7 @@ utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
 utils.map('n', '[g', ':lua vim.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
 utils.map('n', ']g', ':lua vim.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
 vim.cmd(
-'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
+    'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
 )
 -- LuaSnip mappings
 utils.map(
