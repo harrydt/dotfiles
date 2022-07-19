@@ -174,7 +174,7 @@ utils.map('n', '<leader>:', '<cmd>Telescope command_history<CR>', opts)
 utils.map(
     'n',
     '<leader>bc',
-    '<cmd>lua require("bufferline").handle_close_buffer(vim.fn.bufnr("%"))<CR>',
+    '<cmd>bufdo bwipeout<CR>',
     opts
 )
 utils.map('n', '<leader>bb', '<cmd>e #<CR>', opts)
