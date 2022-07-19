@@ -120,14 +120,6 @@ return packer.startup(function(use)
         event = 'BufWinEnter',
     })
 
-    -- Tabline
-    -- TODO with winbar and global statusline, maybe I don't' need this
-    --[[ use({
-        'akinsho/nvim-bufferline.lua',
-        config = require('modules.config.bufferline'),
-        event = 'BufWinEnter',
-    }) ]]
-
     -- Better terminal
     use({
         'akinsho/toggleterm.nvim',
