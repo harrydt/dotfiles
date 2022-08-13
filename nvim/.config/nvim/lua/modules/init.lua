@@ -50,10 +50,22 @@ return packer.startup(function(use)
     })
 
     -- Colorscheme
-    use({
+    --[[ use({
         'NTBBloodbath/doom-one.nvim',
         module = 'doom-one',
+        commit = '1d800ee88cffc39e74023617019ef6386c9a0a2c',
         setup = require('modules.config.color'),
+    }) ]]
+    use({
+        'catppuccin/nvim',
+        as = 'catppuccin',
+        module = 'catppuccin',
+        setup = require("modules.config.color"),
+        config = function()
+            vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
+            require("catppuccin").setup()
+            vim.cmd [[colorscheme catppuccin]]
+        end,
     })
 
     -- Vimwiki/Org
@@ -387,7 +399,13 @@ return packer.startup(function(use)
     })
 
     -- Auto save
-    use({ "Pocco81/AutoSave.nvim" })
+    --[[ use({
+        "Pocco81/AutoSave.nvim",
+        config = function()
+            require("auto-save").setup {
+            }
+        end,
+    }) ]]
 
     -- better quickfix
     use({ "kevinhwang91/nvim-bqf" })

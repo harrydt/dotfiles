@@ -9,12 +9,12 @@ return function()
 
     local gls = gl.section
 
+    -- TODO Using global statusline so don't need this
     gl.short_line_list = {
-        "NvimTree",
-        "packer",
-        "minimap",
-        "Outline",
-        "toggleterm",
+        -- "packer",
+        -- "minimap",
+        -- "Outline",
+        -- "toggleterm",
     }
 
     -- {{{ Utility functions
@@ -238,50 +238,6 @@ return function()
 
     gls.right[10] = {
         RainbowRight = {
-            provider = function()
-                return " ▊"
-            end,
-            highlight = { colors("blue"), colors("bg") },
-        },
-    }
-
-    -- Short status line
-    gls.short_line_left[1] = {
-        ShortRainbowLeft = {
-            provider = function()
-                return "▊ "
-            end,
-            highlight = { colors("blue"), colors("bg") },
-        },
-    }
-    --[[ gls.short_line_left[2] = {
-    BufferType = {
-      provider = "FileTypeName",
-      condition = is_not_dashboard,
-      highlight = { colors("fg"), colors("bg") },
-      separator = " ",
-      separator_highlight = { colors("bg"), colors("bg") },
-    },
-  } ]]
-    gls.short_line_left[2] = {
-        FileName = {
-            provider = "FileName",
-            condition = condition.buffer_not_empty and is_not_dashboard,
-            highlight = { colors("fg"), colors("bg"), "bold" },
-            separator = " ",
-            separator_highlight = { colors("bg"), colors("bg") },
-        },
-    }
-
-    gls.short_line_right[1] = {
-        BufferIcon = {
-            provider = "BufferIcon",
-            condition = is_not_dashboard,
-            highlight = { colors("yellow"), colors("bg") },
-        },
-    }
-    gls.short_line_right[2] = {
-        ShortRainbowRight = {
             provider = function()
                 return " ▊"
             end,
