@@ -50,12 +50,6 @@ return packer.startup(function(use)
     })
 
     -- Colorscheme
-    --[[ use({
-        'NTBBloodbath/doom-one.nvim',
-        module = 'doom-one',
-        commit = '1d800ee88cffc39e74023617019ef6386c9a0a2c',
-        setup = require('modules.config.color'),
-    }) ]]
     use({
         'catppuccin/nvim',
         as = 'catppuccin',
@@ -69,7 +63,7 @@ return packer.startup(function(use)
     })
 
     -- Vimwiki/Org
-    use({
+    --[[ use({
         'vimwiki/vimwiki',
         config = function()
             vim.g.vimwiki_list = {
@@ -80,6 +74,56 @@ return packer.startup(function(use)
                 }
             }
         end
+    }) ]]
+    use({
+        "nvim-neorg/neorg",
+        -- config = require('modules.config.neorg'),
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ["core.defaults"] = {},
+                    ["core.keybinds"] = {
+                        config = {
+                            default_keybinds = true,
+                            neorg_leader = "<Leader>o",
+                        },
+                    },
+                    ["core.norg.dirman"] = {
+                        config = {
+                            workspaces = {
+                                main = "~/neorg",
+                                gtd = "~/neorg/gtd",
+                                index = "index.norg", -- The name of the main (root) .norg file
+                            },
+                            default_workspace = "main",
+                            autochdir = false,
+                        }
+                    },
+                    ["core.norg.concealer"] = {},
+                    --[[ ["core.norg.completion"] = {
+                        config = {
+                            engine = "nvim-cmp",
+                        }
+                    },
+                    ["core.integrations.nvim-cmp"] = {}, ]]
+                    ["core.norg.qol.toc"] = {},
+                    ["core.integrations.telescope"] = {},
+                    ["core.gtd.base"] = {
+                        config = {
+                            workspace = "gtd",
+                        },
+                    },
+                    ["external.kanban"] = {},
+                    ["core.norg.journal"] = {
+                        config = {
+                            workspace = "main",
+                            journal_folder = "journal",
+                        }
+                    },
+                },
+            }
+        end,
+        requires = { "nvim-lua/plenary.nvim", "nvim-neorg/neorg-telescope", "max397574/neorg-kanban" }
     })
 
     -- Treesitter

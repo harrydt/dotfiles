@@ -193,14 +193,18 @@ return function()
         -- will be vimwiki until neorg is ready
         ['o'] = {
             name = '+org',
-            ['i'] = { 'Index' },
-            ['s'] = { 'Search' },
-            ['d'] = {
-                name = '+diary',
-                ['n'] = { 'New' },
-                ['i'] = { 'Index' },
-                ['g'] = { 'Generate links' },
-            }
+            ['s'] = { 'Start Neorg' },
+            ['j'] = { 'Journal' },
+            ['g'] = {
+                name = '+gtd',
+                ['v'] = 'Views',
+                ['t'] = {
+                    name = '+Task',
+                    ['v'] = { 'Views' },
+                    ['c'] = { 'Capture' },
+                    ['e'] = { 'Edit' },
+                }
+            },
         },
     }
 

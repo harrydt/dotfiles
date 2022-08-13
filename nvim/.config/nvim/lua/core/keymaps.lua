@@ -221,11 +221,11 @@ utils.map('n', '<leader>pp', '<cmd>PackerProfile<CR>', opts)
 utils.map('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
 
 -- Org/Vimwiki
-utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
+--[[ utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
 utils.map('n', '<leader>os', '<cmd>Telescope vw live_grep<CR>', opts)
 utils.map('n', '<leader>odn', '<cmd>VimwikiMakeDiaryNote<CR>', opts)
 utils.map('n', '<leader>odi', '<cmd>VimwikiDiaryIndex<CR>', opts)
-utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts)
+utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts) ]]
 
 -- files
 utils.map('n', '<leader>fc', '<cmd>e $MYVIMRC<CR>', opts)
@@ -273,6 +273,11 @@ utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
 utils.map('n', '<leader>gl', '<cmd>Telescope git_commits<CR>', opts) -- list git commits/git log
 utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
+
+-- neorg
+utils.map('n', '<leader>os', '<cmd>NeorgStart silent=true<CR>', opts)
+utils.map('n', '<leader>oj', '<cmd>Neorg journal<CR>', opts)
+utils.map('n', '<leader>ogv', '<cmd>Neorg gtd views<CR>', opts)
 
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
