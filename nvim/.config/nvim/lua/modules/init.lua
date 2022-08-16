@@ -304,6 +304,19 @@ return packer.startup(function(use)
         opt = true,
         config = require('modules.config.lspconfig'),
         event = 'BufWinEnter',
+        module = "lspconfig",
+    })
+
+    use({
+        "williamboman/mason.nvim",
+        config = function()
+            require('mason').setup()
+        end
+    })
+
+    use({
+        "williamboman/mason-lspconfig.nvim",
+        config = require('modules.config.lsp-installer'),
     })
 
     -- Completion plugin
@@ -364,12 +377,6 @@ return packer.startup(function(use)
         event = "InsertEnter",
     })
 
-    -- provides the missing `:LspInstall` for `nvim-lspconfig`.
-    use({
-        "williamboman/nvim-lsp-installer",
-        config = require('modules.config.lsp-installer')
-    })
-
     -- show diagnostic in list not inline
     use({
         "folke/trouble.nvim",
@@ -387,6 +394,9 @@ return packer.startup(function(use)
         after = 'nvim-lspconfig',
         config = require('modules.config.null-ls')
     })
+
+    -- Rust setup
+    use({ 'simrat39/rust-tools.nvim' })
 
     -----[[--------------]]-----
     ---     Misc     ---

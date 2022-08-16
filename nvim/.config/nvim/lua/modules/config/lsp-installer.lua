@@ -1,280 +1,70 @@
 return function()
-    local utils = require("core.utils")
-
-    -- Commented out defualt servers don't have treesitter configs
-    local servers = {
-        lua = { "sumneko_lua" },
-        ansible = { "ansiblels" },
-        angular = { "angularls" },
-        bash = { "bashls" },
-        -- bicep = { 'bicep' },
-        c_sharp = { "omnisharp" },
-        c = { "clangd" },
-        cpp = { "clangd" },
-        cmake = { "cmake" },
-        css = { "cssls" },
-        clojure = { "clojure_lsp" },
-        -- codeql = { 'codeqlls' },
-        -- deno = { 'denols' },
-        -- dlang = { 'serve_d' },
-        dockerfile = { "dockerls" },
-        dot = { "dotls" },
-        elixer = { "elixerls" },
-        elm = { "elmls" },
-        ember = { "ember" },
-        fortran = { "fortls" },
-        -- ['f#'] = { 'fsautocomplete' },
-        go = { "gopls" },
-        graphql = { "graphql" },
-        groovy = { "groovyls" },
-        html = { "html" },
-        haskel = { "hls" },
-        json = { "jsonls" },
-        json5 = { "jsonls" },
-        java = { "jdtls" },
-        javascript = { "tsserver" },
-        kotlin = { "kotlin_language_server" },
-        latex = { "texlab" },
-        ocaml = { "ocamllsp" },
-        php = { "phpactor" },
-        powershell = { "powershell_es" },
-        -- prisma = { 'prismals' },
-        -- puppet = { 'puppet' },
-        -- purescript = { 'purescriptls' },
-        python = { "pylsp" },
-        -- rescript = { 'rescriptls' },
-        -- rome = { 'rome' },
-        ruby = { "solargraph" },
-        rust = { "rust_analyzer" },
-        -- solang = { 'solang' },
-        -- sorbet = { 'sorbet' },
-        svelte = { "svelte" },
-        typescript = { "tsserver" },
-        -- vala = { 'valals' },
-        vim = { "vimls" },
-        vue = { "vuels" },
-        xml = { "lemminx" },
-        yaml = { "yamlls" },
-        config = { "jsonls", "yamlls" },
-    }
-    local langs = {
-        -- To enable the language server for a language just add the +lsp flag
-        -- at the end, e.g. 'rust +lsp'. This will install the rust TreeSitter
-        -- parser and rust-analyzer
-        --
-        -- "css",             -- CSS support
-        -- "html",            -- HTML support
-        -- "javascript",      -- JavaScript support
-        -- "typescript",      -- TypeScript support
-
-        "bash +lsp", -- The terminal gods language
-        -- "elixir",          -- Build scalable and maintainable software
-        "lua +lsp", -- Support for our gods language
-        "python +lsp", -- Python support + lsp
-        -- "ruby",            -- Look ma, I love the gems!
-
-        -- "cpp",             -- C++ support
-        "go +lsp", -- Hello, gopher
-        -- "haskell",         -- Because Functional programming is fun, isn't it?
-        -- "java",            -- Java support
-        "rust +lsp", -- Let's get rusty!
-
-        "config +lsp", -- Configuration files (JSON, YAML, TOML)
-        "dockerfile +lsp", -- Do you like containers, right?
-        "ocaml +lsp",
-    }
-    -- Add out-of-the-box support for Scala metals LSP
-    local should_setup_scala_lsp = false
-
-    -- Snippets support
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.preselectSupport = true
-    capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-    capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-    capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-    capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-    capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities.textDocument.completion.completionItem.resolveSupport = {
-        properties = { "documentation", "detail", "additionalTextEdits" },
-    }
-    capabilities.textDocument.codeAction = {
-        dynamicRegistration = false,
-        codeActionLiteralSupport = {
-            codeActionKind = {
-                valueSet = {
-                    "",
-                    "quickfix",
-                    "refactor",
-                    "refactor.extract",
-                    "refactor.inline",
-                    "refactor.rewrite",
-                    "source",
-                    "source.organizeImports",
-                },
-            },
+    require("mason-lspconfig").setup({
+        ensure_installed = {
+            "dockerls",
+            "pylsp", -- maybe extra setup here
+            "gopls",
+            "golangci_lint_ls",
+            "dotls",
+            "sumneko_lua",
+            "rust_analyzer",
+            "jsonls",
+            "ocamllsp",
         },
-    }
-
-    --- Intelligent highlighting of word under cursor
-    local on_attach
-    --[[ on_attach = function(client)
-    require("illuminate").on_attach(client)
-    -- Set underline highlighting for Lsp references
-    vim.cmd("hi! LspReferenceText cterm=underline gui=underline")
-    vim.cmd("hi! LspReferenceWrite cterm=underline gui=underline")
-    vim.cmd("hi! LspReferenceRead cterm=underline gui=underline")
-  end ]]
-
-    --[[ local lua_lsp = require("lua-dev").setup({
-        lspconfig = {
-            settings = {
-                Lua = {
-                    workspace = {
-                        preloadFileSize = 200,
+        automatic_installation = true,
+    })
+    require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {}
+        end,
+        -- Next, you can provide targeted overrides for specific servers.
+        -- For example, a handler override for the `rust_analyzer`:
+        ["rust_analyzer"] = function()
+            require("rust-tools").setup {
+                tools = {
+                    autoSetHints = true,
+                    runnables = {
+                        use_telescope = true
                     },
-                    diagnostics = {
-                        globals = { "packer_plugins" },
+                    inlay_hints = {
+                        show_parameter_hints = false,
+                        parameter_hints_prefix = "",
+                        other_hints_prefix = "",
                     },
                 },
-            },
-            capabilities = capabilities,
-            on_attach = on_attach,
-        },
-    }) ]]
 
-    -- Load langs from doom_modules, install servers with +lsp flag and sets up their config
-    local function setup_servers()
-        local lsp_installer = require("nvim-lsp-installer")
-
-        -- local modules = require("core.config.modules").modules
-        -- local langs = modules.langs
-
-        -- Find all LSPs that need to be installed
-        local ensure_installed = {}
-        for _, lang in ipairs(langs) do
-            -- Lang name used for key in servers table
-            local lang_name = lang
-                :gsub("%s+%+lsp(%(%a+%))", "")
-                :gsub("%s+%+lsp", "")
-                :gsub("%s+%+debug", "")
-            -- Get LSP override +lsp(<override>) if it exists
-            local lsp_override = lang:match("+lsp%((.+)%)")
-            -- Array of lsps to ensure are installed
-            local lang_lsps = lsp_override ~= nil and vim.split(lsp_override, ",")
-                or servers[lang_name] ~= nil and servers[lang_name]
-                or nil
-
-            local should_install_lsp = lang:find("+lsp")
-
-            -- Save all lsps to ensure_installed
-            if should_install_lsp then
-                if lang_lsps ~= nil then
-                    for _, lsp_name in ipairs(lang_lsps) do
-                        local trimmed_lsp_name = vim.trim(lsp_name)
-                        if utils.has_value(ensure_installed, trimmed_lsp_name) == false then
-                            table.insert(ensure_installed, trimmed_lsp_name)
-                        end
-                    end
-                else
-                    if lang:find("scala") then
-                        -- Enable setup for Scala Metals LSP
-                        should_setup_scala_lsp = true
-                    else
-                        log.error(
-                            'The language "' .. lang .. '" does not have an LSP, please remove the "+lsp" flag.'
-                        )
-                    end
-                end
-            end
-        end
-
-        -- Flatten the array of default servers.
-        -- Default servers will be automatically uninstalled if no +lsp flag is provided.
-        local default_servers = {}
-        for _, lang_servers in pairs(servers) do
-            for _, lsp_name in ipairs(lang_servers) do
-                if not utils.has_value(default_servers, lsp_name) then
-                    table.insert(default_servers, lsp_name)
-                end
-            end
-        end
-        -- Save which servers were installed/uninstalled so this info can be presented to user
-        local installing_servers = {}
-        local uninstalling_servers = {}
-        -- Install all LSPs that should be installed
-        for _, lsp_name in ipairs(default_servers) do
-            local ok, server = lsp_installer.get_server(lsp_name)
-            if ok then
-                if not utils.has_value(ensure_installed, lsp_name) then
-                    if server:is_installed() then
-                        table.insert(uninstalling_servers, lsp_name)
-                        server:uninstall()
-                    end
-                else
-                    local server_config = server.name == "sumneko_lua" and lua_lsp
-                        or {
-                            capabilities = capabilities,
-                            on_attach = on_attach,
+                -- all the opts to send to nvim-lspconfig
+                -- these override the defaults set by rust-tools.nvim
+                -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+                server = {
+                    -- on_attach is a callback called when the language server attachs to the buffer
+                    -- on_attach = on_attach,
+                    settings = {
+                        -- to enable rust-analyzer settings visit:
+                        -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+                        ["rust-analyzer"] = {
+                            -- enable clippy on save
+                            checkOnSave = {
+                                command = "clippy"
+                            },
                         }
-                    -- Setup server once it's ready
-                    server:on_ready(function()
-                        server:setup(server_config)
-                    end)
-                    if not server:is_installed() then
-                        table.insert(installing_servers, lsp_name)
-                        server:install()
-                    end
-                end
-            end
-        end
-
-        -- Install and setup non-default LSPs
-        for _, lsp_name in ipairs(ensure_installed) do
-            if not utils.has_value(default_servers, lsp_name) then
-                local ok, server = lsp_installer.get_server(lsp_name)
-
-                if ok then
-                    server:on_ready(function()
-                        server:setup({
-                            capabilities = capabilities,
-                            on_attach = on_attach,
-                        })
-                    end)
-                    if not server:is_installed() then
-                        table.insert(installing_servers, lsp_name)
-                        server:install()
-                    end
-                end
-            end
-        end
-
-        -- Setup Scala Metals LSP
-        if should_setup_scala_lsp then
-            require("lspconfig").metals.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-        end
-
-        -- Print intalling/uninstalling information to user on startup
-        if next(installing_servers) ~= nil or next(uninstalling_servers) ~= nil then
-            local msg = "LSP-Installer: "
-            local installing_count = #installing_servers
-            if installing_count > 0 then
-                msg = msg .. " Installing " .. installing_count .. " LSPs.  "
-            end
-            local uninstalling_count = #uninstalling_servers
-            if uninstalling_count > 0 then
-                msg = msg .. " Uninstalling " .. installing_count .. " LSPs.  "
-            end
-            msg = msg .. "Use :LspInstallInfo to check status.  "
-            vim.notify(msg)
-        end
-    end
-
-    -- Defer auto install to unblock startup
-    vim.defer_fn(function()
-        setup_servers()
-    end, 50)
+                    }
+                },
+            }
+        end,
+        ["sumneko_lua"] = function()
+            require("lspconfig").sumneko_lua.setup {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" }
+                        }
+                    }
+                }
+            }
+        end,
+    }
 end
