@@ -259,19 +259,15 @@ return packer.startup(function(use)
     use({
         'sindrets/diffview.nvim',
         requires = 'nvim-lua/plenary.nvim',
+        --[[ config = function()
+            require("diffview").setup()
+        end ]]
     })
+
     -- Magit clone
     use({
         'TimUntersberger/neogit',
-        requires = {
-            {
-                "sindrets/diffview.nvim",
-                config = function()
-                    require("diffview").setup()
-                end
-            },
-            requires = 'plenary.nvim',
-        },
+        requires = "sindrets/diffview.nvim",
         config = function()
             require('neogit').setup({
                 disable_hint = true,
@@ -323,23 +319,11 @@ return packer.startup(function(use)
     use({
         "hrsh7th/nvim-cmp",
         wants = { "LuaSnip" },
-        requires = {
-            {
-                "L3MON4D3/LuaSnip",
-                event = "BufReadPre",
-                wants = "friendly-snippets",
-                config = require("modules.config.luasnip"),
-                requires = { "rafamadriz/friendly-snippets" },
-            },
-            {
-                "windwp/nvim-autopairs",
-                config = require("modules.config.autopairs"),
-                event = "BufReadPre",
-            },
-        },
+        requires = { "LEMON4D3/LuaSnip", "windwp/nvim-autopairs" },
         config = require("modules.config.cmp"),
         event = "InsertEnter",
     })
+
     use({
         "hrsh7th/cmp-nvim-lua",
         after = "nvim-cmp",
