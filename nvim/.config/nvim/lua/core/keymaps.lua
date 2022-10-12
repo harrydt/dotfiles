@@ -273,6 +273,8 @@ utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
 utils.map('n', '<leader>gl', '<cmd>Telescope git_commits<CR>', opts) -- list git commits/git log
 utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
+utils.map('n', '<leader>gf', '<cmd>OpenInGHFile<CR>', opts)
+utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 
 -- neorg
 utils.map('n', '<leader>os', '<cmd>NeorgStart silent=true<CR>', opts)

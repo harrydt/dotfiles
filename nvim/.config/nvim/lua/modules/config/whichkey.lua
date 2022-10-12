@@ -140,6 +140,8 @@ return function()
             ['B'] = { 'Branches' },
             ['l'] = { 'Log' },
             ['c'] = { 'Commits of buffer' },
+            ['f'] = { 'Open file in Github' },
+            ['r'] = { 'Open repo in Github' },
         },
         ['p'] = {
             name = '+plugins',
