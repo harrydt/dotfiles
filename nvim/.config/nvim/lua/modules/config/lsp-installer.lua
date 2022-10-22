@@ -1,4 +1,6 @@
 return function()
+    local navic = require("nvim-navic")
+
     require("mason-lspconfig").setup({
         ensure_installed = {
             -- "dockerls", -- format has bug
@@ -10,9 +12,6 @@ return function()
             "rust_analyzer",
             "jsonls",
             "ocamllsp",
-            "buf",
-            "buf-language-server",
-            "typescript-language-server",
         },
         automatic_installation = true,
     })
@@ -21,7 +20,13 @@ return function()
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {}
+            require("lspconfig")[server_name].setup {
+                on_attach = function(client, bufnr)
+                    if client.server_capabilities.documentSymbolProvider then
+                        navic.attach(client, bufnr)
+                    end
+                end
+            }
         end,
         -- Next, you can provide targeted overrides for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
@@ -54,7 +59,13 @@ return function()
                                 command = "clippy"
                             },
                         }
-                    }
+                    },
+                    on_attach = function(client, bufnr)
+                        if client.server_capabilities.documentSymbolProvider then
+                            navic.attach(client, bufnr)
+                        end
+                    end,
+
                 },
             }
         end,

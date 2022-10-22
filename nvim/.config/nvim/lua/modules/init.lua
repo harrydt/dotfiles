@@ -333,6 +333,11 @@ return packer.startup(function(use)
     -- Rust setup
     use({ 'simrat39/rust-tools.nvim' })
 
+    use({
+        "SmiteshP/nvim-navic",
+        requires = "neovim/nvim-lspconfig"
+    })
+
     -----[[--------------]]-----
     ---     Misc     ---
     -----]]--------------[[-----

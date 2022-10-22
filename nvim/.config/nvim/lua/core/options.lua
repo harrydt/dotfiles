@@ -68,4 +68,4 @@ o.termguicolors = true
 -- global statusline
 o.laststatus = 3
 
-o.winbar = "%=%m %f"
+o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%m %f"
