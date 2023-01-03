@@ -4,14 +4,14 @@ return function()
     require("mason-lspconfig").setup({
         ensure_installed = {
             -- "dockerls", -- format has bug
-            "pylsp", -- maybe extra setup here
+            "pylsp",
             "gopls",
             "golangci_lint_ls",
             "dotls",
             "sumneko_lua",
             "rust_analyzer",
             "jsonls",
-            "ocamllsp",
+            "yamlls",
         },
         automatic_installation = true,
     })

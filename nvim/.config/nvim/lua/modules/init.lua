@@ -62,8 +62,8 @@ return packer.startup(function(use)
         end,
     })
 
-    -- Vimwiki/Org
-    --[[ use({
+    -- Notetaking
+    use({
         'vimwiki/vimwiki',
         config = function()
             vim.g.vimwiki_list = {
@@ -74,7 +74,7 @@ return packer.startup(function(use)
                 }
             }
         end
-    }) ]]
+    })
 
     -- Treesitter
     use({

@@ -121,14 +121,10 @@ return function()
 			['s'] = { 'Change colorscheme' },
 		}, ]]
         ['f'] = {
-            name = '+file',
-            ['c'] = { 'Edit Neovim configuration' },
-            ['n'] = { 'Create a new unnamed buffer' },
+            name = '+find',
             ['f'] = { 'Find files' },
             ['t'] = { 'Help tags' },
             ['r'] = { 'Recently opened files' },
-            ['w'] = { 'Write file with sudo permissions' },
-            ['R'] = { 'Re-open file with sudo permissions' },
         },
         ['g'] = {
             name = '+git',
@@ -183,29 +179,21 @@ return function()
             ['K'] = { 'Expand window up' },
             ['='] = { 'Balance window' },
         },
-        --[[ ['o'] = {
-			name = '+open',
-			['d'] = { 'Start screen' },
-			['e'] = { 'Tree Explorer' },
-			['m'] = { 'Minimap' },
-			['s'] = { 'Symbols' },
-			['t'] = { 'Terminal' },
-		}, ]]
-        -- o will be "org" instead of "open"
-        -- will be vimwiki until neorg is ready
+        -- Organizing
         ['o'] = {
             name = '+org',
-            ['s'] = { 'Start Neorg' },
-            ['j'] = { 'Journal' },
-            ['g'] = {
-                name = '+gtd',
-                ['v'] = 'Views',
-                ['t'] = {
-                    name = '+Task',
-                    ['v'] = { 'Views' },
-                    ['c'] = { 'Capture' },
-                    ['e'] = { 'Edit' },
-                }
+            ['i'] = { 'Index' },
+            ['s'] = { 'Search' },
+            ['d'] = {
+                name = '+diary',
+                ['n'] = { 'New' },
+                ['i'] = { 'Index' },
+                ['g'] = { 'Generate links' },
+            },
+            ['a'] = {
+                name = '+actions',
+                ['d'] = { 'Delete file' },
+                ['r'] = { 'Rename file' },
             },
         },
     }

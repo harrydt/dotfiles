@@ -220,21 +220,11 @@ utils.map('n', '<leader>pS', '<cmd>PackerStatus<CR>', opts)
 utils.map('n', '<leader>pp', '<cmd>PackerProfile<CR>', opts)
 utils.map('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
 
--- Org/Vimwiki
---[[ utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
-utils.map('n', '<leader>os', '<cmd>Telescope vw live_grep<CR>', opts)
-utils.map('n', '<leader>odn', '<cmd>VimwikiMakeDiaryNote<CR>', opts)
-utils.map('n', '<leader>odi', '<cmd>VimwikiDiaryIndex<CR>', opts)
-utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts) ]]
 
--- files
-utils.map('n', '<leader>fc', '<cmd>e $MYVIMRC<CR>', opts)
+-- Find
 utils.map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
-
 utils.map('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', opts)
 utils.map('n', '<leader>ft', '<cmd>Telescope help_tags<CR>', opts)
-utils.map('n', '<leader>fR', '<cmd>SudaRead<CR>', opts)
-utils.map('n', '<leader>fw', '<cmd>SudaWrite<CR>', opts)
 
 -- search
 utils.map(
@@ -276,10 +266,14 @@ utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list bu
 utils.map('n', '<leader>gf', '<cmd>OpenInGHFile<CR>', opts)
 utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 
--- neorg
-utils.map('n', '<leader>os', '<cmd>NeorgStart silent=true<CR>', opts)
-utils.map('n', '<leader>oj', '<cmd>Neorg journal<CR>', opts)
-utils.map('n', '<leader>ogv', '<cmd>Neorg gtd views<CR>', opts)
+-- Organizing
+utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
+utils.map('n', '<leader>os', '<cmd>Telescope vimwiki live_grep<CR>', opts)
+utils.map('n', '<leader>odn', '<cmd>VimwikiMakeDiaryNote<CR>', opts)
+utils.map('n', '<leader>odi', '<cmd>VimwikiDiaryIndex<CR>', opts)
+utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts)
+utils.map('n', '<leader>oad', '<cmd>VimwikiDeleteFile<CR>', opts)
+utils.map('n', '<leader>oar', '<cmd>VimwikiRenameFile<CR>', opts)
 
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
