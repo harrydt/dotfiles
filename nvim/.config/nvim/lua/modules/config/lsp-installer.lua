@@ -4,11 +4,11 @@ return function()
     require("mason-lspconfig").setup({
         ensure_installed = {
             -- "dockerls", -- format has bug
-            "pylsp",
+            "pyright",
             "gopls",
             "golangci_lint_ls",
             "dotls",
-            "sumneko_lua",
+            "lua_ls",
             "rust_analyzer",
             "jsonls",
             "yamlls",
@@ -30,7 +30,7 @@ return function()
         end,
         -- Next, you can provide targeted overrides for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
-        ["rust_analyzer"] = function()
+            ["rust_analyzer"] = function()
             require("rust-tools").setup {
                 tools = {
                     autoSetHints = true,
@@ -53,7 +53,7 @@ return function()
                     settings = {
                         -- to enable rust-analyzer settings visit:
                         -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
-                        ["rust-analyzer"] = {
+                            ["rust-analyzer"] = {
                             -- enable clippy on save
                             checkOnSave = {
                                 command = "clippy"
@@ -65,12 +65,11 @@ return function()
                             navic.attach(client, bufnr)
                         end
                     end,
-
                 },
             }
         end,
-        ["sumneko_lua"] = function()
-            require("lspconfig").sumneko_lua.setup {
+            ["lua_ls"] = function()
+            require("lspconfig").lua_ls.setup {
                 settings = {
                     Lua = {
                         diagnostics = {
