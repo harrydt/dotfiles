@@ -1,32 +1,27 @@
-local utils = require('core.utils')
--- Additional options for mappings
 local opts = { silent = true }
+local utils = require("core.utils")
+local expr_opts = { silent = true, expr = true }
+
+vim.g.mapleader = " "
+
+-- stylua: ignore start
+utils.map('n', '<ESC>', ':noh<CR>', opts)
 
 -- Make Y behave
 utils.map('n', 'Y', 'y$', opts)
 
--- Undo break points
+-- Undo break points TODO what is this?
 utils.map('i', ',', ',<C-G>u', opts)
 utils.map('i', '.', '.<C-G>u', opts)
 utils.map('i', '!', '!<C-G>u', opts)
 utils.map('i', '?', '?<C-G>u', opts)
 
 -- Map WhichKey popup menu
-utils.map('n', '<Space>', ':WhichKey <leader><CR>', opts)
+-- utils.map('n', '<Space>', ':WhichKey <leader><CR>', opts)
 
--- TAB to cycle buffers too, why not?
--- <Tab> not working in kitty?
---[[ utils.map('n', '<Tab>', ':bnext<CR>', opts)
-utils.map('n', '<S-Tab>', ':bprevious<CR>', opts) ]]
+-- cycle buffers
 utils.map('n', ']b', ':bnext<CR>', opts)
 utils.map('n', '[b', ':bprevious<CR>', opts)
-
--- ESC to turn off search highlighting
--- utils.map('n', '<C-_>', ':noh<CR>', opts) -- TODO this is not working in kitty
-utils.map('n', '<C-s>', ':noh<CR>', opts) -- TODO this is not working in kitty
-
--- ESC in INSERT mode to save current buffer
-utils.map('i', '<esc>', '<esc>:update<CR>')
 
 --- F<n> keybindings
 utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
@@ -37,25 +32,16 @@ utils.map('n', '<F5>', ':Telescope file_browser<CR>', opts)
 utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
 utils.map('n', ']q', ':cnext<CR>', opts) -- Go to the next item on the quickfix list
 
-
----[[------------------------------]]---
---     Window Movements keys          --
----]]------------------------------]]---
+-- windows movement keys
 utils.map('n', '<C-h>', '<C-w>h', opts)
 utils.map('n', '<C-j>', '<C-w>j', opts)
 utils.map('n', '<C-k>', '<C-w>k', opts)
 utils.map('n', '<C-l>', '<C-w>l', opts)
 
-
----[[-----------------]]---
---    Select Movement    --
----]]-----------------[[---
 -- get out of terminal insert mode into normal mode with Esc
 vim.cmd('tnoremap <Esc> <C-\\><C-n>')
 
----[[-----------------]]---
---    Resizing Splits    --
----]]-----------------[[---
+-- resizing splits
 vim.cmd([[
   nnoremap <silent> <C-Up>    :resize +2<CR>
   nnoremap <silent> <C-Down>  :resize -2<CR>
@@ -63,94 +49,8 @@ vim.cmd([[
   nnoremap <silent> <C-Left>  :vertical resize +2<CR>
 ]])
 
--- Replicate vim-sneak in hop.nvim
-utils.map('n', 's', ":HopChar2AC<CR>", opts)
-utils.map('n', 'S', ":HopChar2BC<CR>", opts)
-
-
----[[-----------------]]---
---     Disable keys      --
----]]-----------------[[---
--- Disable accidentally pressing ctrl-z and suspending
-utils.map('n', '<c-z>', '<Nop>', opts)
-
 -- Disable ex mode
 utils.map('n', 'Q', '<Nop>', opts)
-
----[[-----------------]]---
---    LSP Keybindings    --
----]]-----------------[[---
-local lsp_opts = vim.tbl_extend('force', opts, { expr = true })
-utils.map('n', 'gD', ':lua vim.lsp.buf.declaration()<CR>', opts)
-utils.map('n', 'gd', ':Telescope lsp_definitions<CR>', opts) -- Goto the definition of the word under the cursor, if there's only one, otherwise show all options in Telescope
-utils.map('n', 'gr', ':Telescope lsp_references<CR>', opts) -- Lists LSP references for word under the cursor
-utils.map('n', 'gi', ':Telescope lsp_implementations<CR>', opts) -- Goto the implementation of the word under the cursor if there's only one, otherwise show all options in Telescope
-utils.map('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', opts) -- Lists any LSP actions for the word under the cursor, that can be triggered with <cr>
-
-utils.map('n', 'K', ':lua vim.lsp.buf.hover()<CR>', opts)
-utils.map('n', '[g', ':lua vim.diagnostic.goto_prev()<CR>', opts) -- Jump to previous diagnostic
-utils.map('n', ']g', ':lua vim.diagnostic.goto_next()<CR>', opts) -- Jump to next diagnostic
-vim.cmd(
-    'command! -nargs=0 LspVirtualTextToggle lua require("lsp/virtual_text").toggle()'
-)
--- LuaSnip mappings
-utils.map(
-    'n',
-    '<Tab>',
-    'luasnip#expand_or_jumpable() ? "<Plug>luasnip-expand-or-jump" : "<Tab>"',
-    lsp_opts
-)
-utils.map('i', '<S-Tab>', '<cmd>lua require("luasnip").jump(-1)<CR>', opts)
-
-utils.map('s', '<Tab>', '<cmd>lua require("luasnip").jump(1)<CR>', opts)
-utils.map('s', '<S-Tab>', '<cmd>lua require("luasnip").jump(-1)<CR>', opts)
-
-utils.map(
-    'i',
-    '<C-E>',
-    'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
-    lsp_opts
-)
-utils.map(
-    's',
-    '<C-E>',
-    'luasnip#choice_active() ? "<Plug>luasnip-next-choice" : "<C-E>"',
-    lsp_opts
-)
-
-utils.map(
-    'n',
-    '<leader>cdl',
-    -- '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
-    '<cmd>lua vim.diagnostic.open_float()<CR>',
-    opts
-)
-utils.map(
-    'n',
-    '<leader>cdd',
-    '<cmd>TroubleToggle document_diagnostics<CR>',
-    opts
-)
-utils.map(
-    'n',
-    '<leader>cdw',
-    '<cmd>TroubleToggle workspace_diagnostics<CR>',
-    opts
-)
-utils.map('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-utils.map('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-utils.map(
-    'n',
-    '<leader>cld',
-    '<cmd>lua vim.lsp.buf.type_definition()<CR>',
-    opts
-)
---[[ utils.map(
-	'n',
-	'<leader>clL',
-	'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
-	opts
-) ]]
 
 
 ---[[-----------------]]---
@@ -278,3 +178,4 @@ utils.map('n', '<leader>oar', '<cmd>VimwikiRenameFile<CR>', opts)
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
 utils.map('n', '<leader>qa', '<cmd>qa<CR>', opts)
+-- stylua: ignore end

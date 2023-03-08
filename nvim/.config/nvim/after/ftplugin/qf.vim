@@ -1,1 +1,0 @@
-nnoremap <ESC> :cclose<CR>
