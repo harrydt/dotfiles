@@ -6,6 +6,17 @@ function M.config()
 	local wk = require("which-key")
 	local opts = {
 		plugins = { spelling = true },
+		window = {
+			padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]
+		},
+		layout = {
+			height = { min = 1, max = 10 }, -- min and max height of the columns
+			spacing = 3,
+			align = "left",
+		},
+		ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+		show_help = true, -- show help message on the command line when the popup is visible
+		triggers = "auto", -- automatically setup triggers
 	}
 	wk.setup(opts)
 
@@ -40,19 +51,10 @@ function M.config()
 				["w"] = { "Show workspace diagnostics" },
 			},
 			r = { "Rename" },
-			--[[ i = { 'Start a REPL' },
-			b = { 'Compile project' },
-			c = { 'Compile and run project' }, ]]
-			--[[ ['h'] = {
-				'Run restclient on the line that the cursor is currently on',
-			}, ]]
-
 			["l"] = {
 				name = "+lsp",
 				["i"] = { "Lsp info" },
 				["d"] = { "Show type definition" },
-				-- ['l'] = { 'Show line diagnostics' },
-				-- ['L'] = { 'Diagnostics into location list' },
 			},
 		},
 		-- change this to debug later maybe?
@@ -68,7 +70,7 @@ function M.config()
 		["f"] = {
 			name = "+find",
 			["f"] = { "Find files" },
-			["t"] = { "Help tags" },
+			["h"] = { "Help tags" },
 			["r"] = { "Recently opened files" },
 		},
 		["g"] = {

@@ -1,6 +1,7 @@
 return {
 	{ "tpope/vim-fugitive" },
 	{ "almo7aya/openingh.nvim" }, -- open file in Github
+	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "tpope/vim-surround" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "windwp/nvim-autopairs", config = true }, -- See `config` under https://github.com/folke/lazy.nvim#-plugin-spec
