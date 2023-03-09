@@ -125,13 +125,10 @@ utils.map(
 )
 
 -- Plugins
-utils.map('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
-utils.map('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
-utils.map('n', '<leader>pc', '<cmd>PackerClean<CR>', opts)
-utils.map('n', '<leader>pC', '<cmd>PackerCompile<CR>', opts)
-utils.map('n', '<leader>pS', '<cmd>PackerStatus<CR>', opts)
-utils.map('n', '<leader>pp', '<cmd>PackerProfile<CR>', opts)
-utils.map('n', '<leader>pu', '<cmd>PackerUpdate<CR>', opts)
+utils.map('n', '<leader>ps', '<cmd>Lazy sync<CR>', opts)
+utils.map('n', '<leader>pS', '<cmd>Lazy home<CR>', opts)
+utils.map('n', '<leader>pr', '<cmd>Lazy restore<CR>', opts)
+utils.map('n', '<leader>pc', '<cmd>Lazy clean<CR>', opts)
 
 
 -- Find

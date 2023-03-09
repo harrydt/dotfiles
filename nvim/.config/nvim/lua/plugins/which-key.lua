@@ -88,13 +88,10 @@ function M.config()
 		},
 		["p"] = {
 			name = "+plugins",
+			["s"] = { "Sync: Install, clean, and update" },
+			["S"] = { "Home: list and and status of plugins" },
+			["r"] = { "Restore" },
 			["c"] = { "Clean disabled or unused plugins" },
-			["C"] = { "Compile your plugins changes" },
-			["i"] = { "Install missing plugins" },
-			["p"] = { "Profile the time taken loading your plugins" },
-			["s"] = { "Sync your plugins" },
-			["S"] = { "Plugins status" },
-			["u"] = { "Update plugins" },
 		},
 		["q"] = {
 			name = "+quit/sessions",
