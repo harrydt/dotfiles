@@ -14,6 +14,7 @@ return {
 					return require("core.utils").has("nvim-cmp")
 				end,
 			},
+			{ "folke/trouble.nvim", config = true },
 		},
 		---@class PluginLspOpts
 		opts = {
@@ -55,6 +56,7 @@ return {
 				gopls = {},
 				golangci_lint_ls = {},
 				rust_analyzer = {},
+				pyright = {},
 			},
 			-- you can do any additional lsp server setup here
 			-- return true if you don't want this server to be setup with lspconfig

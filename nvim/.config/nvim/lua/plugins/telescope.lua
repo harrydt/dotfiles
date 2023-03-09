@@ -24,6 +24,24 @@ function M.config()
 				-- the default case_mode is "smart_case"
 			},
 		},
+		defaults = {
+			vimgrep_arguments = {
+				"rg",
+				"--color=never",
+				"--no-heading",
+				"--with-filename",
+				"--line-number",
+				"--column",
+				"--smart-case",
+				"--trim", -- remove indentation
+			},
+		},
+		pickers = {
+			find_files = {
+				find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+			},
+		},
+
 		telescope.load_extension("fzf"),
 		telescope.load_extension("vimwiki"),
 		telescope.load_extension("file_browser"),

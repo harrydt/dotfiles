@@ -111,6 +111,19 @@ utils.map(
 )
 utils.map('n', '<leader>bf', '<cmd>FormatWrite<CR>', opts)
 
+utils.map(
+    'n',
+    '<leader>cdd',
+    '<cmd>TroubleToggle document_diagnostics<CR>',
+    opts
+)
+utils.map(
+    'n',
+    '<leader>cdw',
+    '<cmd>TroubleToggle workspace_diagnostics<CR>',
+    opts
+)
+
 -- Plugins
 utils.map('n', '<leader>ps', '<cmd>PackerSync<CR>', opts)
 utils.map('n', '<leader>pi', '<cmd>PackerInstall<CR>', opts)
