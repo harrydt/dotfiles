@@ -52,6 +52,9 @@ vim.cmd([[
 -- Disable ex mode
 utils.map('n', 'Q', '<Nop>', opts)
 
+-- Replicate vim-sneak in hop.nvim
+utils.map('n', 's', ":HopChar2AC<CR>", opts)
+utils.map('n', 'S', ":HopChar2BC<CR>", opts)
 
 ---[[-----------------]]---
 --    WhichKey binds     --
