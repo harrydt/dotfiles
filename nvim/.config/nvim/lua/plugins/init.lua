@@ -1,5 +1,5 @@
 return {
-	{ "tpope/vim-fugitive" },
+	{ "tpope/vim-fugitive", cmd = { "Git" } },
 	{ "almo7aya/openingh.nvim" }, -- open file in Github
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "tpope/vim-surround" },

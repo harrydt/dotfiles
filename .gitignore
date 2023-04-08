@@ -2,3 +2,4 @@ nvim/.config/nvim/autoload/
 nvim/.config/nvim/plugged/
 .netrwhist
 packer_compiled.lua
+.luarc.json

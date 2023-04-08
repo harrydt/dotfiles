@@ -145,11 +145,6 @@ return {
 							runnables = {
 								use_telescope = true,
 							},
-							inlay_hints = {
-								show_parameter_hints = false,
-								parameter_hints_prefix = "",
-								other_hints_prefix = "",
-							},
 						},
 
 						-- all the opts to send to nvim-lspconfig
@@ -162,9 +157,15 @@ return {
 								-- to enable rust-analyzer settings visit:
 								-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 								["rust-analyzer"] = {
+									-- pass --all-features to cargo
+									cargo = {
+										features = "all",
+									},
 									-- enable clippy on save
-									checkOnSave = {
+									checkOnSave = true,
+									check = {
 										command = "clippy",
+										features = "all",
 									},
 								},
 							},
