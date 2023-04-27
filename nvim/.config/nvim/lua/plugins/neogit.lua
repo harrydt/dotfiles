@@ -5,6 +5,7 @@ return {
 		require("neogit").setup({
 			disable_hint = true,
 			disable_insert_on_commit = false,
+			disable_commit_confirmation = true,
 			signs = {
 				-- { CLOSED, OPENED }
 				section = { "", "" },

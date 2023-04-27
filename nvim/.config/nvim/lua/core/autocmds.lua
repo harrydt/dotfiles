@@ -1,5 +1,5 @@
 local function augroup(name)
-	return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+	return vim.api.nvim_create_augroup("my_augroup_" .. name, { clear = true })
 end
 
 -- Highlight on yank
@@ -53,4 +53,11 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.wrap = true
 		vim.opt_local.spell = true
 	end,
+})
+
+-- Get treesitter highlight for Gitcommit filetype
+vim.api.nvim_create_autocmd("FileType", {
+	group = augroup("neogit-additions"),
+	pattern = "NeogitCommitMessage",
+	command = "silent! set filetype=gitcommit",
 })
