@@ -149,4 +149,11 @@ return {
 			})
 		end,
 	},
+
+	-- cursorline on focused window only
+	{
+		"tummetott/reticle.nvim",
+		event = "VeryLazy", -- lazyload the plugin if you like
+		opts = {},
+	},
 }
