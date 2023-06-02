@@ -3,6 +3,7 @@ local utils = require("core.utils")
 local expr_opts = { silent = true, expr = true }
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- stylua: ignore start
 utils.map('n', '<ESC>', ':noh<CR>', opts)
