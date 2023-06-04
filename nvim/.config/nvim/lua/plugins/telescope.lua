@@ -3,13 +3,11 @@ local M = {
 	dependencies = {
 		{
 			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
-			"ElPiloto/telescope-vimwiki.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
 			"nvim-telescope/telescope-file-browser.nvim",
 		},
 	},
 	cmd = { "Telescope", "Tel" }, -- lazy loads on these commands
-	-- keys = { "<leader>f" }, -- lazy loads on this pattern
 }
 
 function M.config()
@@ -43,7 +41,6 @@ function M.config()
 		},
 
 		telescope.load_extension("fzf"),
-		telescope.load_extension("vimwiki"),
 		telescope.load_extension("file_browser"),
 	})
 end
