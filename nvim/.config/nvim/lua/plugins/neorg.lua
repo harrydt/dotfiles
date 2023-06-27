@@ -7,6 +7,7 @@ local M = {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		"nvim-cmp",
 		"nvim-lua/plenary.nvim",
+		"nvim-neorg/neorg-telescope",
 	},
 	build = ":Neorg sync-parsers",
 	cmd = "Neorg",
@@ -42,6 +43,8 @@ local plugins = {
 			},
 		},
 	},
+	["core.itero"] = {}, -- Fast List/Heading Continuation
+	["core.integrations.telescope"] = {},
 }
 M.opts = {
 	load = plugins,
