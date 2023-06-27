@@ -3,6 +3,7 @@ local utils = require("core.utils")
 local expr_opts = { silent = true, expr = true }
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- stylua: ignore start
 utils.map('n', '<ESC>', ':noh<CR>', opts)
@@ -180,13 +181,15 @@ utils.map('n', '<leader>gf', '<cmd>OpenInGHFile<CR>', opts)
 utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 
 -- Organizing
-utils.map('n', '<leader>oi', '<cmd>VimwikiIndex<CR>', opts)
-utils.map('n', '<leader>os', '<cmd>Telescope vimwiki live_grep<CR>', opts)
-utils.map('n', '<leader>odn', '<cmd>VimwikiMakeDiaryNote<CR>', opts)
-utils.map('n', '<leader>odi', '<cmd>VimwikiDiaryIndex<CR>', opts)
-utils.map('n', '<leader>odg', '<cmd>VimwikiDiaryGenerateLinks<CR>', opts)
-utils.map('n', '<leader>oad', '<cmd>VimwikiDeleteFile<CR>', opts)
-utils.map('n', '<leader>oar', '<cmd>VimwikiRenameFile<CR>', opts)
+utils.map('n', '<leader>oi', '<cmd>Neorg workspace main<CR>', opts)
+utils.map('n', '<leader>og', '<cmd>Telescope live_grep search_dirs={"~/Dropbox/neorg"}<CR>', opts)
+utils.map('n', '<leader>ot', '<cmd>Neorg toc<CR>', opts)
+utils.map('n', '<leader>off', '<cmd>Telescope neorg find_norg_files<CR>', opts)
+utils.map('n', '<leader>ofl', '<cmd>Telescope neorg find_linkable<CR>', opts)
+utils.map('n', '<leader>ofh', '<cmd>Telescope neorg search_headings<CR>', opts)
+utils.map('n', '<leader>oll', '<cmd>Telescope neorg insert_link<CR>', opts)
+utils.map('n', '<leader>olf', '<cmd>Telescope neorg insert_file_link<CR>', opts)
+utils.map('n', '<leader>ojt', '<cmd>Neorg journal today<CR>', opts)
 
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)

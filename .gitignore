@@ -3,3 +3,4 @@ nvim/.config/nvim/plugged/
 .netrwhist
 packer_compiled.lua
 .luarc.json
+lazy-lock.json

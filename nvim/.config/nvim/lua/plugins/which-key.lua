@@ -127,17 +127,18 @@ function M.config()
 		["o"] = {
 			name = "+org",
 			["i"] = { "Index" },
-			["s"] = { "Search" },
-			["d"] = {
-				name = "+diary",
-				["n"] = { "New" },
-				["i"] = { "Index" },
-				["g"] = { "Generate links" },
+			["g"] = { "Grep" },
+			["t"] = { "Table of Contents" },
+			["f"] = {
+				name = "+Find",
+				["f"] = { "Norg files" },
+				["l"] = { "Linkables" },
+				["i"] = { "Headings" },
 			},
-			["a"] = {
-				name = "+actions",
-				["d"] = { "Delete file" },
-				["r"] = { "Rename file" },
+			["l"] = {
+				name = "+Link",
+				["l"] = { "Link" },
+				["f"] = { "File Link" },
 			},
 		},
 	}
