@@ -189,7 +189,7 @@ utils.map('n', '<leader>ofl', '<cmd>Telescope neorg find_linkable<CR>', opts)
 utils.map('n', '<leader>ofh', '<cmd>Telescope neorg search_headings<CR>', opts)
 utils.map('n', '<leader>oll', '<cmd>Telescope neorg insert_link<CR>', opts)
 utils.map('n', '<leader>olf', '<cmd>Telescope neorg insert_file_link<CR>', opts)
-utils.map('n', '<leader>ojt', '<cmd>Neorg journal today<CR>', opts)
+utils.map('n', '<leader>oj', '<cmd>Neorg journal<CR>', opts)
 
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)

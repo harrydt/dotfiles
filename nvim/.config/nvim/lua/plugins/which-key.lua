@@ -140,6 +140,7 @@ function M.config()
 				["l"] = { "Link" },
 				["f"] = { "File Link" },
 			},
+			["j"] = { "Journal" },
 		},
 	}
 
