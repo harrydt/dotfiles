@@ -182,8 +182,8 @@ utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 
 -- Organizing
 utils.map('n', '<leader>oi', '<cmd>Neorg workspace main<CR>', opts)
-utils.map('n', '<leader>ot', '<cmd>Neorg toc<CR>', opts)
 utils.map('n', '<leader>og', '<cmd>Telescope live_grep search_dirs={"~/Dropbox/neorg"}<CR>', opts)
+utils.map('n', '<leader>ot', '<cmd>Neorg toc<CR>', opts)
 utils.map('n', '<leader>off', '<cmd>Telescope neorg find_norg_files<CR>', opts)
 utils.map('n', '<leader>ofl', '<cmd>Telescope neorg find_linkable<CR>', opts)
 utils.map('n', '<leader>ofh', '<cmd>Telescope neorg search_headings<CR>', opts)
