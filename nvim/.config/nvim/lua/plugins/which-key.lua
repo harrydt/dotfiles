@@ -126,6 +126,7 @@ function M.config()
 		-- Organizing
 		["o"] = {
 			name = "+org",
+			["w"] = { "Workspace" },
 			["i"] = { "Index" },
 			["g"] = { "Grep" },
 			["t"] = { "Table of Contents" },
