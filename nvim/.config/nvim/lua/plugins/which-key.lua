@@ -128,7 +128,7 @@ function M.config()
 			name = "+org",
 			["w"] = { "Workspace" },
 			["i"] = { "Index" },
-			["g"] = { "Grep" },
+			["/"] = { "Grep" },
 			["t"] = { "Table of Contents" },
 			["f"] = {
 				name = "+Find",

@@ -27,7 +27,7 @@ utils.map('n', '[b', ':bprevious<CR>', opts)
 --- F<n> keybindings
 utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
 utils.map('n', '<F3>', ':NeoTreeRevealToggle<CR>', opts)
-utils.map('n', '<F5>', ':Telescope file_browser<CR>', opts)
+utils.map('n', '<F5>', ':AerialToggle!<CR>', opts)
 
 -- quickfix movements
 utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
@@ -183,7 +183,7 @@ utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 -- Organizing
 utils.map('n', '<leader>ow', '<cmd>Neorg workspace main<CR>', opts)
 utils.map('n', '<leader>oi', '<cmd>Neorg index<CR>', opts)
-utils.map('n', '<leader>og', '<cmd>Telescope live_grep search_dirs={"~/Dropbox/neorg"}<CR>', opts)
+utils.map('n', '<leader>o/', '<cmd>Telescope live_grep search_dirs={"~/Dropbox/neorg"}<CR>', opts)
 utils.map('n', '<leader>ot', '<cmd>Neorg toc<CR>', opts)
 utils.map('n', '<leader>off', '<cmd>Telescope neorg find_norg_files<CR>', opts)
 utils.map('n', '<leader>ofl', '<cmd>Telescope neorg find_linkable<CR>', opts)

@@ -52,11 +52,3 @@ end
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
-
-vim.g.vimwiki_list = {
-	{
-		path = "~/vimwiki",
-		syntax = "markdown",
-		ext = ".md",
-	},
-}
