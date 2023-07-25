@@ -61,3 +61,17 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "NeogitCommitMessage",
 	command = "silent! set filetype=gitcommit",
 })
+
+local toggle_options = vim.api.nvim_create_augroup("ToggleOptions", { clear = true })
+
+vim.api.nvim_create_autocmd("WinLeave", {
+	group = toggle_options,
+	desc = "unset cursorline",
+	command = "lua vim.opt.cursorline = false",
+})
+
+vim.api.nvim_create_autocmd("WinEnter", {
+	group = toggle_options,
+	desc = "set cursorline",
+	command = "lua vim.opt.cursorline = true",
+})

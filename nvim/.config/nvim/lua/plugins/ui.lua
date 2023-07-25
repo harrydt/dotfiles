@@ -156,13 +156,6 @@ return {
 		end,
 	},
 
-	-- cursorline on focused window only
-	{
-		"tummetott/reticle.nvim",
-		event = "VeryLazy", -- lazyload the plugin if you like
-		opts = {},
-	},
-
 	-- A code outline window for skimming and quick navigation
 	{
 		"stevearc/aerial.nvim",
