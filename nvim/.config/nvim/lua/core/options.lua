@@ -42,6 +42,9 @@ opt.wildmode = "longest:full,full" -- Command-line completion mode
 opt.winminwidth = 5 -- Minimum window width
 opt.clipboard = "unnamedplus"
 opt.laststatus = 3 -- Global statusline
+opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.foldlevelstart = 99
+opt.foldenable = true
 
 opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%m %f" -- basic winbar setup
 
