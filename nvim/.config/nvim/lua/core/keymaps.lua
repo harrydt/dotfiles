@@ -58,8 +58,8 @@ utils.map('n', 's', ":HopChar2AC<CR>", opts)
 utils.map('n', 'S', ":HopChar2BC<CR>", opts)
 
 -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-utils.map('n', 'zR', '<cmd>lua require("ufo").openAllFolds<CR>')
-utils.map('n', 'zM', '<cmd>lua require("ufo").closeAllFolds<CR>')
+utils.map('n', 'zR', '<cmd>lua require("ufo").openAllFolds()<CR>', opts)
+utils.map('n', 'zM', '<cmd>lua require("ufo").closeAllFolds()<CR>', opts)
 
 ---[[-----------------]]---
 --    WhichKey binds     --
