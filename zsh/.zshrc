@@ -2,7 +2,11 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
+if [[ `uname` == "Linux" ]]; then
+  export ZSH=/home/harrydt/.oh-my-zsh
+else
   export ZSH=/Users/harrydt/.oh-my-zsh
+fi  
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -53,12 +57,13 @@ ZSH_THEME="jovial"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  fzf
+  ssh-agent
   autojump
   urltools
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-history-enquirer
   jovial
 )
 
@@ -110,57 +115,3 @@ export GPG_TTY=$(tty)
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE=true
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
-
-export GPG_TTY=\$(tty)
