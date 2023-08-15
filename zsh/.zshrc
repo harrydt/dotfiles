@@ -2,12 +2,12 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/harrydt/.oh-my-zsh
+  export ZSH=/Users/harrydt/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="ys"
+ZSH_THEME="jovial"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -51,7 +51,16 @@ ZSH_THEME="ys"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git fzf ssh-agent)
+plugins=(
+  git
+  autojump
+  urltools
+  bgnotify
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-history-enquirer
+  jovial
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -90,5 +99,68 @@ alias lzd="lazydocker"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.cargo/bin:$PATH"
 
 # Use nvim as manpager `:h Man`
-# export MANPAGER='nvim +Man!'
-# export MANWIDTH=999
+export MANPAGER='nvim +Man!'
+export MANWIDTH=999
+# https://apple.stackexchange.com/questions/254468/macos-sierra-doesn-t-seem-to-remember-ssh-keys-between-reboots/254714#254714
+ssh-add -A 2>/dev/null;
+
+export GOPATH="$HOME/go"
+export PATH=$PATH:$GOPATH/bin
+export GPG_TTY=$(tty)
+export WASMTIME_HOME="$HOME/.wasmtime"
+export PATH="$WASMTIME_HOME/bin:$PATH"
+export HOMEBREW_NO_AUTO_UPDATE=true
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
+
+export GPG_TTY=\$(tty)
