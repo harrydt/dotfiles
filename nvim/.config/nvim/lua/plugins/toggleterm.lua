@@ -4,17 +4,8 @@ return {
 	config = function()
 		require("toggleterm").setup({
 			open_mapping = [[<F4>]],
-			direction = "horizontal",
-			float_opts = {
-				border = "curved",
-				width = 70,
-				height = 20,
-				winblend = 0,
-				highlights = {
-					border = "Special",
-					background = "Normal",
-				},
-			},
+			direction = "vertical",
+			size = vim.o.columns * 0.45,
 		})
 	end,
 }
