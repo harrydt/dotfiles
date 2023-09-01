@@ -25,9 +25,8 @@ utils.map('n', ']b', ':bnext<CR>', opts)
 utils.map('n', '[b', ':bprevious<CR>', opts)
 
 --- F<n> keybindings
-utils.map('n', '<F2>', ':SymbolsOutline<CR>', opts)
-utils.map('n', '<F3>', ':NeoTreeRevealToggle<CR>', opts)
-utils.map('n', '<F5>', ':AerialToggle!<CR>', opts)
+utils.map('n', '<F2>', ':NeoTreeRevealToggle<CR>', opts)
+utils.map('n', '<F3>', ':AerialToggle!<CR>', opts)
 
 -- quickfix movements
 utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
