@@ -87,7 +87,7 @@ function M.config()
 			telekasten = false,
 			symbols_outline = true,
 			mini = true,
-			aerial = false,
+			aerial = true,
 			vimwiki = false,
 			beacon = false,
 			navic = true,
