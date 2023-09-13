@@ -148,4 +148,45 @@ function M.config()
 	wk.register(mappings, { prefix = "<leader>" })
 end
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.go",
+	callback = function()
+		local wk = require("which-key")
+		local opts = {
+			mode = "n", -- NORMAL mode
+			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
+		}
+		local mappings = {
+			["<localleader>l"] = {
+				name = "+go",
+				t = {
+					name = "+test",
+					f = "Func",
+					s = "Func Select",
+					F = "File",
+					p = "Package",
+					a = {
+						name = "+add",
+						f = "Func",
+						e = "Exported Funcs",
+						a = "All Funcs",
+					},
+				},
+				T = {
+					name = "+tags",
+					a = "Add",
+					r = "Remove",
+				},
+				b = {
+					name = "+binaries",
+					i = "Install",
+					u = "Update",
+				},
+			},
+		}
+
+		wk.register(mappings, opts)
+	end,
+})
+
 return M

@@ -195,6 +195,23 @@ utils.map('n', '<leader>oll', '<cmd>Telescope neorg insert_link<CR>', opts)
 utils.map('n', '<leader>olf', '<cmd>Telescope neorg insert_file_link<CR>', opts)
 utils.map('n', '<leader>oj', '<cmd>Neorg journal<CR>', opts)
 
+-- Language specific mappings
+-- Go
+-- test
+utils.map('n', '<localleader>ltf', '<cmd>GoTestFunc<CR>', opts)
+utils.map('n', '<localleader>lts', '<cmd>GoTestFunc -s<CR>', opts)
+utils.map('n', '<localleader>ltF', '<cmd>GoTestFile<CR>', opts)
+utils.map('n', '<localleader>ltp', '<cmd>GoTestPkg<CR>', opts)
+utils.map('n', '<localleader>ltaf', '<cmd>GoAddTest [-parallel]<CR>', opts)
+utils.map('n', '<localleader>ltae', '<cmd>GoAddExpTest [-parallel]<CR>', opts)
+utils.map('n', '<localleader>ltae', '<cmd>GoAddAllTest [-parallel]<CR>', opts)
+-- tags
+utils.map('n', '<localleader>lTa', '<cmd>GoAddTag<CR>', opts)
+utils.map('n', '<localleader>lTr', '<cmd>GoRemoveTag<CR>', opts)
+-- binaries
+utils.map('n', '<localleader>lbi', '<cmd>GoInstallBinaries<CR>', opts)
+utils.map('n', '<localleader>lbu', '<cmd>GoUpdateBinaries<CR>', opts)
+
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
 utils.map('n', '<leader>qa', '<cmd>qa<CR>', opts)
