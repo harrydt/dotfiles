@@ -112,16 +112,13 @@ function M.config()
 			["d"] = { "Delete window" },
 			["s"] = { "Split window below" },
 			["v"] = { "Split window right" },
-			["2"] = { "Layout double columns" },
-			["h"] = { "Window left" },
-			["j"] = { "Window below" },
-			["l"] = { "Window right" },
-			["k"] = { "Window up" },
 			["H"] = { "Expand window left" },
 			["J"] = { "Expand window below" },
 			["L"] = { "Expand window right" },
 			["K"] = { "Expand window up" },
 			["="] = { "Balance window" },
+			["m"] = { "Move windows" },
+			["S"] = { "Swap windows" },
 		},
 		-- Organizing
 		["o"] = {

@@ -9,4 +9,5 @@ return {
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "kevinhwang91/nvim-bqf" },
 	{ "simrat39/rust-tools.nvim" },
+	{ "sindrets/winshift.nvim" },
 }
