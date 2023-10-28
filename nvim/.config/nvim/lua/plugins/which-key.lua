@@ -145,6 +145,7 @@ function M.config()
 	wk.register(mappings, { prefix = "<leader>" })
 end
 
+-- Go keymaps
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*.go",
 	callback = function()
