@@ -142,6 +142,7 @@ utils.map('n', '<leader>pc', '<cmd>Lazy clean<CR>', opts)
 utils.map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', opts)
 utils.map('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>', opts)
 utils.map('n', '<leader>ft', '<cmd>Telescope help_tags<CR>', opts)
+utils.map('n', '<leader>fs', '<cmd>Telescope persisted<CR>', opts)
 
 -- search
 utils.map(

@@ -72,6 +72,7 @@ function M.config()
 			["f"] = { "Find files" },
 			["h"] = { "Help tags" },
 			["r"] = { "Recently opened files" },
+			["s"] = { "Sessions" },
 		},
 		["g"] = {
 			name = "+git",

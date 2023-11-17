@@ -43,6 +43,7 @@ opt.winminwidth = 5 -- Minimum window width
 opt.clipboard = "unnamedplus"
 opt.laststatus = 3 -- Global statusline
 opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+opt.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize" -- things to save in session
 opt.foldlevelstart = 99
 opt.foldenable = true
 
