@@ -186,4 +186,26 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
+-- Rust keymaps
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.rs",
+	callback = function()
+		local wk = require("which-key")
+		local opts = {
+			mode = "n", -- NORMAL mode
+			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
+		}
+		local mappings = {
+			["<localleader>"] = {
+				["r"] = { "Runnables" },
+				["p"] = { "Parent Module" },
+				["s"] = { "Structural Search Replace" },
+				["e"] = { "Expand Macro" },
+			},
+		}
+
+		wk.register(mappings, opts)
+	end,
+})
+
 return M
