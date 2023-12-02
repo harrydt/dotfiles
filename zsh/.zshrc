@@ -115,3 +115,6 @@ export GPG_TTY=$(tty)
 export WASMTIME_HOME="$HOME/.wasmtime"
 export PATH="$WASMTIME_HOME/bin:$PATH"
 export HOMEBREW_NO_AUTO_UPDATE=true
+
+# Load personal scripts
+source ~/scripts/fzf-git.sh
