@@ -125,21 +125,6 @@ function M.config()
 		["o"] = {
 			name = "+org",
 			["w"] = { "Workspace" },
-			["i"] = { "Index" },
-			["/"] = { "Grep" },
-			["t"] = { "Table of Contents" },
-			["f"] = {
-				name = "+Find",
-				["f"] = { "Norg files" },
-				["l"] = { "Linkables" },
-				["i"] = { "Headings" },
-			},
-			["l"] = {
-				name = "+Link",
-				["l"] = { "Link" },
-				["f"] = { "File Link" },
-			},
-			["j"] = { "Journal" },
 		},
 	}
 
@@ -202,6 +187,40 @@ vim.api.nvim_create_autocmd("BufEnter", {
 				["p"] = { "Parent Module" },
 				["s"] = { "Structural Search Replace" },
 				["e"] = { "Expand Macro" },
+			},
+		}
+
+		wk.register(mappings, opts)
+	end,
+})
+
+-- Neorg keymaps
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.norg",
+	callback = function()
+		local wk = require("which-key")
+		local opts = {
+			mode = "n", -- NORMAL mode
+			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
+		}
+		local mappings = {
+			["<localleader>"] = {
+				[","] = { "Find file" },
+				["/"] = { "Grep" },
+				["i"] = { "Index" },
+				["t"] = { "Table of Contents" },
+				["f"] = {
+					name = "+Find",
+					["f"] = { "Norg files" },
+					["l"] = { "Linkables" },
+					["i"] = { "Headings" },
+				},
+				["l"] = {
+					name = "+Link",
+					["l"] = { "Link" },
+					["f"] = { "File Link" },
+				},
+				["j"] = { "Journal" },
 			},
 		}
 
