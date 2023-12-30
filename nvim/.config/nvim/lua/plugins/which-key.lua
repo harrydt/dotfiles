@@ -26,8 +26,8 @@ function M.config()
 		["`"] = { "Switch buffer" },
 		[" "] = { "Find file" },
 		["."] = { "Browse files" },
-		[","] = { "Switch buffer" },
-		["/"] = { "Search a word" },
+		[","] = { "Find buffer" },
+		["/"] = { "Grep" },
 		[":"] = { "Command history" },
 		["b"] = {
 			name = "+buffers",

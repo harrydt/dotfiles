@@ -60,6 +60,11 @@ utils.map('n', 'S', ":HopChar2BC<CR>", opts)
 utils.map('n', 'zR', '<cmd>lua require("ufo").openAllFolds()<CR>', opts)
 utils.map('n', 'zM', '<cmd>lua require("ufo").closeAllFolds()<CR>', opts)
 
+-- Common typos
+-- :Q as :qa and :W as :wa
+vim.api.nvim_create_user_command('Q', 'qa', {})
+vim.api.nvim_create_user_command('W', 'wa', {})
+
 ---[[-----------------]]---
 --    WhichKey binds     --
 ---]]-----------------[[---
