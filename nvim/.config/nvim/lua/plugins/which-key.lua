@@ -77,6 +77,11 @@ function M.config()
 		["g"] = {
 			name = "+git",
 			["o"] = { "Open Neogit" },
+			["d"] = {
+				name = "+diffview",
+				["o"] = { "Open" },
+				["c"] = { "Close" },
+			},
 			["p"] = { "Pull" },
 			["P"] = { "Push" },
 			["s"] = { "Status" },

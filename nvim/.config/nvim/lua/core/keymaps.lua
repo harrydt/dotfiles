@@ -171,6 +171,9 @@ utils.map('n', '<leader>wS', '<cmd>WinShift swap<CR>', opts)
 
 -- git
 utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
+-- DiffviewToggle when?
+utils.map('n', '<leader>gdo', '<cmd>DiffviewOpen<CR>', opts)
+utils.map('n', '<leader>gdc', '<cmd>DiffviewClose<CR>', opts)
 utils.map('n', '<leader>gp', '<cmd>TermExec cmd="git pull"<CR>', opts)
 utils.map('n', '<leader>gP', '<cmd>TermExec cmd="git push"<CR>', opts)
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
