@@ -191,6 +191,7 @@ utils.map('n', '<leader>gr', '<cmd>OpenInGHRepo<CR>', opts)
 
 -- Organizing
 utils.map('n', '<leader>ow', '<cmd>Neorg workspace main<CR>', opts)
+utils.map('n', '<leader>or', '<cmd>Neorg return<CR>', opts)
 
 -- Quit
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)

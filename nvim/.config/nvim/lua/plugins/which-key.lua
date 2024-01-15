@@ -130,6 +130,7 @@ function M.config()
 		["o"] = {
 			name = "+org",
 			["w"] = { "Workspace" },
+			["r"] = { "Return" },
 		},
 	}
 
