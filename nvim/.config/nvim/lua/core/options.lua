@@ -45,6 +45,7 @@ opt.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrea
 opt.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize" -- things to save in session
 opt.foldlevelstart = 99
 opt.foldenable = true
+opt.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize" -- let persisted know what to save for session
 
 opt.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}%=%m %f" -- basic winbar setup
 

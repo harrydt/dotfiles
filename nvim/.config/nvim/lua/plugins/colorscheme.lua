@@ -54,16 +54,8 @@ function M.config()
 			gitsigns = true,
 			leap = false,
 			telescope = true,
-			nvimtree = {
-				enabled = false,
-				show_root = true,
-				transparent_panel = false,
-			},
-			neotree = {
-				enabled = true,
-				show_root = true,
-				transparent_panel = false,
-			},
+			nvimtree = false,
+			neotree = true,
 			dap = {
 				enabled = false,
 				enable_ui = false,

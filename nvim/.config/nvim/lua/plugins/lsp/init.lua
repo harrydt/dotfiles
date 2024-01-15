@@ -249,6 +249,17 @@ return {
 						},
 					})
 				end,
+				["gopls"] = function()
+					require("lspconfig").gopls.setup({
+						settings = {
+							gopls = {
+								env = {
+									GOFLAGS = "-tags=integration",
+								},
+							},
+						},
+					})
+				end,
 			})
 		end,
 	},
