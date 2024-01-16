@@ -214,19 +214,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
 				[","] = { "Find file" },
 				["/"] = { "Grep" },
 				["i"] = { "Index" },
-				["t"] = { "Table of Contents" },
 				["f"] = {
-					name = "+Find",
+					name = "+find",
 					["f"] = { "Norg files" },
 					["l"] = { "Linkables" },
 					["i"] = { "Headings" },
 				},
 				["l"] = {
-					name = "+Link",
+					name = "+link",
 					["l"] = { "Link" },
 					["f"] = { "File Link" },
 				},
-				["j"] = { "Journal" },
+				["j"] = {
+					name = "+journal",
+					["t"] = "Today",
+					["o"] = "Other,",
+				},
 			},
 		}
 

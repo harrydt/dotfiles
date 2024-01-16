@@ -26,6 +26,7 @@ local plugins = {
 		},
 	},
 	["core.esupports.metagen"] = { config = { type = "auto", update_date = true } },
+	["core.summary"] = {},
 	["core.qol.toc"] = {},
 	["core.qol.todo_items"] = {},
 	["core.looking-glass"] = {},
