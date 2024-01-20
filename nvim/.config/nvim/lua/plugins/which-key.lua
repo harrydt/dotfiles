@@ -89,8 +89,8 @@ function M.config()
 			["B"] = { "Branches" },
 			["l"] = { "Log" },
 			["c"] = { "Commits of buffer" },
-			["f"] = { "Open file in Github" },
-			["r"] = { "Open repo in Github" },
+			["r"] = { "Open line in Github" },
+			["R"] = { "Open file in Github" },
 		},
 		["p"] = {
 			name = "+plugins",

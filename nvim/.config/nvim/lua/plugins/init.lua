@@ -1,6 +1,8 @@
 return {
-	{ "tpope/vim-fugitive" },
-	{ "almo7aya/openingh.nvim" }, -- open file in Github
+	{
+		"tpope/vim-fugitive",
+		dependencies = { "tpope/vim-rhubarb" },
+	},
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "tpope/vim-surround" },
 	{ "norcalli/nvim-colorizer.lua" },
