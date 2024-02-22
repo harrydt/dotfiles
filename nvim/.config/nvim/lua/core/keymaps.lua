@@ -65,6 +65,9 @@ utils.map('n', 'zM', '<cmd>lua require("ufo").closeAllFolds()<CR>', opts)
 vim.api.nvim_create_user_command('Q', 'qa', {})
 vim.api.nvim_create_user_command('W', 'wa', {})
 
+-- oil.nvim
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
 ---[[-----------------]]---
 --    WhichKey binds     --
 ---]]-----------------[[---
