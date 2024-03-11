@@ -34,6 +34,7 @@ function M.config()
 				"--smart-case",
 				"--trim", -- remove indentation
 			},
+			file_ignore_patterns = { ".git/" },
 		},
 		pickers = {
 			find_files = {

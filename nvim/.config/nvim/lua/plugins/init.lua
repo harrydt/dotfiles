@@ -1,7 +1,10 @@
 return {
 	{
 		"tpope/vim-fugitive",
-		dependencies = { "tpope/vim-rhubarb" },
+		dependencies = {
+			"tpope/vim-rhubarb",
+			"tpope/vim-unimpaired", -- some useful ]* and [* keymappings
+		},
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "tpope/vim-surround" },
@@ -12,4 +15,9 @@ return {
 	{ "kevinhwang91/nvim-bqf" },
 	{ "simrat39/rust-tools.nvim" },
 	{ "sindrets/winshift.nvim" },
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
 }
