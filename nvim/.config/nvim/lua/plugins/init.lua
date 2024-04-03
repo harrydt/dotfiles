@@ -16,8 +16,8 @@ return {
 	{ "simrat39/rust-tools.nvim" },
 	{ "sindrets/winshift.nvim" },
 	{
-		"stevearc/oil.nvim",
-		opts = {},
-		dependencies = { "nvim-tree/nvim-web-devicons" },
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
 	},
 }

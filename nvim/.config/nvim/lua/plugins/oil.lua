@@ -6,6 +6,10 @@ return {
 	config = function()
 		require("oil").setup({
 			use_default_keymaps = false,
+			-- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
+			-- Set to false if you still want to use netrw.
+			-- Setting to false because vim-rhubarb needs netrw
+			default_file_explorer = false,
 			keymaps = {
 				["g?"] = "actions.show_help",
 				["<CR>"] = "actions.select",
