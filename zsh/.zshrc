@@ -61,6 +61,7 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   jovial
+  kubectl-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -94,6 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias v="nvim"
 alias lzd="lazydocker"
+
+# When kitty is used to ssh into a remote that does not have its terminfo, various issues can occur.
+# The solution is normally to copy over the terminfo. Kitty has an ssh kitten to automate exactly this. 
+# Setting an alias for ssh
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
