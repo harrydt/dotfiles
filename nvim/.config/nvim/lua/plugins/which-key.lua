@@ -237,4 +237,27 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
+-- git mergetool keymaps
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		if vim.opt.diff:get() then
+			local wk = require("which-key")
+			local opts = {
+				mode = "n", -- NORMAL mode
+				buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings
+			}
+			local mappings = {
+				["<localleader>"] = {
+					["1"] = { ":diffget LOCAL<CR>", "Get LOCAL" },
+					["2"] = { ":diffget BASE<CR>", "Get BASE" },
+					["3"] = { ":diffget REMOTE<CR>", "Get REMOTE" },
+				},
+			}
+
+			wk.register(mappings, opts)
+		end
+	end,
+})
+
 return M

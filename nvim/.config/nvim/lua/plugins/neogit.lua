@@ -17,6 +17,10 @@ return {
 					diffview = true,
 					telescope = true,
 				},
+				commit_editor = {
+					-- "auto" "vsplit" if window would have 80 cols, otherwise "split"
+					kind = "auto",
+				},
 			})
 		end,
 		cmd = "Neogit",

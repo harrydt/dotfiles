@@ -200,3 +200,11 @@ utils.map('n', '<leader>or', '<cmd>Neorg return<CR>', opts)
 utils.map('n', '<leader>qq', '<cmd>q<CR>', opts)
 utils.map('n', '<leader>qa', '<cmd>qa<CR>', opts)
 -- stylua: ignore end
+
+-- Check if diff mode is enabled
+if vim.opt.diff:get() then
+	-- Define key mappings for diff mode
+	vim.api.nvim_set_keymap("n", "<localleader>1", ":diffget LOCAL<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<localleader>2", ":diffget BASE<CR>", { noremap = true, silent = true })
+	vim.api.nvim_set_keymap("n", "<localleader>3", ":diffget REMOTE<CR>", { noremap = true, silent = true })
+end
