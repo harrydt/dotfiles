@@ -56,10 +56,7 @@ function M.config()
 			telescope = true,
 			nvimtree = false,
 			neotree = true,
-			dap = {
-				enabled = false,
-				enable_ui = false,
-			},
+			dap = true,
 			which_key = true,
 			indent_blankline = {
 				enabled = true,
@@ -82,8 +79,16 @@ function M.config()
 			aerial = true,
 			vimwiki = false,
 			beacon = false,
-			navic = true,
+			navic = {
+				enabled = true,
+				custom_bg = "NONE", -- "lualine" will set background to mantle
+			},
+
 			overseer = false,
+			diffview = true,
+			mason = true,
+			noice = true,
+			ufo = true,
 		},
 		color_overrides = {},
 		highlight_overrides = {},
