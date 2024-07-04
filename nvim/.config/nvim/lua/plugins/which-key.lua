@@ -107,8 +107,8 @@ function M.config()
 		["s"] = {
 			name = "+search",
 			["g"] = { "Grep" },
-			["b"] = { "Buffer" },
-			["s"] = { "Goto symbol" },
+			["b"] = { "In opened buffers" },
+			["s"] = { "Symbols" },
 			["h"] = { "Command history" },
 			["m"] = { "Jump to mark" },
 		},

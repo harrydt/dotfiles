@@ -156,7 +156,7 @@ utils.map('n', '<leader>fs', '<cmd>Telescope persisted<CR>', opts)
 utils.map(
   'n',
   '<leader>sb',
-  '<cmd>Telescope current_buffer_fuzzy_find<CR>',
+  '<cmd>lua require("telescope.builtin").live_grep({grep_open_files=true})<CR>',
   opts
 )
 utils.map('n', '<leader>sg', '<cmd>Telescope grep_string<CR>', opts) -- Searches for the string under your cursor in your current working directory
