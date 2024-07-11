@@ -14,6 +14,9 @@ utils.map("n", "<localleader>taa", "<cmd>GoAddAllTest [-parallel]<CR>", opts)
 utils.map("n", "<localleader>Ta", "<cmd>GoAddTag<CR>", opts)
 utils.map("n", "<localleader>Tr", "<cmd>GoRemoveTag<CR>", opts)
 
+-- Comment
+utils.map("n", "<localleader>c", "<cmd>GoCmt<CR>", opts)
+
 -- binaries
 utils.map("n", "<localleader>bi", "<cmd>GoInstallBinaries<CR>", opts)
 utils.map("n", "<localleader>bu", "<cmd>GoUpdateBinaries<CR>", opts)

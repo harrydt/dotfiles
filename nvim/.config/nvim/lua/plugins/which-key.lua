@@ -171,6 +171,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 					i = "Install",
 					u = "Update",
 				},
+				["c"] = { "Add comment" },
 			},
 		}
 
