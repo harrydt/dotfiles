@@ -71,7 +71,8 @@
     "thermal-zone": 1,
     "format": "{temperatureC}°C ",
     "critical-threshold": 70,
-    "format-critical": "{temperatureC}°C "
+    "format-critical": "{temperatureC}°C ",
+    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
