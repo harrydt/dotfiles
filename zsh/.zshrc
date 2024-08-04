@@ -53,15 +53,14 @@ ZSH_THEME="jovial"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  fzf
-  ssh-agent
   autojump
   urltools
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-history-enquirer
   jovial
-  kubectl-autocomplete
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
