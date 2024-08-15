@@ -58,7 +58,6 @@ plugins=(
   bgnotify
   zsh-autosuggestions
   zsh-syntax-highlighting
-  zsh-history-enquirer
   jovial
   fzf
 )
