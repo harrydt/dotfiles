@@ -1,5 +1,6 @@
 local M = {
 	"folke/which-key.nvim",
+	version = "v2.1.0",
 }
 
 function M.config()
