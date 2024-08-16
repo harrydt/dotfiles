@@ -64,6 +64,11 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Unlimited history
+HISTFILE=~/.zsh_history
+HISTSIZE=999999999
+SAVEHIST=$HISTSIZE
+
 # User configuration
 # export MANPATH="/usr/local/man:$MANPATH"
 
