@@ -10,8 +10,8 @@ return {
 			},
 		},
 		keys = {
-			{ "<c-space>", desc = "Increment selection" },
-			{ "<bs>", desc = "Decrement selection", mode = "x" },
+			{ "<C-.>", desc = "Increment selection" },
+			{ "<C-,>", desc = "Decrement selection", mode = "x" },
 		},
 		---@type TSConfig
 		opts = {
@@ -22,10 +22,10 @@ return {
 			incremental_selection = {
 				enable = true,
 				keymaps = {
-					init_selection = "<C-space>",
-					node_incremental = "<C-space>",
+					init_selection = "<C-.>",
+					node_incremental = "<C-.>",
 					scope_incremental = "<nop>",
-					node_decremental = "<bs>",
+					node_decremental = "<C-,>",
 				},
 			},
 		},
