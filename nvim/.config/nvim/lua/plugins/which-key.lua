@@ -32,15 +32,9 @@ function M.config()
 		[":"] = { "Command history" },
 		["b"] = {
 			name = "+buffers",
-			["c"] = { "Clear all buffers" },
-			["f"] = { "Format buffer" },
+			["c"] = { "Close all buffers" },
 			["b"] = { "Switch to other buffer" },
-			["d"] = { "Delete buffer" },
-			["]"] = { "Next buffer" },
-			["n"] = { "Next buffer" },
-			["g"] = { "Goto buffer" },
-			["["] = { "Previous buffer" },
-			["p"] = { "Previous buffer" },
+			["d"] = { "Delete current buffer" },
 		},
 		["c"] = {
 			name = "+code",
@@ -92,6 +86,12 @@ function M.config()
 			["c"] = { "Commits of buffer" },
 			["r"] = { "Open line in Github" },
 			["R"] = { "Open file in Github" },
+		},
+		["l"] = {
+			name = "+llm",
+			["a"] = { "Actions" },
+			["t"] = { "Toggle" },
+			["A"] = { "A" },
 		},
 		["p"] = {
 			name = "+plugins",

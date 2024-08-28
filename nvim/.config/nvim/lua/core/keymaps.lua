@@ -93,38 +93,7 @@ utils.map(
   opts
 )
 utils.map('n', '<leader>bb', '<cmd>e #<CR>', opts)
-utils.map('n', '<leader>bd', ':lua MiniBufremove.delete()<CR>', opts)
-utils.map(
-  'n',
-  '<leader>b]',
-  '<cmd>lua require("bufferline").cycle(1)<CR>',
-  opts
-)
-utils.map(
-  'n',
-  '<leader>bn',
-  '<cmd>lua require("bufferline").cycle(1)<CR>',
-  opts
-)
-utils.map(
-  'n',
-  '<leader>bg',
-  '<cmd>lua require("bufferline").pick_buffer()<CR>',
-  opts
-)
-utils.map(
-  'n',
-  '<leader>b[',
-  '<cmd>lua require("bufferline").cycle(-1)<CR>',
-  opts
-)
-utils.map(
-  'n',
-  '<leader>bp',
-  '<cmd>lua require("bufferline").cycle(-1)<CR>',
-  opts
-)
-utils.map('n', '<leader>bf', '<cmd>FormatWrite<CR>', opts)
+utils.map('n', '<leader>bd', '<cmd>enew<bar>bd #<CR>', opts)
 
 utils.map(
   'n',
@@ -208,3 +177,9 @@ if vim.opt.diff:get() then
 	vim.api.nvim_set_keymap("n", "<localleader>2", ":diffget BASE<CR>", { noremap = true, silent = true })
 	vim.api.nvim_set_keymap("n", "<localleader>3", ":diffget REMOTE<CR>", { noremap = true, silent = true })
 end
+
+-- llm
+utils.map("n", "<leader>la", "<cmd>CodeCompanionActions<CR>", opts)
+utils.map("v", "<leader>la", "<cmd>CodeCompanionActions<CR>", opts)
+utils.map("n", "<leader>lt", "<cmd>CodeCompanionToggle<CR>", opts)
+utils.map("v", "<leader>lA", "<cmd>CodeCompanionAdd<CR>", opts)
