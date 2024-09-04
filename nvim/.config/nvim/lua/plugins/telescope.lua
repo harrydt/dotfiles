@@ -5,6 +5,7 @@ local M = {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = true },
 			"nvim-telescope/telescope-file-browser.nvim",
+			"aaronhallaert/advanced-git-search.nvim",
 		},
 	},
 	cmd = { "Telescope", "Tel" }, -- lazy loads on these commands
@@ -21,6 +22,7 @@ function M.config()
 				case_mode = "smart_case", -- or "ignore_case" or "respect_case"
 				-- the default case_mode is "smart_case"
 			},
+			advanced_git_search = {},
 		},
 		defaults = {
 			vimgrep_arguments = {
@@ -45,6 +47,7 @@ function M.config()
 		telescope.load_extension("fzf"),
 		telescope.load_extension("file_browser"),
 		telescope.load_extension("persisted"),
+		telescope.load_extension("advanced_git_search"),
 	})
 end
 

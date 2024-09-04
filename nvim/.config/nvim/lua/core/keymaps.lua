@@ -160,6 +160,7 @@ utils.map('n', '<leader>gl', '<cmd>Telescope git_commits<CR>', opts)  -- list gi
 utils.map('n', '<leader>gc', '<cmd>Telescope git_bcommits<CR>', opts) -- list buffer's git commits
 utils.map('n', '<leader>gr', '<cmd>.GBrowse<CR>', opts)
 utils.map('n', '<leader>gR', '<cmd>GBrowse<CR>', opts)
+utils.map('n', '<leader>ga', '<cmd>AdvancedGitSearch<CR>', opts)
 
 -- Organizing
 utils.map('n', '<leader>ow', '<cmd>Neorg workspace main<CR>', opts)

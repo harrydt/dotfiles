@@ -86,6 +86,7 @@ function M.config()
 			["c"] = { "Commits of buffer" },
 			["r"] = { "Open line in Github" },
 			["R"] = { "Open file in Github" },
+			["a"] = { "Advanced Git search" },
 		},
 		["l"] = {
 			name = "+llm",
