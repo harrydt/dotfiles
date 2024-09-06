@@ -4,8 +4,8 @@ local M = {}
 
 M.root_patterns = { ".git", "lua" }
 function M.get_clients(...)
-  local fn = vim.lsp.get_clients or vim.lsp.get_active_clients
-  return fn(...)
+	local fn = vim.lsp.get_clients or vim.lsp.get_active_clients
+	return fn(...)
 end
 
 -- Local files
