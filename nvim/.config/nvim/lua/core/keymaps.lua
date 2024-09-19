@@ -98,13 +98,13 @@ utils.map('n', '<leader>bd', '<cmd>enew<bar>bd #<CR>', opts)
 utils.map(
   'n',
   '<leader>cdd',
-  '<cmd>TroubleToggle document_diagnostics<CR>',
+  '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
   opts
 )
 utils.map(
   'n',
   '<leader>cdw',
-  '<cmd>TroubleToggle workspace_diagnostics<CR>',
+  '<cmd>Trouble diagnostics toggle<CR>',
   opts
 )
 
