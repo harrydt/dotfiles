@@ -2,11 +2,12 @@ return {
 	"olimorris/persisted.nvim",
 	lazy = false,
 	config = function()
-		require("persisted").setup({
-			autoload = true, -- automatically load the session for the cwd on Neovim startup
-			allowed_dirs = { "~/Git", "~/dotfiles" },
-			ignored_dirs = { "~/Dropbox/neorg" },
-			---@return boolean
+		local persisted = require("persisted")
+		local utils = require("persisted.utils")
+		local allowed_dirs = { "~/Git", "~/dotfiles" }
+		local ignored_dirs = { "~/Dropbox/neorg" }
+		persisted.setup({
+			autoload = true,
 			should_save = function()
 				if vim.bo.filetype == "gitcommit" then
 					return false
@@ -14,8 +15,14 @@ return {
 				if vim.opt.diff:get() then
 					return false
 				end
+				if utils.dirs_match(vim.fn.getcwd(), ignored_dirs) then
+					return false
+				end
+				if utils.dirs_match(vim.fn.getcwd(), allowed_dirs) then
+					return true
+				end
 
-				return true
+				return false
 			end,
 		})
 	end,
