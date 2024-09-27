@@ -1,5 +1,5 @@
+![image](https://github.com/user-attachments/assets/12f625b0-8c55-4183-be14-acaf82870f70)
 
-![2024-03-16_10-36](https://github.com/harrydt/dotfiles/assets/15040151/bf7bba5b-c6fd-4794-a37f-9178f3e640eb)
 # Stow
 These dotfiles are managed by [GNU stow](https://www.gnu.org/software/stow/)
 - Clone the repo
