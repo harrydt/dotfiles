@@ -20,3 +20,9 @@ utils.map("n", "<localleader>c", "<cmd>GoCmt<CR>", opts)
 -- binaries
 utils.map("n", "<localleader>bi", "<cmd>GoInstallBinaries<CR>", opts)
 utils.map("n", "<localleader>bu", "<cmd>GoUpdateBinaries<CR>", opts)
+
+-- Fill
+utils.map("n", "<localleader>fs", "<cmd>GoFillStruct<CR>", opts)
+utils.map("n", "<localleader>fS", "<cmd>GoFillSwitch<CR>", opts)
+utils.map("n", "<localleader>fe", "<cmd>GoIfErr<CR>", opts)
+utils.map("n", "<localleader>fp", "<cmd>GoFixPlurals<CR>", opts)

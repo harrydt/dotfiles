@@ -174,6 +174,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 					u = "Update",
 				},
 				["c"] = { "Add comment" },
+				f = {
+					name = "+fill",
+					s = "Auto fill struct",
+					S = "Fill switch",
+					e = "Add if err",
+					p = "Fix plurals",
+				},
 			},
 		}
 
