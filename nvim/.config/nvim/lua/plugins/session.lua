@@ -12,6 +12,9 @@ return {
 				if vim.bo.filetype == "gitcommit" then
 					return false
 				end
+				if vim.bo.filetype == "man" then
+					return false
+				end
 				if vim.opt.diff:get() then
 					return false
 				end

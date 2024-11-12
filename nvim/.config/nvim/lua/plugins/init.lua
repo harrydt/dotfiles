@@ -19,4 +19,9 @@ return {
 		dependencies = "neovim/nvim-lspconfig",
 		event = "VeryLazy",
 	},
+	{
+		"chentoast/marks.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
 }
