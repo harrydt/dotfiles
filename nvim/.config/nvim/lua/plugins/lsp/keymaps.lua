@@ -20,7 +20,7 @@ function M.get()
       { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
       { "gi", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
       { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
-      { "K", vim.lsp.buf.hover, desc = "Hover" },
+      { "K", function() return vim.lsp.buf.hover() end, desc = "Hover" },
       { "gK", vim.lsp.buf.signature_help, desc = "Signature Help", has = "signatureHelp" },
       { "<c-k>", vim.lsp.buf.signature_help, mode = "i", desc = "Signature Help", has = "signatureHelp" },
       { "]g", M.diagnostic_goto(true), desc = "Next Diagnostic" },
