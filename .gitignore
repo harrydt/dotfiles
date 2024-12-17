@@ -4,3 +4,4 @@ nvim/.config/nvim/plugged/
 packer_compiled.lua
 .luarc.json
 lazy-lock.json
+.DS_Store
