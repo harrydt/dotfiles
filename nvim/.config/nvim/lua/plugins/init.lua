@@ -24,4 +24,5 @@ return {
 		event = "VeryLazy",
 		opts = {},
 	},
+	{ "nullromo/go-up.nvim", config = true },
 }
