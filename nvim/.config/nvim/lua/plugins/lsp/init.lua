@@ -278,6 +278,16 @@ return {
 					nls.builtins.formatting.shfmt,
 					nls.builtins.diagnostics.buf,
 				},
+				should_attach = function(bufnr)
+					local buf_name = vim.api.nvim_buf_get_name(bufnr)
+					-- Check if buffer path starts with $HOME/kong
+					if buf_name:find(vim.fn.expand("$HOME/kong"), 1, true) then
+						-- This is to disable autoformat for kong code
+						return false
+					end
+
+					return true -- Attach null-ls to all other buffers
+				end,
 			}
 		end,
 	},

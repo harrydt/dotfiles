@@ -4,7 +4,7 @@ return {
 	config = function()
 		local persisted = require("persisted")
 		local utils = require("persisted.utils")
-		local allowed_dirs = { "~/Git", "~/dotfiles" }
+		local allowed_dirs = { "~/Git", "~/dotfiles", "~/kong" }
 		local ignored_dirs = { "~/Dropbox/neorg" }
 		persisted.setup({
 			autoload = true,
