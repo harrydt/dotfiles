@@ -24,4 +24,15 @@ return {
 		event = "VeryLazy",
 		opts = {},
 	},
+	{
+		"shortcuts/no-neck-pain.nvim",
+		version = "*",
+		config = function()
+			require("no-neck-pain").setup({
+				width = 150,
+				-- Avoid mapping conflicts
+				mappings = {},
+			})
+		end,
+	},
 }

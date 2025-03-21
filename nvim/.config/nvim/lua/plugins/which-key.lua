@@ -127,6 +127,7 @@ function M.config()
 			["="] = { "Balance window" },
 			["m"] = { "Move windows" },
 			["S"] = { "Swap windows" },
+			["c"] = { "Center window" },
 		},
 		-- Organizing
 		["o"] = {

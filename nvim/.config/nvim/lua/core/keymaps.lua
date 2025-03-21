@@ -145,6 +145,7 @@ utils.map('n', '<leader>wK', '<cmd>resize -5<CR>', opts)
 utils.map('n', '<leader>w=', '<C-W>=', opts)
 utils.map('n', '<leader>wm', '<cmd>WinShift<CR>', opts)
 utils.map('n', '<leader>wS', '<cmd>WinShift swap<CR>', opts)
+utils.map('n', '<leader>wc', '<cmd>NoNeckPain<CR>', opts)
 
 -- git
 utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
