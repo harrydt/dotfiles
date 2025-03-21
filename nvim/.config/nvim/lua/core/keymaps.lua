@@ -152,7 +152,7 @@ utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
 utils.map('n', '<leader>gdo', '<cmd>DiffviewOpen<CR>', opts)
 utils.map('n', '<leader>gdc', '<cmd>DiffviewClose<CR>', opts)
 utils.map('n', '<leader>gp', '<cmd>G pull<CR>', opts)
-utils.map('n', '<leader>gP', '<cmd>G push<CR>', opts)
+-- utils.map('n', '<leader>gP', '<cmd>G push<CR>', opts) -- seems risky
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
 utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)
