@@ -53,7 +53,7 @@ ZSH_THEME="jovial"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  autojump
+  fasd
   urltools
   bgnotify
   zsh-autosuggestions
