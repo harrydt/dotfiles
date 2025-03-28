@@ -91,8 +91,9 @@ function M.config()
 		["l"] = {
 			name = "+llm",
 			["a"] = { "Actions" },
+			["i"] = { "Inline" },
 			["t"] = { "Toggle" },
-			["A"] = { "A" },
+			["A"] = { "Agent" }, -- TODO not setup yet
 		},
 		["p"] = {
 			name = "+plugins",

@@ -8,6 +8,23 @@ local M = {
 			"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
 			opts = {},
 		},
+		{
+			"zbirenbaum/copilot.lua",
+			cmd = "Copilot",
+			event = "InsertEnter",
+			config = function()
+				require("copilot").setup({
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+				})
+			end,
+		},
+		{
+			"zbirenbaum/copilot-cmp",
+			config = function()
+				require("copilot_cmp").setup()
+			end,
+		},
 	},
 	config = function()
 		require("codecompanion").setup({
@@ -16,10 +33,20 @@ local M = {
 					adapter = "openai",
 				},
 				inline = {
-					adapter = "openai",
+					adapter = "copilot",
+					keymaps = {
+						accept_change = {
+							modes = { n = "ga" },
+							description = "Accept the suggested change",
+						},
+						reject_change = {
+							modes = { n = "gr" },
+							description = "Reject the suggested change",
+						},
+					},
 				},
 				agent = {
-					adapter = "openai",
+					adapter = "copilot",
 				},
 			},
 			adapters = {

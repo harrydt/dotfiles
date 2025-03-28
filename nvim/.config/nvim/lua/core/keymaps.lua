@@ -184,4 +184,5 @@ end
 utils.map("n", "<leader>la", "<cmd>CodeCompanionActions<CR>", opts)
 utils.map("v", "<leader>la", "<cmd>CodeCompanionActions<CR>", opts)
 utils.map("n", "<leader>lt", "<cmd>CodeCompanionChat Toggle<CR>", opts)
+utils.map("n", "<leader>li", ":CodeCompanion<CR>", opts)
 utils.map("v", "<leader>lA", "<cmd>CodeCompanionAdd<CR>", opts)
