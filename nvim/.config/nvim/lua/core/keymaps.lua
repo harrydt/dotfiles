@@ -133,6 +133,13 @@ utils.map('n', '<leader>sh', '<cmd>Telescope command_history<CR>', opts)
 utils.map('n', '<leader>ss', '<cmd>Telescope lsp_document_symbols<CR>', opts)
 utils.map('n', '<leader>sm', '<cmd>Telescope marks<CR>', opts)
 
+-- test
+utils.map('n', '<leader>tt', "<cmd>lua require('neotest').run.run()<CR>", opts)
+utils.map('n', '<leader>tf', "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", opts)
+utils.map('n', '<leader>to', "<cmd>lua require('neotest').output.open({ enter = true })<CR>", opts)
+utils.map('n', '<leader>tO', "<cmd>lua require('neotest').output_panel.toggle()<CR>", opts)
+utils.map('n', '<leader>ts', "<cmd>lua require('neotest').summary.toggle()<CR>", opts)
+
 -- windows
 utils.map('n', '<leader>ww', '<C-W>p', opts)
 utils.map('n', '<leader>wd', '<C-W>c', opts)

@@ -115,6 +115,14 @@ function M.config()
 			["h"] = { "Command history" },
 			["m"] = { "Jump to mark" },
 		},
+		["t"] = {
+			name = "+test",
+			["t"] = { "Run nearest test" },
+			["f"] = { "Run tests in file" },
+			["o"] = { "Output of test result" },
+			["O"] = { "Output panel of all tests" },
+			["s"] = { "Test summary" },
+		},
 		["w"] = {
 			name = "+windows",
 			["w"] = { "Other window" },
