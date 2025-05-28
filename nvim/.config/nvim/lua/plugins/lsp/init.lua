@@ -6,8 +6,8 @@ return {
 		dependencies = {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", opts = {} },
-			"mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			{ "mason.nvim", version = "^1.0.0" },
+			{ "williamboman/mason-lspconfig.nvim", version = "^1.0.0" },
 			{
 				"hrsh7th/cmp-nvim-lsp",
 				-- cond = function()
