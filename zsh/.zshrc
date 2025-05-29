@@ -60,6 +60,7 @@ plugins=(
   zsh-syntax-highlighting
   jovial
   fzf
+  vi-mode
 )
 
 # https://github.com/zsh-users/zsh-completions
