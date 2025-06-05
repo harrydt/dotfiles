@@ -18,6 +18,9 @@ return {
 				if vim.opt.diff:get() then
 					return false
 				end
+				if vim.bo.filetype == "norg" then
+					return false
+				end
 				if utils.dirs_match(vim.fn.getcwd(), ignored_dirs) then
 					return false
 				end
