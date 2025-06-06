@@ -59,8 +59,8 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   jovial
-  fzf
   vi-mode
+  fzf
 )
 
 # https://github.com/zsh-users/zsh-completions
@@ -108,8 +108,6 @@ alias lzd="lazydocker"
 # The solution is normally to copy over the terminfo. Kitty has an ssh kitten to automate exactly this. 
 # Setting an alias for ssh
 [ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$HOME/.cargo/bin:$PATH"
 
