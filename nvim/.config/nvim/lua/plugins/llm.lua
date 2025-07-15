@@ -30,7 +30,7 @@ local M = {
 		require("codecompanion").setup({
 			strategies = {
 				chat = {
-					adapter = "openai",
+					adapter = "copilot",
 				},
 				inline = {
 					adapter = "copilot",
