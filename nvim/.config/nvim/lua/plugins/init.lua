@@ -7,7 +7,6 @@ return {
 		},
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
-	{ "tpope/vim-surround" },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "windwp/nvim-autopairs", config = true }, -- See `config` under https://github.com/folke/lazy.nvim#-plugin-spec
 	{ "nvim-tree/nvim-web-devicons", lazy = true },
@@ -33,6 +32,14 @@ return {
 				-- Avoid mapping conflicts
 				mappings = {},
 			})
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({})
 		end,
 	},
 }
