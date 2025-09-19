@@ -159,8 +159,12 @@ utils.map('n', '<leader>go', '<cmd>Neogit<CR>', opts)
 -- DiffviewToggle when?
 utils.map('n', '<leader>gdo', '<cmd>DiffviewOpen<CR>', opts)
 utils.map('n', '<leader>gdc', '<cmd>DiffviewClose<CR>', opts)
+utils.map('n', '<leader>gdf', '<cmd>DiffviewFileHistory<CR>', opts)
+-- utils.map uses nvim.set_keymap which doesn't support lua functions directly
+vim.keymap.set('n', '<leader>gdm', function() vim.cmd('DiffviewOpen ' .. utils.get_default_branch_name()) end, opts)
+vim.keymap.set('n', '<leader>gdM', function()  vim.cmd('DiffviewOpen HEAD..origin/' .. utils.get_default_branch_name())end, opts)
+utils.map('n', '<leader>gdf', '<cmd>DiffviewFileHistory<CR>', opts)
 utils.map('n', '<leader>gp', '<cmd>G pull<CR>', opts)
--- utils.map('n', '<leader>gP', '<cmd>G push<CR>', opts) -- seems risky
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
 utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
 utils.map('n', '<leader>gB', '<cmd>Telescope git_branches<CR>', opts)

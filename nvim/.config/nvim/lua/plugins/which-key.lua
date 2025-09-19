@@ -74,7 +74,10 @@ function M.config()
 			["o"] = { "Open Neogit" },
 			["d"] = {
 				name = "+diffview",
-				["o"] = { "Open" },
+				["o"] = { "Open (compare against HEAD)" },
+				["f"] = { "File history" },
+				["m"] = { "Compare against main/master" },
+				["M"] = { "Compare against remote main/master" },
 				["c"] = { "Close" },
 			},
 			["p"] = { "Pull" },
