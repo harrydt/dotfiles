@@ -21,6 +21,12 @@ return {
 				if vim.bo.filetype == "norg" then
 					return false
 				end
+				if vim.bo.filetype == "NeogitStatus" or vim.bo.filetype == "NeogitCommitMessage" then
+					return false
+				end
+				if vim.bo.filetype == "DiffviewFiles" or vim.bo.filetype == "DiffviewFileHistory" then
+					return false
+				end
 				if utils.dirs_match(vim.fn.getcwd(), ignored_dirs) then
 					return false
 				end
