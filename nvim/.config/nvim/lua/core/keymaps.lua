@@ -68,6 +68,78 @@ vim.api.nvim_create_user_command('W', 'wa', {})
 -- oil.nvim
 utils.map("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
+-- lsp
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(ev)
+		local bufnr = ev.buf
+		local client = vim.lsp.get_client_by_id(ev.data.client_id)
+		if not client then
+			return
+		end
+
+		-- Helper for diagnostic navigation
+		local function diagnostic_goto(next, severity)
+			local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+			severity = severity and vim.diagnostic.severity[severity] or nil
+			return function()
+				go({ severity = severity })
+			end
+		end
+
+		local keymap = vim.keymap.set
+		local opts = { silent = true, buffer = bufnr }
+		local function opt(desc, others)
+			return vim.tbl_extend("force", opts, { desc = desc }, others or {})
+		end
+
+		-- Keymaps
+		keymap("n", "<leader>cdl", vim.diagnostic.open_float, opt("Line Diagnostics"))
+		keymap("n", "<leader>cli", "<cmd>LspInfo<cr>", opt("Lsp Info"))
+		keymap("n", "gd", function()
+			require("telescope.builtin").lsp_definitions({ reuse_win = true })
+		end, opt("Goto Definition"))
+		keymap("n", "gr", "<cmd>Telescope lsp_references<cr>", opt("References"))
+		keymap("n", "gD", vim.lsp.buf.declaration, opt("Goto Declaration"))
+		keymap("n", "gi", function()
+			require("telescope.builtin").lsp_implementations({ reuse_win = true })
+		end, opt("Goto Implementation"))
+		keymap("n", "gy", function()
+			require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
+		end, opt("Goto T[y]pe Definition"))
+		keymap("n", "K", function()
+			return vim.lsp.buf.hover()
+		end, opt("Hover"))
+		keymap("n", "gK", vim.lsp.buf.signature_help, opt("Signature Help"))
+		keymap("i", "<c-k>", vim.lsp.buf.signature_help, opt("Signature Help"))
+		keymap("n", "]g", diagnostic_goto(true), opt("Next Diagnostic"))
+		keymap("n", "[g", diagnostic_goto(false), opt("Prev Diagnostic"))
+		keymap("n", "]e", diagnostic_goto(true, "ERROR"), opt("Next Error"))
+		keymap("n", "[e", diagnostic_goto(false, "ERROR"), opt("Prev Error"))
+		keymap("n", "]w", diagnostic_goto(true, "WARN"), opt("Next Warning"))
+		keymap("n", "[w", diagnostic_goto(false, "WARN"), opt("Prev Warning"))
+		keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opt("Code Action"))
+		keymap("n", "<leader>cA", function()
+			vim.lsp.buf.code_action({
+				context = {
+					only = { "source" },
+					diagnostics = {},
+				},
+			})
+		end, opt("Source Action"))
+
+		-- Conditional rename keymap
+		local has_inc_rename, inc_rename = pcall(require, "inc_rename")
+		if has_inc_rename then
+			keymap("n", "<leader>cr", function()
+				return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
+			end, vim.tbl_extend("force", opt("Rename"), { expr = true }))
+		else
+			keymap("n", "<leader>cr", vim.lsp.buf.rename, opt("Rename"))
+		end
+	end,
+})
+
+
 ---[[-----------------]]---
 --    WhichKey binds     --
 ---]]-----------------[[---

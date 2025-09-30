@@ -9,15 +9,8 @@ return {
 	{ "lewis6991/gitsigns.nvim", config = true },
 	{ "norcalli/nvim-colorizer.lua" },
 	{ "windwp/nvim-autopairs", config = true }, -- See `config` under https://github.com/folke/lazy.nvim#-plugin-spec
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
 	{ "kevinhwang91/nvim-bqf" },
-	{ "simrat39/rust-tools.nvim" },
 	{ "sindrets/winshift.nvim" },
-	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "VeryLazy",
-	},
 	{
 		"chentoast/marks.nvim",
 		event = "VeryLazy",
