@@ -10,19 +10,20 @@ local M = {
 		},
 		{
 			"zbirenbaum/copilot.lua",
+			dependencies = {
+				"copilotlsp-nvim/copilot-lsp",
+			},
 			cmd = "Copilot",
 			event = "InsertEnter",
 			config = function()
 				require("copilot").setup({
 					suggestion = { enabled = false },
 					panel = { enabled = false },
+					filetypes = {
+						markdown = true,
+						help = true,
+					},
 				})
-			end,
-		},
-		{
-			"zbirenbaum/copilot-cmp",
-			config = function()
-				require("copilot_cmp").setup()
 			end,
 		},
 	},
