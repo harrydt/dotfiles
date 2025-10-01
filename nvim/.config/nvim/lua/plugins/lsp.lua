@@ -16,7 +16,6 @@ return {
 			ensure_installed = {
 				"gopls",
 				"gofumpt",
-				"golangci_lint_ls",
 				"lua_ls",
 				"stylua",
 				"shfmt",
