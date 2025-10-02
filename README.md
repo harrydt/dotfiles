@@ -33,30 +33,34 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 
 ## Plugins
 
+### ai
+
++ [olimorris/codecompanion.nvim](https://dotfyle.com/plugins/olimorris/codecompanion.nvim)
 ### bars-and-lines
 
 + [SmiteshP/nvim-navic](https://dotfyle.com/plugins/SmiteshP/nvim-navic)
 ### colorscheme
 
 + [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
-### comment
-
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
 ### completion
 
-+ [simrat39/rust-tools.nvim](https://dotfyle.com/plugins/simrat39/rust-tools.nvim)
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
++ [zbirenbaum/copilot.lua](https://dotfyle.com/plugins/zbirenbaum/copilot.lua)
++ [fang2hou/blink-copilot](https://dotfyle.com/plugins/fang2hou/blink-copilot)
 ### diagnostics
 
 + [folke/trouble.nvim](https://dotfyle.com/plugins/folke/trouble.nvim)
 ### editing-support
 
++ [shortcuts/no-neck-pain.nvim](https://dotfyle.com/plugins/shortcuts/no-neck-pain.nvim)
 + [echasnovski/mini.ai](https://dotfyle.com/plugins/echasnovski/mini.ai)
 + [windwp/nvim-autopairs](https://dotfyle.com/plugins/windwp/nvim-autopairs)
 ### file-explorer
 
 + [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
 + [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
+### formatting
+
++ [stevearc/conform.nvim](https://dotfyle.com/plugins/stevearc/conform.nvim)
 ### fuzzy-finder
 
 + [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
@@ -65,9 +69,13 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 + [sindrets/diffview.nvim](https://dotfyle.com/plugins/sindrets/diffview.nvim)
 + [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
 + [NeogitOrg/neogit](https://dotfyle.com/plugins/NeogitOrg/neogit)
++ [aaronhallaert/advanced-git-search.nvim](https://dotfyle.com/plugins/aaronhallaert/advanced-git-search.nvim)
 ### golang
 
 + [ray-x/go.nvim](https://dotfyle.com/plugins/ray-x/go.nvim)
+### icon
+
++ [nvim-tree/nvim-web-devicons](https://dotfyle.com/plugins/nvim-tree/nvim-web-devicons)
 ### indent
 
 + [echasnovski/mini.indentscope](https://dotfyle.com/plugins/echasnovski/mini.indentscope)
@@ -77,24 +85,25 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 + [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 ### lsp
 
++ [zeioth/garbage-day.nvim](https://dotfyle.com/plugins/zeioth/garbage-day.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
 + [stevearc/aerial.nvim](https://dotfyle.com/plugins/stevearc/aerial.nvim)
-+ [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
-### lsp-installer
++ [mrcjkb/rustaceanvim](https://dotfyle.com/plugins/mrcjkb/rustaceanvim)
+### marks
 
-+ [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
++ [chentoast/marks.nvim](https://dotfyle.com/plugins/chentoast/marks.nvim)
 ### motion
 
 + [phaazon/hop.nvim](https://dotfyle.com/plugins/phaazon/hop.nvim)
 ### note-taking
 
 + [nvim-neorg/neorg](https://dotfyle.com/plugins/nvim-neorg/neorg)
++ [nvim-neorg/neorg-telescope](https://dotfyle.com/plugins/nvim-neorg/neorg-telescope)
 ### nvim-dev
 
 + [ray-x/guihua.lua](https://dotfyle.com/plugins/ray-x/guihua.lua)
 + [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 + [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
-+ [folke/neodev.nvim](https://dotfyle.com/plugins/folke/neodev.nvim)
 ### plugin-manager
 
 + [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
@@ -110,7 +119,6 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 ### snippet
 
 + [rafamadriz/friendly-snippets](https://dotfyle.com/plugins/rafamadriz/friendly-snippets)
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 ### split-and-window
 
 + [sindrets/winshift.nvim](https://dotfyle.com/plugins/sindrets/winshift.nvim)
@@ -119,8 +127,16 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 + [NTBBloodbath/galaxyline.nvim](https://dotfyle.com/plugins/NTBBloodbath/galaxyline.nvim)
 ### syntax
 
++ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
+### terminal-integration
+
++ [akinsho/toggleterm.nvim](https://dotfyle.com/plugins/akinsho/toggleterm.nvim)
+### test
+
++ [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
++ [fredrikaverpil/neotest-golang](https://dotfyle.com/plugins/fredrikaverpil/neotest-golang)
 ### utility
 
 + [kevinhwang91/nvim-ufo](https://dotfyle.com/plugins/kevinhwang91/nvim-ufo)
@@ -129,11 +145,10 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 + [stevearc/dressing.nvim](https://dotfyle.com/plugins/stevearc/dressing.nvim)
 ## Language Servers
 
-+ denols
 + gopls
++ jsonls
 + lua_ls
-+ rust_analyzer
-+ tsserver
++ yamlls
 
 
  This readme was generated by [Dotfyle](https://dotfyle.com)
