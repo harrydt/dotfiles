@@ -4,6 +4,7 @@ return {
 	dependencies = {
 		"rafamadriz/friendly-snippets",
 		"fang2hou/blink-copilot",
+		"nvim-mini/mini.icons",
 	},
 
 	-- use a release tag to download pre-built binaries
@@ -46,6 +47,26 @@ return {
 						{ "label", "label_description", gap = 1 },
 						{ "kind_icon", "kind" },
 					},
+					components = {
+						kind_icon = {
+							text = function(ctx)
+								local kind_icon, _, _ = require("mini.icons").get("lsp", ctx.kind)
+								return kind_icon
+							end,
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+						kind = {
+							-- (optional) use highlights from mini.icons
+							highlight = function(ctx)
+								local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+								return hl
+							end,
+						},
+					},
 				},
 				auto_show = true,
 			},
@@ -75,6 +96,12 @@ return {
 		--
 		-- See the fuzzy documentation for more information
 		fuzzy = { implementation = "prefer_rust_with_warning" },
+
+		-- Blink supports signature help by manually pressing <C-k> (by default) or automatically triggered when typing trigger characters,
+		-- defined by the LSP, such as ( for lua.
+		-- The menu will be updated when pressing a retrigger character, such as ,.
+		-- Due to it being experimental, this feature is opt-in.
+		signature = { enabled = true },
 	},
 	opts_extend = { "sources.default" },
 }

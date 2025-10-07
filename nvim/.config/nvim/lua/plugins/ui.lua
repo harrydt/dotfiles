@@ -169,7 +169,13 @@ return {
 	},
 
 	-- icons
-	{ "nvim-mini/mini.icons", version = false },
+	{
+		"nvim-mini/mini.icons",
+		version = false,
+		init = function()
+			require("mini.icons").setup()
+		end,
+	},
 
 	-- ui components
 	{ "MunifTanjim/nui.nvim", lazy = true },
