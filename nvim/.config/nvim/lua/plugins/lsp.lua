@@ -15,10 +15,7 @@ return {
 		opts = {
 			ensure_installed = {
 				"gopls",
-				"gofumpt",
 				"lua_ls",
-				"stylua",
-				"shfmt",
 				"yamlls",
 				"jsonls",
 				-- rust-analyzer is handled by rustaceanvim
