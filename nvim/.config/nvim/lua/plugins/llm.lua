@@ -1,5 +1,6 @@
 local M = {
 	"olimorris/codecompanion.nvim",
+	version = "v17.33.0", -- avoid breaking changes in v18
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",
@@ -50,6 +51,7 @@ local M = {
 					adapter = "copilot",
 				},
 			},
+			ignore_warnings = true, -- TODO remove once upgrade to v18
 		})
 	end,
 }
