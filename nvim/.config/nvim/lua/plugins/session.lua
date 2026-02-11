@@ -27,6 +27,9 @@ return {
 				if vim.bo.filetype == "DiffviewFiles" or vim.bo.filetype == "DiffviewFileHistory" then
 					return false
 				end
+				if vim.bo.filetype == "dbui" or vim.bo.filetype == "sql" then -- disables for vim-dadbod-ui and vim-dadbod
+					return false
+				end
 				if utils.dirs_match(vim.fn.getcwd(), ignored_dirs) then
 					return false
 				end

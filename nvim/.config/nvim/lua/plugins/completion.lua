@@ -89,10 +89,12 @@ return {
 					-- make lazydev completions top priority (see `:h blink.cmp`)
 					score_offset = 100,
 				},
+				dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 
 			per_filetype = {
 				codecompanion = { "codecompanion" },
+				sql = { "snippets", "dadbod", "buffer" },
 			},
 		},
 
