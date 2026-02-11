@@ -51,4 +51,11 @@ return {
 			require("kitty-scrollback").setup()
 		end,
 	},
+	{
+		"folke/snacks.nvim",
+		---@type snacks.Config
+		opts = {
+			bigfile = {},
+		},
+	},
 }
