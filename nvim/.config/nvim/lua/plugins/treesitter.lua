@@ -1,37 +1,72 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		version = false, -- last release is way too old and doesn't work on Windows
+		branch = "main",
+		lazy = false,
 		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
-		dependencies = {
-			{
-				"nvim-treesitter/nvim-treesitter-textobjects",
-			},
-		},
-		keys = {
-			{ "<C-.>", desc = "Increment selection" },
-			{ "<C-,>", desc = "Decrement selection", mode = "x" },
-		},
-		---@type TSConfig
-		opts = {
-			highlight = { enable = true },
-			indent = { enable = true, disable = { "python" } },
-			context_commentstring = { enable = true, enable_autocmd = false },
-			ensure_installed = "all",
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<C-.>",
-					node_incremental = "<C-.>",
-					scope_incremental = "<nop>",
-					node_decremental = "<C-,>",
-				},
-			},
-		},
-		---@param opts TSConfig
-		config = function(_, opts)
-			require("nvim-treesitter.configs").setup(opts)
+		config = function()
+			local ts = require("nvim-treesitter")
+			local parsers = {
+				"bash",
+				"comment",
+				"css",
+				"diff",
+				"dockerfile",
+				"git_config",
+				"gitcommit",
+				"gitignore",
+				"go",
+				"html",
+				"http",
+				"javascript",
+				"jsdoc",
+				"json",
+				"json5",
+				"lua",
+				"make",
+				"markdown",
+				"markdown_inline",
+				"python",
+				"regex",
+				"rust",
+				"scss",
+				"sql",
+				"toml",
+				"tsx",
+				"typescript",
+				"vim",
+				"vimdoc",
+				"yaml",
+			}
+
+			for _, parser in ipairs(parsers) do
+				ts.install(parser)
+			end
+
+			local patterns = {}
+			for _, parser in ipairs(parsers) do
+				local ok, filetypes = pcall(vim.treesitter.language.get_filetypes, parser)
+				if ok then
+					for _, ft in ipairs(filetypes) do
+						table.insert(patterns, ft)
+					end
+				end
+			end
+
+			vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+			vim.wo[0][0].foldmethod = "expr"
+
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = patterns,
+				callback = function()
+					vim.treesitter.start()
+				end,
+			})
 		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		branch = "main",
+		dependencies = { { "nvim-treesitter/nvim-treesitter", branch = "main" } },
 	},
 }
