@@ -1,155 +1,125 @@
 local M = {
 	"folke/which-key.nvim",
-	version = "v2.1.0",
 }
 
 function M.config()
 	local wk = require("which-key")
-	local opts = {
+
+	wk.setup({
 		plugins = { spelling = true },
-		window = {
-			padding = { 0, 0, 0, 0 }, -- extra window padding [top, right, bottom, left]
-		},
-		layout = {
-			height = { min = 1, max = 10 }, -- min and max height of the columns
-			spacing = 3,
-			align = "left",
-		},
-		ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-		show_help = true, -- show help message on the command line when the popup is visible
-		triggers = "auto", -- automatically setup triggers
-	}
-	wk.setup(opts)
+	})
 
-	----- Whichkey binds ------------------------
-	---------------------------------------------
-	local mappings = {
-		["`"] = { "Switch buffer" },
-		[" "] = { "Find file" },
-		["."] = { "Browse files" },
-		[","] = { "Find buffer" },
-		["/"] = { "Grep" },
-		[":"] = { "Command history" },
-		["b"] = {
-			name = "+buffers",
-			["c"] = { "Close all buffers" },
-			["b"] = { "Switch to other buffer" },
-			["d"] = { "Delete current buffer" },
-		},
-		["c"] = {
-			name = "+code",
-			a = { "Actions" },
-			d = {
-				name = "+diagnostic",
-				["l"] = { "Show line diagnostics" },
-				["d"] = { "Show document diagnostics" },
-				["w"] = { "Show workspace diagnostics" },
-			},
-			r = { "Rename" },
-			["l"] = {
-				name = "+lsp",
-				["i"] = { "Lsp info" },
-				["d"] = { "Show type definition" },
-			},
-		},
-		-- change this to debug later maybe?
-		--[[ ['d'] = {
-			name = '+doom',
-			['c'] = { 'Edit your Doom Nvim configuration' },
-			['d'] = { 'Open Doom Nvim documentation' },
-			['u'] = { 'Update Doom Nvim' },
-			['r'] = { 'Rollback Doom Nvim version' },
-			['R'] = { 'Create crash report' },
-			['s'] = { 'Change colorscheme' },
-		}, ]]
-		["f"] = {
-			name = "+find",
-			["f"] = { "Find files" },
-			["h"] = { "Help tags" },
-			["r"] = { "Recently opened files" },
-			["s"] = { "Sessions" },
-		},
-		["g"] = {
-			name = "+git",
-			["o"] = { "Open Neogit" },
-			["d"] = {
-				name = "+diffview",
-				["o"] = { "Open (compare against HEAD)" },
-				["f"] = { "File history" },
-				["m"] = { "Compare against main/master" },
-				["M"] = { "Compare against remote main/master" },
-				["c"] = { "Close" },
-			},
-			["p"] = { "Pull" },
-			["P"] = { "Push" },
-			["s"] = { "Status" },
-			["b"] = { "Blame line" },
-			["B"] = { "Branches" },
-			["l"] = { "Log" },
-			["c"] = { "Commits of buffer" },
-			["r"] = { "Open line in Github" },
-			["R"] = { "Open file in Github" },
-			["a"] = { "Advanced Git search" },
-		},
-		["l"] = {
-			name = "+llm",
-			["a"] = { "Actions" },
-			["i"] = { "Inline" },
-			["t"] = { "Toggle" },
-			["A"] = { "Agent" }, -- TODO not setup yet
-		},
-		["p"] = {
-			name = "+plugins",
-			["s"] = { "Sync: Install, clean, and update" },
-			["S"] = { "Home: list and and status of plugins" },
-			["r"] = { "Restore" },
-			["c"] = { "Clean disabled or unused plugins" },
-		},
-		["q"] = {
-			name = "+quit/sessions",
-			["q"] = { "Quit window" },
-			["a"] = { "Quit all" },
-		},
-		["s"] = {
-			name = "+search",
-			["g"] = { "Grep" },
-			["b"] = { "In opened buffers" },
-			["s"] = { "Symbols" },
-			["h"] = { "Command history" },
-			["m"] = { "Jump to mark" },
-		},
-		["t"] = {
-			name = "+test",
-			["t"] = { "Run nearest test" },
-			["f"] = { "Run tests in file" },
-			["o"] = { "Output of test result" },
-			["O"] = { "Output panel of all tests" },
-			["s"] = { "Test summary" },
-		},
-		["w"] = {
-			name = "+windows",
-			["w"] = { "Other window" },
-			["d"] = { "Delete window" },
-			["s"] = { "Split window below" },
-			["v"] = { "Split window right" },
-			["H"] = { "Expand window left" },
-			["J"] = { "Expand window below" },
-			["L"] = { "Expand window right" },
-			["K"] = { "Expand window up" },
-			["="] = { "Balance window" },
-			["m"] = { "Move windows" },
-			["S"] = { "Swap windows" },
-			["c"] = { "Center window" },
-		},
-		-- Organizing
-		["o"] = {
-			name = "+org",
-			["w"] = { "Workspace" },
-			["r"] = { "Return" },
-		},
-	}
+	wk.add({
+		-- Top-level
+		{ "<leader>`",     desc = "Switch buffer" },
+		{ "<leader><space>", desc = "Find file" },
+		{ "<leader>.",     desc = "Browse files" },
+		{ "<leader>,",     desc = "Find buffer" },
+		{ "<leader>/",     desc = "Grep" },
+		{ "<leader>:",     desc = "Command history" },
 
-	wk.register(mappings, { prefix = "<leader>" })
+		-- Buffers
+		{ "<leader>b",     group = "buffers" },
+		{ "<leader>bc",    desc = "Close all buffers" },
+		{ "<leader>bb",    desc = "Switch to other buffer" },
+		{ "<leader>bd",    desc = "Delete current buffer" },
+
+		-- Code / LSP
+		{ "<leader>c",     group = "code" },
+		{ "<leader>ca",    desc = "Code Actions" },
+		{ "<leader>cA",    desc = "Source Actions" },
+		{ "<leader>cr",    desc = "Rename" },
+		{ "<leader>ch",    desc = "Toggle Inlay Hints" },
+		{ "<leader>cd",    group = "diagnostic" },
+		{ "<leader>cdl",   desc = "Show line diagnostics" },
+		{ "<leader>cdd",   desc = "Show document diagnostics" },
+		{ "<leader>cdw",   desc = "Show workspace diagnostics" },
+		{ "<leader>cl",    group = "lsp" },
+		{ "<leader>cli",   desc = "Lsp info" },
+		{ "<leader>cld",   desc = "Show type definition" },
+
+		-- Find
+		{ "<leader>f",     group = "find" },
+		{ "<leader>ff",    desc = "Find files" },
+		{ "<leader>ft",    desc = "Help tags" },
+		{ "<leader>fr",    desc = "Recently opened files" },
+		{ "<leader>fs",    desc = "Sessions" },
+
+		-- Git
+		{ "<leader>g",     group = "git" },
+		{ "<leader>go",    desc = "Open Neogit" },
+		{ "<leader>gd",    group = "diffview" },
+		{ "<leader>gdo",   desc = "Open (compare against HEAD)" },
+		{ "<leader>gdf",   desc = "File history" },
+		{ "<leader>gdm",   desc = "Compare against main/master" },
+		{ "<leader>gdM",   desc = "Compare against remote main/master" },
+		{ "<leader>gdc",   desc = "Close" },
+		{ "<leader>gp",    desc = "Pull" },
+		{ "<leader>gP",    desc = "Push" },
+		{ "<leader>gs",    desc = "Status" },
+		{ "<leader>gb",    desc = "Blame line" },
+		{ "<leader>gB",    desc = "Branches" },
+		{ "<leader>gl",    desc = "Log" },
+		{ "<leader>gc",    desc = "Commits of buffer" },
+		{ "<leader>gr",    desc = "Open line in Github" },
+		{ "<leader>gR",    desc = "Open file in Github" },
+		{ "<leader>ga",    desc = "Advanced Git search" },
+
+		-- LLM
+		{ "<leader>l",     group = "llm" },
+		{ "<leader>la",    desc = "Actions" },
+		{ "<leader>li",    desc = "Inline" },
+		{ "<leader>lt",    desc = "Toggle" },
+		{ "<leader>lA",    desc = "Agent" },
+
+		-- Plugins
+		{ "<leader>p",     group = "plugins" },
+		{ "<leader>ps",    desc = "Sync: Install, clean, and update" },
+		{ "<leader>pS",    desc = "Home: list and status of plugins" },
+		{ "<leader>pr",    desc = "Restore" },
+		{ "<leader>pc",    desc = "Clean disabled or unused plugins" },
+
+		-- Quit / Sessions
+		{ "<leader>q",     group = "quit/sessions" },
+		{ "<leader>qq",    desc = "Quit window" },
+		{ "<leader>qa",    desc = "Quit all" },
+
+		-- Search
+		{ "<leader>s",     group = "search" },
+		{ "<leader>sg",    desc = "Grep" },
+		{ "<leader>sb",    desc = "In opened buffers" },
+		{ "<leader>ss",    desc = "Symbols" },
+		{ "<leader>sh",    desc = "Command history" },
+		{ "<leader>sm",    desc = "Jump to mark" },
+
+		-- Test
+		{ "<leader>t",     group = "test" },
+		{ "<leader>tt",    desc = "Run nearest test" },
+		{ "<leader>tf",    desc = "Run tests in file" },
+		{ "<leader>to",    desc = "Output of test result" },
+		{ "<leader>tO",    desc = "Output panel of all tests" },
+		{ "<leader>ts",    desc = "Test summary" },
+
+		-- Windows
+		{ "<leader>w",     group = "windows" },
+		{ "<leader>ww",    desc = "Other window" },
+		{ "<leader>wd",    desc = "Delete window" },
+		{ "<leader>ws",    desc = "Split window below" },
+		{ "<leader>wv",    desc = "Split window right" },
+		{ "<leader>wH",    desc = "Expand window left" },
+		{ "<leader>wJ",    desc = "Expand window below" },
+		{ "<leader>wL",    desc = "Expand window right" },
+		{ "<leader>wK",    desc = "Expand window up" },
+		{ "<leader>w=",    desc = "Balance window" },
+		{ "<leader>wm",    desc = "Move windows" },
+		{ "<leader>wS",    desc = "Swap windows" },
+		{ "<leader>wc",    desc = "Center window" },
+
+		-- Org
+		{ "<leader>o",     group = "org" },
+		{ "<leader>ow",    desc = "Workspace" },
+		{ "<leader>or",    desc = "Return" },
+	})
 end
 
 -- Go keymaps
@@ -157,47 +127,30 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*.go",
 	callback = function()
 		local wk = require("which-key")
-		local opts = {
-			mode = "n", -- NORMAL mode
-			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
-		}
-		local mappings = {
-			["<localleader>"] = {
-				t = {
-					name = "+test",
-					f = "Func",
-					s = "Func Select",
-					F = "File",
-					p = "Package",
-					a = {
-						name = "+add",
-						f = "Func",
-						e = "Exported Funcs",
-						a = "All Funcs",
-					},
-				},
-				T = {
-					name = "+tags",
-					a = "Add",
-					r = "Remove",
-				},
-				b = {
-					name = "+binaries",
-					i = "Install",
-					u = "Update",
-				},
-				["c"] = { "Add comment" },
-				f = {
-					name = "+fill",
-					s = "Auto fill struct",
-					S = "Fill switch",
-					e = "Add if err",
-					p = "Fix plurals",
-				},
-			},
-		}
-
-		wk.register(mappings, opts)
+		local buf = vim.api.nvim_get_current_buf()
+		wk.add({
+			{ "<localleader>t",   group = "test",         buffer = buf },
+			{ "<localleader>tf",  desc = "Func",           buffer = buf },
+			{ "<localleader>ts",  desc = "Func Select",    buffer = buf },
+			{ "<localleader>tF",  desc = "File",           buffer = buf },
+			{ "<localleader>tp",  desc = "Package",        buffer = buf },
+			{ "<localleader>ta",  group = "add",           buffer = buf },
+			{ "<localleader>taf", desc = "Func",           buffer = buf },
+			{ "<localleader>tae", desc = "Exported Funcs", buffer = buf },
+			{ "<localleader>taa", desc = "All Funcs",      buffer = buf },
+			{ "<localleader>T",   group = "tags",          buffer = buf },
+			{ "<localleader>Ta",  desc = "Add",            buffer = buf },
+			{ "<localleader>Tr",  desc = "Remove",         buffer = buf },
+			{ "<localleader>b",   group = "binaries",      buffer = buf },
+			{ "<localleader>bi",  desc = "Install",        buffer = buf },
+			{ "<localleader>bu",  desc = "Update",         buffer = buf },
+			{ "<localleader>c",   desc = "Add comment",    buffer = buf },
+			{ "<localleader>f",   group = "fill",          buffer = buf },
+			{ "<localleader>fs",  desc = "Auto fill struct", buffer = buf },
+			{ "<localleader>fS",  desc = "Fill switch",    buffer = buf },
+			{ "<localleader>fe",  desc = "Add if err",     buffer = buf },
+			{ "<localleader>fp",  desc = "Fix plurals",    buffer = buf },
+		})
 	end,
 })
 
@@ -206,20 +159,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*.rs",
 	callback = function()
 		local wk = require("which-key")
-		local opts = {
-			mode = "n", -- NORMAL mode
-			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
-		}
-		local mappings = {
-			["<localleader>"] = {
-				["r"] = { "Runnables" },
-				["p"] = { "Parent Module" },
-				["s"] = { "Structural Search Replace" },
-				["e"] = { "Expand Macro" },
-			},
-		}
-
-		wk.register(mappings, opts)
+		local buf = vim.api.nvim_get_current_buf()
+		wk.add({
+			{ "<localleader>r", desc = "Runnables",                buffer = buf },
+			{ "<localleader>p", desc = "Parent Module",            buffer = buf },
+			{ "<localleader>s", desc = "Structural Search Replace", buffer = buf },
+			{ "<localleader>e", desc = "Expand Macro",             buffer = buf },
+		})
 	end,
 })
 
@@ -228,57 +174,37 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*.norg",
 	callback = function()
 		local wk = require("which-key")
-		local opts = {
-			mode = "n", -- NORMAL mode
-			buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings to show only in tex buffers
-		}
-		local mappings = {
-			["<localleader>"] = {
-				[","] = { "Find file" },
-				["/"] = { "Grep" },
-				["i"] = { "Index" },
-				["f"] = {
-					name = "+find",
-					["f"] = { "Norg files" },
-					["l"] = { "Linkables" },
-					["i"] = { "Headings" },
-				},
-				["l"] = {
-					name = "+link",
-					["l"] = { "Link" },
-					["f"] = { "File Link" },
-				},
-				["j"] = {
-					name = "+journal",
-					["t"] = "Today",
-					["o"] = "Other,",
-				},
-			},
-		}
-
-		wk.register(mappings, opts)
+		local buf = vim.api.nvim_get_current_buf()
+		wk.add({
+			{ "<localleader>,",  desc = "Find file",    buffer = buf },
+			{ "<localleader>/",  desc = "Grep",         buffer = buf },
+			{ "<localleader>i",  desc = "Index",        buffer = buf },
+			{ "<localleader>f",  group = "find",        buffer = buf },
+			{ "<localleader>ff", desc = "Norg files",   buffer = buf },
+			{ "<localleader>fl", desc = "Linkables",    buffer = buf },
+			{ "<localleader>fi", desc = "Headings",     buffer = buf },
+			{ "<localleader>l",  group = "link",        buffer = buf },
+			{ "<localleader>ll", desc = "Link",         buffer = buf },
+			{ "<localleader>lf", desc = "File Link",    buffer = buf },
+			{ "<localleader>j",  group = "journal",     buffer = buf },
+			{ "<localleader>jt", desc = "Today",        buffer = buf },
+			{ "<localleader>jo", desc = "Other",        buffer = buf },
+		})
 	end,
 })
 
--- git mergetool keymaps
+-- Diff mode keymaps
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	callback = function()
 		if vim.opt.diff:get() then
 			local wk = require("which-key")
-			local opts = {
-				mode = "n", -- NORMAL mode
-				buffer = vim.api.nvim_get_current_buf(), -- Specify a buffer number for buffer local mappings
-			}
-			local mappings = {
-				["<localleader>"] = {
-					["1"] = { ":diffget LOCAL<CR>", "Get LOCAL" },
-					["2"] = { ":diffget BASE<CR>", "Get BASE" },
-					["3"] = { ":diffget REMOTE<CR>", "Get REMOTE" },
-				},
-			}
-
-			wk.register(mappings, opts)
+			local buf = vim.api.nvim_get_current_buf()
+			wk.add({
+				{ "<localleader>1", desc = "Get LOCAL",  buffer = buf },
+				{ "<localleader>2", desc = "Get BASE",   buffer = buf },
+				{ "<localleader>3", desc = "Get REMOTE", buffer = buf },
+			})
 		end
 	end,
 })

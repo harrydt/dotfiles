@@ -5,6 +5,7 @@ local M = {
 
 function M.config()
 	local colors = require("galaxyline.themes.colors").get_color
+	local icons = require("core").icons
 
 	local bo = vim.bo
 	local gl = require("galaxyline")
@@ -32,13 +33,13 @@ function M.config()
 					n = colors("red"),
 					i = colors("green"),
 					v = colors("blue"),
-					[""] = colors("blue"),
+					[""] = colors("blue"),
 					V = colors("blue"),
 					c = colors("magenta"),
 					no = colors("red"),
 					s = colors("orange"),
 					S = colors("orange"),
-					[""] = colors("orange"),
+					[""] = colors("orange"),
 					ic = colors("yellow"),
 					R = colors("magenta"),
 					Rv = colors("magenta"),
@@ -51,7 +52,7 @@ function M.config()
 					t = colors("red"),
 				}
 				vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()]())
-				return "  "
+				return "  "
 			end,
 			highlight = { colors("red"), colors("bg"), "bold" },
 		},
@@ -99,7 +100,7 @@ function M.config()
 		DiagnosticError = {
 			provider = "DiagnosticError",
 			condition = is_not_dashboard,
-			icon = " ",
+			icon = icons.diagnostics.Error,
 			highlight = { colors("red"), colors("bg") },
 		},
 	}
@@ -107,7 +108,7 @@ function M.config()
 		DiagnosticWarn = {
 			provider = "DiagnosticWarn",
 			condition = is_not_dashboard,
-			icon = " ",
+			icon = icons.diagnostics.Warn,
 			highlight = { colors("orange"), colors("bg") },
 		},
 	}
@@ -115,7 +116,7 @@ function M.config()
 		DiagnosticInfo = {
 			provider = "DiagnosticInfo",
 			condition = is_not_dashboard,
-			icon = "",
+			icon = icons.diagnostics.Info,
 			highlight = { colors("blue"), colors("bg") },
 		},
 	}
@@ -146,10 +147,10 @@ function M.config()
 				-- Check if there's a LSP client running to avoid redundant
 				-- statusline elements
 				if lsp.get_lsp_client() ~= "No Active Lsp" then
-					return " " .. lsp.get_lsp_client("", { "null-ls" })
+					return " " .. lsp.get_lsp_client("", { "null-ls" })
 				else
 					-- Use the filetype instead and capitalize it
-					return " " .. vim.bo.filetype
+					return " " .. vim.bo.filetype
 				end
 			end,
 			condition = function()
@@ -167,7 +168,7 @@ function M.config()
 	gls.right[4] = {
 		GitIcon = {
 			provider = function()
-				return "  "
+				return "  "
 			end,
 			condition = condition.check_git_workspace,
 			highlight = { colors("red"), colors("bg") },
@@ -195,7 +196,7 @@ function M.config()
 		DiffAdd = {
 			provider = "DiffAdd",
 			condition = condition.hide_in_width and is_not_dashboard,
-			icon = " ",
+			icon = icons.git.added,
 			highlight = { colors("green"), colors("bg") },
 		},
 	}
@@ -203,7 +204,7 @@ function M.config()
 		DiffModified = {
 			provider = "DiffModified",
 			condition = condition.hide_in_width and is_not_dashboard,
-			icon = " ",
+			icon = icons.git.modified,
 			highlight = { colors("orange"), colors("bg") },
 		},
 	}
@@ -211,7 +212,7 @@ function M.config()
 		DiffRemove = {
 			provider = "DiffRemove",
 			condition = condition.hide_in_width and is_not_dashboard,
-			icon = " ",
+			icon = icons.git.removed,
 			highlight = { colors("red"), colors("bg") },
 		},
 	}

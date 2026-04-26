@@ -1,9 +1,5 @@
 return {
 	"echasnovski/mini.ai",
-	-- keys = {
-	--   { "a", mode = { "x", "o" } },
-	--   { "i", mode = { "x", "o" } },
-	-- },
 	event = "VeryLazy",
 	dependencies = { "nvim-treesitter-textobjects" },
 	opts = function()
@@ -22,9 +18,11 @@ return {
 	end,
 	config = function(_, opts)
 		require("mini.ai").setup(opts)
-		-- register all text objects with which-key
-		---@type table<string, string|table>
-		local i = {
+
+		local wk = require("which-key")
+		local mode = { "o", "x" }
+
+		local inside = {
 			[" "] = "Whitespace",
 			['"'] = 'Balanced "',
 			["'"] = "Balanced '",
@@ -47,21 +45,27 @@ return {
 			q = "Quote `, \", '",
 			t = "Tag",
 		}
-		local a = vim.deepcopy(i)
-		for k, v in pairs(a) do
-			a[k] = v:gsub(" including.*", "")
+		local around = {}
+		for k, v in pairs(inside) do
+			around[k] = v:gsub(" including.*", "")
 		end
 
-		local ic = vim.deepcopy(i)
-		local ac = vim.deepcopy(a)
-		for key, name in pairs({ n = "Next", l = "Last" }) do
-			i[key] = vim.tbl_extend("force", { name = "Inside " .. name .. " textobject" }, ic)
-			a[key] = vim.tbl_extend("force", { name = "Around " .. name .. " textobject" }, ac)
+		local spec = {
+			{ "in", group = "Inside Next textobject", mode = mode },
+			{ "il", group = "Inside Last textobject", mode = mode },
+			{ "an", group = "Around Next textobject", mode = mode },
+			{ "al", group = "Around Last textobject", mode = mode },
+		}
+		for key, desc in pairs(inside) do
+			table.insert(spec, { "i" .. key,  desc = desc, mode = mode })
+			table.insert(spec, { "in" .. key, desc = desc, mode = mode })
+			table.insert(spec, { "il" .. key, desc = desc, mode = mode })
 		end
-		require("which-key").register({
-			mode = { "o", "x" },
-			i = i,
-			a = a,
-		})
+		for key, desc in pairs(around) do
+			table.insert(spec, { "a" .. key,  desc = desc, mode = mode })
+			table.insert(spec, { "an" .. key, desc = desc, mode = mode })
+			table.insert(spec, { "al" .. key, desc = desc, mode = mode })
+		end
+		wk.add(spec)
 	end,
 }

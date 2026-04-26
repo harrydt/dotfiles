@@ -2,10 +2,38 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local icons = require("core").icons.diagnostics
+			vim.diagnostic.config({
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = icons.Error,
+						[vim.diagnostic.severity.WARN] = icons.Warn,
+						[vim.diagnostic.severity.HINT] = icons.Hint,
+						[vim.diagnostic.severity.INFO] = icons.Info,
+					},
+				},
+				virtual_text = { source = "if_many" },
+				severity_sort = true,
+				float = {
+					border = "rounded",
+					source = "if_many",
+				},
+			})
+
 			vim.lsp.config("gopls", {
 				settings = {
 					["gopls"] = {
 						buildFlags = { "-tags=integration,standalone" },
+						gofumpt = true,
+					},
+				},
+			})
+			vim.lsp.config("lua_ls", {
+				settings = {
+					Lua = {
+						diagnostics = { globals = { "vim" } },
+						workspace = { checkThirdParty = false },
+						telemetry = { enable = false },
 					},
 				},
 			})

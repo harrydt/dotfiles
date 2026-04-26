@@ -7,7 +7,7 @@ return {
 		},
 	},
 	{ "lewis6991/gitsigns.nvim", config = true },
-	{ "norcalli/nvim-colorizer.lua" },
+	{ "NvChad/nvim-colorizer.lua", config = true },
 	{ "windwp/nvim-autopairs", config = true }, -- See `config` under https://github.com/folke/lazy.nvim#-plugin-spec
 	{ "kevinhwang91/nvim-bqf" },
 	{ "sindrets/winshift.nvim" },

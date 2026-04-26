@@ -1,17 +1,4 @@
-local M = {}
-
-local defaults = {
-	-- colorscheme can be a string like `catppuccin` or a function that will load the colorscheme
-	---@type string|fun()
-	colorscheme = function()
-		require("captppucin").load()
-	end,
-	-- load the default settings
-	defaults = {
-		autocmds = true, -- lazyvim.config.autocmds
-		keymaps = true, -- lazyvim.config.keymaps
-		options = true, -- lazyvim.config.options
-	},
+local M = {
    -- icons used by other plugins
   -- stylua: ignore
   icons = {
@@ -79,15 +66,5 @@ local defaults = {
     },
   },
 }
-
-setmetatable(M, {
-	__index = function(_, key)
-		if options == nil then
-			return vim.deepcopy(defaults)[key]
-		end
-		---@cast options LazyVimConfig
-		return options[key]
-	end,
-})
 
 return M

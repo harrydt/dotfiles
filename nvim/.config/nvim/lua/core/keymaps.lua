@@ -1,6 +1,5 @@
 local opts = { silent = true }
 local utils = require("core.utils")
-local expr_opts = { silent = true, expr = true }
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
@@ -11,7 +10,7 @@ utils.map('n', '<ESC>', ':noh<CR>', opts)
 -- Make Y behave
 utils.map('n', 'Y', 'y$', opts)
 
--- Undo break points TODO what is this?
+-- Insert-mode undo break points: punctuation starts a new undo chunk
 utils.map('i', ',', ',<C-G>u', opts)
 utils.map('i', '.', '.<C-G>u', opts)
 utils.map('i', '!', '!<C-G>u', opts)
@@ -77,12 +76,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		-- Helper for diagnostic navigation
 		local function diagnostic_goto(next, severity)
-			local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
 			severity = severity and vim.diagnostic.severity[severity] or nil
 			return function()
-				go({ severity = severity })
+				vim.diagnostic.jump({ count = next and 1 or -1, severity = severity })
 			end
 		end
 
@@ -107,7 +104,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
 		end, opt("Goto T[y]pe Definition"))
 		keymap("n", "K", function()
-			return vim.lsp.buf.hover()
+			vim.lsp.buf.hover({ border = "rounded" })
 		end, opt("Hover"))
 		keymap("n", "gK", vim.lsp.buf.signature_help, opt("Signature Help"))
 		keymap("i", "<c-k>", vim.lsp.buf.signature_help, opt("Signature Help"))
@@ -127,22 +124,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			})
 		end, opt("Source Action"))
 
-		-- Conditional rename keymap
-		local has_inc_rename, inc_rename = pcall(require, "inc_rename")
-		if has_inc_rename then
-			keymap("n", "<leader>cr", function()
-				return ":" .. inc_rename.config.cmd_name .. " " .. vim.fn.expand("<cword>")
-			end, vim.tbl_extend("force", opt("Rename"), { expr = true }))
-		else
-			keymap("n", "<leader>cr", vim.lsp.buf.rename, opt("Rename"))
-		end
+		keymap("n", "<leader>cr", vim.lsp.buf.rename, opt("Rename"))
+		keymap("n", "<leader>ch", function()
+			vim.lsp.inlay_hint.enable(
+				not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+				{ bufnr = bufnr }
+			)
+		end, opt("Toggle Inlay Hints"))
 	end,
 })
 
-
----[[-----------------]]---
---    WhichKey binds     --
----]]-----------------[[---
 
 -- Misc
 utils.map('n', '<leader>`', '<cmd>e #<CR>', opts)
@@ -234,8 +225,7 @@ utils.map('n', '<leader>gdc', '<cmd>DiffviewClose<CR>', opts)
 utils.map('n', '<leader>gdf', '<cmd>DiffviewFileHistory<CR>', opts)
 -- utils.map uses nvim.set_keymap which doesn't support lua functions directly
 vim.keymap.set('n', '<leader>gdm', function() vim.cmd('DiffviewOpen ' .. utils.get_default_branch_name()) end, opts)
-vim.keymap.set('n', '<leader>gdM', function()  vim.cmd('DiffviewOpen HEAD..origin/' .. utils.get_default_branch_name())end, opts)
-utils.map('n', '<leader>gdf', '<cmd>DiffviewFileHistory<CR>', opts)
+vim.keymap.set('n', '<leader>gdM', function() vim.cmd('DiffviewOpen HEAD..origin/' .. utils.get_default_branch_name()) end, opts)
 utils.map('n', '<leader>gp', '<cmd>G pull<CR>', opts)
 utils.map('n', '<leader>gs', '<cmd>Telescope git_status<CR>', opts)
 utils.map('n', '<leader>gb', '<cmd>Git blame<CR>', opts)
