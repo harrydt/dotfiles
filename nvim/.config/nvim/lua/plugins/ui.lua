@@ -151,7 +151,7 @@ return {
 		end,
 		opts = function()
 			return {
-				separator = " ",
+				separator = " > ",
 				highlight = true,
 				depth_limit = 5,
 				icons = require("core").icons.kinds,
