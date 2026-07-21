@@ -58,4 +58,10 @@ return {
 			bigfile = {},
 		},
 	},
+	{
+		"harrydt/httpie.nvim",
+		config = function()
+			require("httpie").setup()
+		end,
+	},
 }

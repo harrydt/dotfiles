@@ -66,6 +66,17 @@ function M.config()
 		{ "<leader>gR", desc = "Open file in Github" },
 		{ "<leader>ga", desc = "Advanced Git search" },
 
+		-- Httpie
+		{ "<leader>h", group = "httpie" },
+		{ "<leader>hr", desc = "Run request at cursor" },
+		{ "<leader>ho", desc = "Open collection" },
+		{ "<leader>hn", desc = "New collection" },
+		{ "<leader>hs", desc = "Save request to collection" },
+		{ "<leader>he", group = "env" },
+		{ "<leader>hes", desc = "Select" },
+		{ "<leader>hee", desc = "Edit" },
+		{ "<leader>hev", desc = "Show" },
+
 		-- LLM
 		{ "<leader>l", group = "llm" },
 		{ "<leader>la", desc = "Actions" },

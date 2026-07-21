@@ -236,6 +236,15 @@ utils.map('n', '<leader>gr', '<cmd>.GBrowse<CR>', opts)
 utils.map('n', '<leader>gR', '<cmd>GBrowse<CR>', opts)
 utils.map('n', '<leader>ga', '<cmd>AdvancedGitSearch<CR>', opts)
 
+-- httpie
+utils.map('n', '<leader>hr', '<cmd>HttpieRun<CR>', opts)      -- Run request at cursor
+utils.map('n', '<leader>ho', '<cmd>HttpieOpen<CR>', opts)     -- Open a collection
+utils.map('n', '<leader>hn', '<cmd>HttpieNew<CR>', opts)      -- New collection
+utils.map('n', '<leader>hs', '<cmd>HttpieSave<CR>', opts)     -- Save request to collection
+utils.map('n', '<leader>hes', '<cmd>HttpieEnvSelect<CR>', opts) -- Env: select
+utils.map('n', '<leader>hee', '<cmd>HttpieEnvEdit<CR>', opts)   -- Env: edit
+utils.map('n', '<leader>hev', '<cmd>HttpieEnvShow<CR>', opts)   -- Env: view/show
+
 -- Organizing
 utils.map('n', '<leader>ow', '<cmd>Neorg workspace main<CR>', opts)
 utils.map('n', '<leader>or', '<cmd>Neorg return<CR>', opts)
