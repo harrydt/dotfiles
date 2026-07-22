@@ -68,14 +68,8 @@ function M.config()
 
 		-- Httpie
 		{ "<leader>h", group = "httpie" },
-		{ "<leader>hr", desc = "Run request at cursor" },
 		{ "<leader>ho", desc = "Open collection" },
-		{ "<leader>hn", desc = "New collection" },
-		{ "<leader>hs", desc = "Save request to collection" },
-		{ "<leader>he", group = "env" },
-		{ "<leader>hes", desc = "Select" },
-		{ "<leader>hee", desc = "Edit" },
-		{ "<leader>hev", desc = "Show" },
+		{ "<leader>hc", desc = "Close buffer" },
 
 		-- LLM
 		{ "<leader>l", group = "llm" },
@@ -177,6 +171,22 @@ vim.api.nvim_create_autocmd("BufEnter", {
 			{ "<localleader>p", desc = "Parent Module", buffer = buf },
 			{ "<localleader>s", desc = "Structural Search Replace", buffer = buf },
 			{ "<localleader>e", desc = "Expand Macro", buffer = buf },
+		})
+	end,
+})
+
+-- Httpie keymaps
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*.http",
+	callback = function()
+		local wk = require("which-key")
+		local buf = vim.api.nvim_get_current_buf()
+		wk.add({
+			{ "<localleader>r", desc = "Run request", buffer = buf },
+			{ "<localleader>n", desc = "New collection", buffer = buf },
+			{ "<localleader>s", desc = "Save to collection", buffer = buf },
+			{ "<localleader>i", desc = "Import httpie command", buffer = buf, mode = "v" },
+			{ "<localleader>e", desc = "Export as httpie command", buffer = buf },
 		})
 	end,
 })
