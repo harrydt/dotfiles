@@ -236,9 +236,8 @@ utils.map('n', '<leader>gr', '<cmd>.GBrowse<CR>', opts)
 utils.map('n', '<leader>gR', '<cmd>GBrowse<CR>', opts)
 utils.map('n', '<leader>ga', '<cmd>AdvancedGitSearch<CR>', opts)
 
--- httpie (the rest of the httpie commands are <localleader> mappings in
--- after/ftplugin/http.lua, since they only make sense inside a .http buffer)
 utils.map('n', '<leader>ho', '<cmd>HttpieOpen<CR>', opts)     -- Open a collection
+utils.map("n", "<leader>hn", "<cmd>HttpieNew<CR>", opts)
 utils.map('n', '<leader>hc', '<cmd>HttpieClose<CR>', opts)    -- Close current .http buffer
 
 -- Organizing

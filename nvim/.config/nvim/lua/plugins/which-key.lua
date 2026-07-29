@@ -68,6 +68,7 @@ function M.config()
 
 		-- Httpie
 		{ "<leader>h", group = "httpie" },
+		{ "<leader>hn", group = "New collection" },
 		{ "<leader>ho", desc = "Open collection" },
 		{ "<leader>hc", desc = "Close buffer" },
 
