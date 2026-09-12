@@ -67,6 +67,7 @@ hl.config({
     binds = {
         workspace_back_and_forth = true,
         allow_workspace_cycles   = true,
+        focus_preferred_method   = 1, -- pick focus target by shared edge length, not history
     },
 
     misc = {
@@ -148,8 +149,8 @@ hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
 -- Move focus with mainMod + h/j/k/l
 hl.bind(mainMod .. " + H", hl.dsp.focus({ direction = "left" }))
 hl.bind(mainMod .. " + L", hl.dsp.focus({ direction = "right" }))
-hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "up" }))
-hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mainMod .. " + K", hl.dsp.focus({ direction = "up" }))
 
 -- Move focus to adjacent workspace
 hl.bind(mainMod .. " + right", hl.dsp.focus({ workspace = "+1" }))
