@@ -23,6 +23,7 @@ local M = {
 		require("neotest").setup({
 			adapters = {
 				require("neotest-golang")(config),
+				require("neotest-rust"),
 			},
 		})
 	end,
