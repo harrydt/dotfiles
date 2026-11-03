@@ -31,11 +31,7 @@ utils.map('n', '<F3>', ':AerialToggle!<CR>', opts)
 utils.map('n', '[q', ':cprev<CR>', opts) -- Go to the previous item on the quickfix list
 utils.map('n', ']q', ':cnext<CR>', opts) -- Go to the next item on the quickfix list
 
--- windows movement keys
-utils.map('n', '<C-h>', '<C-w>h', opts)
-utils.map('n', '<C-j>', '<C-w>j', opts)
-utils.map('n', '<C-k>', '<C-w>k', opts)
-utils.map('n', '<C-l>', '<C-w>l', opts)
+-- windows movement keys: <C-hjkl> come from vim-tmux-navigator (plugins/init.lua)
 
 -- get out of terminal insert mode into normal mode with Esc
 vim.cmd('tnoremap <Esc> <C-\\><C-n>')

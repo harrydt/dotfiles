@@ -11,6 +11,7 @@ return {
 	{ "windwp/nvim-autopairs", config = true }, -- See `config` under https://github.com/folke/lazy.nvim#-plugin-spec
 	{ "kevinhwang91/nvim-bqf" },
 	{ "sindrets/winshift.nvim" },
+	{ "christoomey/vim-tmux-navigator" }, -- <C-hjkl> across nvim splits and tmux panes
 	{
 		"chentoast/marks.nvim",
 		event = "VeryLazy",

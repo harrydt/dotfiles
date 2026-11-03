@@ -1,0 +1,14 @@
+nerdfont: true
+agent: claude
+mode: session
+# Return here when a worktree session closes (start it with `tmux new -A -s main`)
+default_session: main
+
+windows:
+  - name: agent
+    panes:
+      - command: <agent>
+        focus: true
+  - name: nvim
+    panes:
+      - command: nvim

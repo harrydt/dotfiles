@@ -128,6 +128,7 @@ hl.window_rule({
 local mainMod = "SUPER"
 
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty")) -- open the terminal
+hl.bind(mainMod .. " + SHIFT + Return", hl.dsp.exec_cmd("kitty tmux new -A -s main")) -- open the terminal attached to tmux "main"
 hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close()) -- close the active window
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("wlogout --protocol layer-shell")) -- show the logout window
 hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exit()) -- exit Hyprland entirely (force quit)
