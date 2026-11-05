@@ -60,7 +60,6 @@ return {
 					"lazy",
 					"mason",
 					"notify",
-					"toggleterm",
 					"lazyterm",
 				},
 			},
@@ -91,7 +90,6 @@ return {
 					"lazy",
 					"mason",
 					"notify",
-					"toggleterm",
 					"lazyterm",
 				},
 				callback = function()

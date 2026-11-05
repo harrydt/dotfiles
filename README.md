@@ -130,9 +130,6 @@ NVIM_APPNAME=harrydt/dotfiles/nvim/.config/nvim nvim
 + [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-### terminal-integration
-
-+ [akinsho/toggleterm.nvim](https://dotfyle.com/plugins/akinsho/toggleterm.nvim)
 ### test
 
 + [nvim-neotest/neotest](https://dotfyle.com/plugins/nvim-neotest/neotest)
