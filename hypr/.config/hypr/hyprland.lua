@@ -114,6 +114,15 @@ hl.animation({ leaf = "workspaces", enabled = true, speed = 6,  bezier = "defaul
 
 -- See https://wiki.hypr.land/Configuring/Basics/Window-Rules/
 hl.window_rule({
+    -- Apps sometimes request to be maximized on open; Hyprland honors this by
+    -- default, which covers the whole tile and hides existing siblings.
+    name  = "suppress-maximize-events",
+    match = { class = ".*" },
+
+    suppress_event = "maximize",
+})
+
+hl.window_rule({
     name  = "windowrule-1",
     match = { class = "^(kitty)$" },
     opacity = "0.8 0.8",
