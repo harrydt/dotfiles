@@ -137,8 +137,8 @@ hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("thunar")) -- show the graphical fil
 hl.bind(mainMod .. " + F4", hl.dsp.exec_cmd("keepassxc")) -- show the password manager
 hl.bind(mainMod .. " + F5", hl.dsp.exec_cmd("hyprlock")) -- lock the screen
 hl.bind(mainMod .. " + F", hl.dsp.window.float({ action = "toggle" })) -- allow a window to float
+hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })) -- fullscreen and also hide bars
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("wofi")) -- show the graphical app launcher
-hl.bind(mainMod .. " + SPACE", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" })) -- fullscreen and also hide bars
 
 -- Screenshot a window
 hl.bind(mainMod .. " + PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
