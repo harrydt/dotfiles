@@ -1,0 +1,13 @@
+# workmux-line: https://github.com/harrydt/workmux-line
+# Catppuccin Mocha, matching kitty and nvim.
+
+[colors]
+bar_bg = "#1e1e2e"   # base
+bar_fg = "#cdd6f4"   # text
+muted  = "#6c7086"   # overlay0: inactive windows, thin separators
+accent = "#cba6f7"   # mauve: current window
+a_bg   = "#b4befe"   # lavender: session block and clock
+a_fg   = "#1e1e2e"
+b_bg   = "#313244"   # surface0: branch and agents
+b_fg   = "#cdd6f4"
+mode   = "#cba6f7"   # mauve prefix / copy-mode badge
